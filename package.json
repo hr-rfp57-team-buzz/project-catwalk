@@ -4,6 +4,8 @@
   "description": "1.Run npm install 2.Run npm run watch *starts webpack in watch mode* 3.Run npm start *runs nodemon on the server*",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server/server.js",
+    "build": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

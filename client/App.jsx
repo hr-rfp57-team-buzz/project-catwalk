@@ -2,11 +2,11 @@ import React from 'react';
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state ={
+    this.state = {
 
-    }
+    };
   }
 
 
@@ -15,7 +15,7 @@ class App extends React.Component {
       <div>
         <h1>Simple App</h1>
       </div>
-    )
+    );
   }
 }
 

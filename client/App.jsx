@@ -1,4 +1,5 @@
 import React from 'react';
+import Overview from './Overview.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,10 +14,7 @@ class App extends React.Component {
     return (
       <div id="container">
         <h1>Simple App</h1>
-        <div id="product-overview">
-          <div className="po-image">Product Picture</div>
-          <div className="po-details"></div>
-        </div>
+        <Overview />
         <div id="related-products">Related Products</div>
           <div className="related"> Related</div>
           <div className="your-outfit">Outfit</div>

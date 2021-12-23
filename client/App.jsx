@@ -13,7 +13,6 @@ class App extends React.Component {
     return (
       <div id="container">
         <h1>Simple App</h1>
-        <h2>Test Element! Delete me!</h2>
         <div id="product-overview">
           <div className="po-image">Product Picture</div>
           <div className="po-details"></div>

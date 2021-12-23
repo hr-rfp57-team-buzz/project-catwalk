@@ -9,10 +9,10 @@ console.log(path.join(__dirname, '../public/index.html'));
 
 app.get('/', function(req, res) {
   console.log('Hi');
-  res.send()
+  res.send();
 });
 
 
-app.listen(port, function(){
-  console.log("Listening on port ", port);
-})
+app.listen(port, function() {
+  console.log('Listening on port ', port);
+});

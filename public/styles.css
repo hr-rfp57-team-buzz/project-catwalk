@@ -307,16 +307,44 @@ h1 {
 }
 
 /* Ryne */
-#ratings-review {
+/* Don't put ; after closing brackets of css rules */
+#ratings-reviews {
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.gridContainer2Col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gridItemLeft {
+  background-color: yellow;
+  text-align: left;
+}
+
+.gridItemRight {
+  background-color: red;
+  text-align: right;
+}
+
+.gridItemCenter {
+  background-color: blue;
+  justify-self: center;
 }
 
 .ratingOverview {
-  background-color: mediumpurple;
-
+  background-color: purple;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
+
+
 
 .review {
   background-color: mediumorchid;
+  grid-column-start: 3;
+  grid-column-end: 7;
+  height: 350px;
 }
 

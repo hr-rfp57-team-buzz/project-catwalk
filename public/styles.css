@@ -1,3 +1,60 @@
 h1 {
   color: red
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#container {
+  max-width: 1280px;
+  margin: 0 auto;
+  background-color: lightgray;
+}
+
+/* Daniel */
+#product-overview {
+  display: flex;
+  justify-content: center;
+}
+
+.po-image {
+  width: 50%;
+  background-color: lightpink;
+}
+
+.po-details {
+  width: 50%;
+  background-color:lightskyblue;
+}
+
+/* JD */
+.related {
+  background-color: lightyellow;
+}
+
+.your-outfit {
+  background-color: mediumslateblue;
+}
+
+/* Alex */
+#questions-answers {
+  background-color: moccasin;
+}
+
+/* Ryne */
+#ratings-review {
+  display: grid;
+}
+
+.ratingOverview {
+  background-color: mediumpurple;
+
+}
+
+.review {
+  background-color: mediumorchid;
+}
+

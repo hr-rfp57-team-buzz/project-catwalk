@@ -5,8 +5,12 @@ var Related = () => {
 
   return (
     <div>
-      <Cards/>
-      <Cards/>
+      <div className="reel">
+        <Cards/>
+      </div>
+      <div className="reel">
+        <Cards/>
+      </div>
     </div>
   );
 };

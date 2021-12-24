@@ -313,18 +313,30 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
+.review {
+  background-color: mediumorchid;
+  grid-column-start: 3;
+  grid-column-end: 7;
+  height: 350px;
+}
+
+.ratingOverview {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
 .gridContainer2Col {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
 .gridItemLeft {
-  background-color: yellow;
+
   text-align: left;
 }
 
 .gridItemRight {
-  background-color: red;
+
   text-align: right;
 }
 
@@ -333,18 +345,26 @@ h1 {
   justify-self: center;
 }
 
-.ratingOverview {
-  background-color: purple;
-  grid-column-start: 1;
-  grid-column-end: 3;
+.reviewBarStats {
+  padding: 8px 0px 8px 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
+.reviewBarStarNumber {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
 
+.reviewBar {
+  display: grid;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-template-rows: 1fr;
+  background-color: gray;
+}
 
-.review {
-  background-color: mediumorchid;
-  grid-column-start: 3;
-  grid-column-end: 7;
-  height: 350px;
+.reviewBarProgress {
+  background-color: green;
 }
 

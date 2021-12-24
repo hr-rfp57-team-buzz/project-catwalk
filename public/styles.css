@@ -11,7 +11,7 @@ h1 {
 #container {
   max-width: 1280px;
   margin: 0 auto;
-  background-color: lightgray;
+  /* background-color: lightgray; */
 }
 
 /* Daniel */
@@ -307,16 +307,80 @@ h1 {
 }
 
 /* Ryne */
-#ratings-review {
+/* Don't put ; after closing brackets of css rules */
+#ratings-reviews {
+  padding-top: 16px;
   display: grid;
-}
-
-.ratingOverview {
-  background-color: mediumpurple;
-
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .review {
-  background-color: mediumorchid;
+  grid-column-start: 3;
+  grid-column-end: 7;
+}
+
+.responseFromSeller {
+  margin: 15px;
+  background-color: rgb(209, 206, 206);
+  border-radius: 15px;
+}
+
+.pad15 {
+  padding: 4px;
+}
+
+.ratingOverview {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.gridContainer2Col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gridContainer1Col {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.gridItemLeft {
+
+  justify-self: left;
+}
+
+.gridItemRight {
+
+  justify-self: right;
+}
+
+.gridItemCenter {
+  justify-self: center;
+}
+
+
+
+
+.reviewBarStats {
+  padding: 8px 0px 8px 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.reviewBarStarNumber {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.reviewBar {
+  display: grid;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-template-rows: 1fr;
+  background-color: gray;
+}
+
+.reviewBarProgress {
+  background-color: green;
 }
 

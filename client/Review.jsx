@@ -16,6 +16,7 @@ let Review = () => (
     </div>
     <h4>Lorem ipsum dolor sit amet, consectetur adipiscing</h4>
     <p>ucibus. Aliquam at ultricies sem. Sed iaculis eros tempus tortor semper vestibulum. Integer interdum egestas sapien quis facilisis. Suspendisse velit tortor, posuere a scelerisque quis, porttitor ut leo. Vestibulum ac neque quis justo imperdiet venenatis. Maecenas ante lorem, gravida ac feugiat quis, lacin</p>
+    <div class="responseFromSeller"></div>
     <br/>
     <p>Was this review helpful?</p>
     <sub><a href="#">YES</a>  <a href="#">NO</a></sub>
@@ -34,6 +35,10 @@ let Review = () => (
     </div>
     <h4>Lorem ipsum dolor sit amet, consectetur adipiscing</h4>
     <p>ucibus. Aliquam at ultricies sem. Sed iaculis eros tempus tortor semper vestibulum. Integer interdum egestas sapien quis facilisis. Suspendisse velit tortor, posuere a scelerisque quis, porttitor ut leo. Vestibulum ac neque quis justo imperdiet venenatis. Maecenas ante lorem, gravida ac feugiat quis, lacin</p>
+    <div class="responseFromSeller">
+      <h4 className="pad15">Response from seller:</h4>
+      <p className="pad15">re ultrices diam tincidunt at. Maecenas sit amet iaculis odio, a viverra felis. Aliquam sit amet</p>
+    </div>
     <br/>
     <p>Was this review helpful?</p>
     <sub><a href="#">YES</a>  <a href="#">NO</a></sub>

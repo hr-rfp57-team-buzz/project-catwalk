@@ -309,6 +309,7 @@ h1 {
 /* Ryne */
 /* Don't put ; after closing brackets of css rules */
 #ratings-reviews {
+  padding-top: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
@@ -316,6 +317,16 @@ h1 {
 .review {
   grid-column-start: 3;
   grid-column-end: 7;
+}
+
+.responseFromSeller {
+  margin: 15px;
+  background-color: rgb(209, 206, 206);
+  border-radius: 15px;
+}
+
+.pad15 {
+  padding: 4px;
 }
 
 .ratingOverview {

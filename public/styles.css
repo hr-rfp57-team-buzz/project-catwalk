@@ -301,6 +301,12 @@ h1 {
   background-color: mediumslateblue;
 }
 
+.reel {
+  height: 100px;
+  width: 80%;
+  background-color: aquamarine;
+}
+
 .Card {
   width: 50px;
   height: 100px;

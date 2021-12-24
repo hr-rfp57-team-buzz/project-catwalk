@@ -1,10 +1,14 @@
 import React from 'react';
 import Overview from './Overview.jsx';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import RatingReviews from './RatingReviews.jsx';
 =======
 import QuestionsAndAnswers from './QuestionsAndAnswers.jsx';
 >>>>>>> cc8abc0 (Added Questions and Answers widget along with individual module components)
+=======
+import QuestionsAndAnswers from './Q&A/QuestionsAndAnswers.jsx';
+>>>>>>> b8e1a7b (Added hardcoded data to format question card)
 
 class App extends React.Component {
   constructor(props) {

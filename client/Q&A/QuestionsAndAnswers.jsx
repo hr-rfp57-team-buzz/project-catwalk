@@ -4,10 +4,12 @@ import QuestionsList from './QuestionsList.jsx';
 
 let QuestionsAndAnswers = () => {
 
-  const [question, setQuestion] = useState('How TTS is this sweatshirt?');
+  const [question, setQuestion] = useState('Is it TTS?');
 
   return (
-    <QuestionsList question={question}/>
+    <div className="questions-list">
+      <QuestionsList question={question}/>
+    </div>
   )
 };
 

@@ -12,9 +12,14 @@ var Related = () => {
 };
 
 var Cards = () => {
+  const [x, setX] = useState(50);
+  const styles = {
+    transform: `translate(${x}px, 0px)`
+  };
+
   return (
-    <div>
-      hi
+    <div className="Card" style={styles}onClick={()=>setX(x + 50)}>
+      Hello
     </div>
   );
 };

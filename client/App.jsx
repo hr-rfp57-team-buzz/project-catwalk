@@ -1,6 +1,10 @@
 import React from 'react';
 import Overview from './Overview.jsx';
+<<<<<<< HEAD
 import RatingReviews from './RatingReviews.jsx';
+=======
+import QuestionsAndAnswers from './QuestionsAndAnswers.jsx';
+>>>>>>> cc8abc0 (Added Questions and Answers widget along with individual module components)
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +24,16 @@ class App extends React.Component {
           <div className="related"> Related</div>
           <div className="your-outfit">Outfit</div>
         <div id="questions-answers">Questions &amp; Answers</div>
+<<<<<<< HEAD
         <RatingReviews />
+=======
+        <QuestionsAndAnswers />
+        <div id="ratings-reviews">
+          Ratings &amp; Reviews
+          <div className="ratingOverview"> Rating overview</div>
+          <div className="review">Review</div>
+        </div>
+>>>>>>> cc8abc0 (Added Questions and Answers widget along with individual module components)
       </div>
     );
   }

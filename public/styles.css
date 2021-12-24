@@ -301,6 +301,13 @@ h1 {
   background-color: mediumslateblue;
 }
 
+.Card {
+  width: 50px;
+  height: 100px;
+  border-style: solid;
+
+}
+
 /* Alex */
 #questions-answers {
   display: grid;

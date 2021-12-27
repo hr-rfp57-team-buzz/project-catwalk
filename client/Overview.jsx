@@ -7,6 +7,7 @@ const Overview = () => {
     <div id="product-overview">
       <div className="announcement">Site-Wide Announcement Message! -- Sale / Discount <strong>Offer</strong> -- <u>New Product Highlight</u></div>
       <div className="po-flex">
+        <h2>Testing</h2>
         <OverviewImage photo={photo} />
         <OverviewDetails />
       </div>

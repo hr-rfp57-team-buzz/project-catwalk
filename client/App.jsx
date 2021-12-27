@@ -1,13 +1,11 @@
 import React from 'react';
 import Overview from './Overview.jsx';
-import RatingReviews from './RatingReviews.jsx';
+import QuestionsAndAnswers from './Q&A/QuestionsAndAnswers.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-
     };
   }
 
@@ -20,7 +18,12 @@ class App extends React.Component {
           <div className="related"> Related</div>
           <div className="your-outfit">Outfit</div>
         <div id="questions-answers">Questions &amp; Answers</div>
-        <RatingReviews />
+        <QuestionsAndAnswers />
+        <div id="ratings-reviews">
+          Ratings &amp; Reviews
+          <div className="ratingOverview"> Rating overview</div>
+          <div className="review">Review</div>
+        </div>
       </div>
     );
   }

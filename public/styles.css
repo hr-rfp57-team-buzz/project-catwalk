@@ -304,7 +304,31 @@ h1 {
 /* Alex */
 #questions-answers {
   background-color: moccasin;
+  display: grid;
 }
+
+#seperator {
+  border-left: 6px solid gray;
+  height: 25px;
+}
+
+.top-links {
+  display: flex;
+}
+
+.question-list {
+}
+
+.questionCard {
+  background-color: antiquewhite;
+  border-radius: 0%;
+  border-width: medium;
+}
+
+.top-text {
+  display: flex;
+}
+
 
 /* Ryne */
 /* Don't put ; after closing brackets of css rules */

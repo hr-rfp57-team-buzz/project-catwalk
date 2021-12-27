@@ -307,17 +307,69 @@ h1 {
   display: grid;
 }
 
-#seperator {
-  border-left: 6px solid gray;
-  height: 25px;
+.q-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.a-line {
+  display: flex;
+  /* justify-content: space-between; */
 }
 
 .top-links {
   display: flex;
+  justify-content: space-around;
+  padding-right: 10px;
+}
+.top-line {
+  display: flex;
+  padding-right: 10px;
 }
 
-.question-list {
+.bottom-line {
+  display: flex;
+  padding-left: 10px;
 }
+
+.bottom-links {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.helpful {
+  display: flex;
+  justify-content: space-evenly;
+  padding-right: 3px;
+  padding-left: 4px;
+}
+
+.search-wrapper {
+  border: 1px solid black;
+  display: inline-block;
+}
+
+.search-bar {
+  width: 100px;
+  height: 40px;
+  background-color: transparent;
+  border: 0;
+}
+
+ #line {
+   border-left: 2px solid gray;
+   height: 18px;
+   padding-left: 5px;
+}
+
+
+/* .question-header {
+} */
+
+/* .question-list {
+} */
 
 .questionCard {
   background-color: antiquewhite;
@@ -325,9 +377,6 @@ h1 {
   border-width: medium;
 }
 
-.top-text {
-  display: flex;
-}
 
 
 /* Ryne */

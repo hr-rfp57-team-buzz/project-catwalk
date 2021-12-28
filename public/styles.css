@@ -17,25 +17,139 @@ h1 {
 /* Daniel */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
+.po-description {
+  display: flex;
+  margin: 40px 0;
+}
+
+.po-desc-expanded {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 58%;
+  padding: 20px;
+}
+
+.po-desc-wrap {
+  width: 80%;
+}
+
+.po-desc-expanded h2 {
+  margin-top: 10px;
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.po-desc-expanded p {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.po-desc-points {
+  width: 42%;
+  padding: 20px;
+  border-left: 3px solid #eee;
+}
+
+.po-desc-points ul {
+  list-style: none;
+}
+
+.po-desc-points li {
+  display: flex;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.po-desc-points i {
+  margin-right: 10px;
+}
+
+
 #product-overview {
   background-color: #fff;
   color: #444;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
-.slide-reel {
-  display: flex;
-  transform: translateX(0%);
-  transition: all 0.4s ease-in-out;
-}
-
-.announcement {
+.po-announcement {
   padding: 18px 10px;
   font-size: 16px;
   font-weight: 300;
   letter-spacing: 0.5px;
   text-align: center;
   text-transform: uppercase;
+}
+
+.po-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.po-image {
+  position: relative;
+  width: 55%;
+  max-height: 700px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.po-details {
+  width: 45%;
+  padding: 40px;
+  background-color: #fff;
+}
+
+
+
+
+
+.po-styles {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px -10px 0 -10px;
+}
+
+.po-style {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 10px;
+  border-radius: 50%;
+  border: 3px solid #eee;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.po-style-check {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  display: none;
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  font-size: 16px;
+  text-align: center;
+}
+
+.po-style-check.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.slide-reel {
+  display: flex;
+  transform: translateX(0%);
+  transition: all 0.4s ease-in-out;
 }
 
 .po-left-arrow {
@@ -60,18 +174,7 @@ h1 {
   z-index: 99;
 }
 
-.po-flex {
-  display: flex;
-  justify-content: center;
-}
 
-.po-image {
-  position: relative;
-  width: 55%;
-  max-height: 700px;
-  overflow: hidden;
-  background-color: #fff;
-}
 
 .po-mini-images {
   position: absolute;
@@ -143,11 +246,7 @@ h1 {
   background-color: #444;
 }
 
-.po-details {
-  width: 45%;
-  padding: 40px;
-  background-color: #fff;
-}
+
 
 .po-category {
   margin-top: 20px;
@@ -171,20 +270,13 @@ h1 {
   letter-spacing: 1px;
 }
 
-.po-styles {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 20px -10px 0 -10px;
-}
 
-.po-indv-style {
-  width: 70px;
-  height: 70px;
-  margin: 10px;
+
+.po-style img {
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background-color: lightpink;
   border: 3px solid #eee;
-  cursor: pointer;
 }
 
 .po-select-section {
@@ -293,41 +385,238 @@ h1 {
 
 
 /* JD */
+
+
 .related {
+  overflow: hidden;
+  margin: auto;
+  position: relative;
   background-color: lightyellow;
+  width: 70%
 }
 
 .your-outfit {
+  overflow: hidden;
   background-color: mediumslateblue;
 }
 
-/* Alex */
-#questions-answers {
-  background-color: moccasin;
-  display: grid;
+.reel {
+  position: static;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: stretch;
+  text-align: center;
+  margin: 10px;
+  transition: all 0.4s ease-in-out;
+
+  height: 350px;
+  width: 80%;
 }
 
-#seperator {
-  border-left: 6px solid gray;
-  height: 25px;
+.Card {
+  display: inline-flex;
+  flex-direction: column;
+  align-self:center;
+  width: 200px;
+  height: 300px;
+  margin-left: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-width: 2px;
+  border-style: solid;
+
+}
+
+.relatedPic {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.relatedPicHolder {
+  max-height: 60%;
+  max-width: 100%;
+  background-color: white;
+}
+
+.relatedTextHolder {
+  height: 100%;
+  background-color: slategray;
+  text-align: left;
+}
+
+.lArrow {
+  position: absolute;
+  left: 10%;
+  font-size: 24px;
+  top: 20%;
+  z-index: 99;
+  color: slategray;
+  background-color: lightgrey;
+  border-style: solid;
+  border-radius: 2px;
+}
+
+.rArrow {
+  position: absolute;
+  font-size: 24px;
+  top: 20%;
+  right: 10%;
+  z-index: 99;
+  color: slategray;
+  background-color: lightgrey;
+  border-style: solid;
+  border-radius: 2px;
+}
+
+.lArrow2 {
+  position: absolute;
+  left: 10%;
+  font-size: 24px;
+  bottom: 25%;
+  z-index: 99;
+  color: slategray;
+  background-color: lightgrey;
+  border-style: solid;
+  border-radius: 2px;
+}
+
+.rArrow2 {
+  position: absolute;
+  font-size: 24px;
+  bottom: 25%;
+  right: 10%;
+  z-index: 99;
+  color: slategray;
+  background-color: lightgrey;
+  border-style: solid;
+  border-radius: 2px;
+}
+
+
+
+
+/* Alex */
+#questions-answers {
+  display: grid;
+  padding-bottom: 10px;
+}
+
+.q-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.a-line {
+  display: flex;
+  /* justify-content: space-between; */
 }
 
 .top-links {
   display: flex;
+  justify-content: space-around;
+  padding-right: 10px;
+}
+.top-line {
+  display: flex;
+  padding-right: 10px;
 }
 
-.question-list {
+.bottom-btn {
+  display: inline-flex;
+  margin-left: 10px;
+  background-color: transparent;
+  border: 1px solid black;
+  width: 200px;
+  height: 50px;
+  justify-content: center;
+  padding-top:15px;
+  font-weight: bolder;
 }
+
+.bottom-line {
+  display: flex;
+  padding-left: 10px;
+}
+
+.bottom-links {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.helpful {
+  display: flex;
+  justify-content: space-evenly;
+  padding-right: 3px;
+  padding-left: 4px;
+}
+
+.search-wrapper {
+  border: 1px solid black;
+  display: inline-block;
+}
+
+.search-bar{
+  font-weight: bold;
+  text-decoration: black;
+  display:inline-flex;
+  justify-content: center;
+  /* text-align: start; */
+  width: 1000px;
+  height: 50px;
+  background-color: transparent;
+  border: 0;
+}
+
+.search-bar::-webkit-input-placeholder{
+  font-weight: bold;
+  color: black;
+  text-decoration: black;
+  display:inline-flex;
+  justify-content: center;
+  /* text-align: start; */
+  width: 1000px;
+  height: 50px;
+  background-color: transparent;
+  border: 0;
+}
+
+.search-button {
+  background-color: transparent;
+  border: 0;
+  width: 50px;
+}
+
+.fa-search {
+  background-color: transparent;
+}
+
+.questions {
+  margin-top: 20px;
+}
+
+ #line {
+   border-left: 2px solid gray;
+   height: 18px;
+   padding-left: 5px;
+}
+
+
+/* .question-header {
+} */
+
+/* .question-list {
+} */
 
 .questionCard {
-  background-color: antiquewhite;
+  background-color: white;
   border-radius: 0%;
   border-width: medium;
 }
 
-.top-text {
-  display: flex;
-}
 
 
 /* Ryne */

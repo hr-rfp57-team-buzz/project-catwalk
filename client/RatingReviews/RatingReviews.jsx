@@ -10,9 +10,14 @@ let RatingReview = () => {
   let [averageRating, setAverageRating] = useState('Loading...');
   let [scrape, setScrape] = useState(false);
   let [totalRatings, setTotalRatings] = useState(0);
+  let [prodId, setProdId] = useState(40344);
 
   //to be hooked up to productId context
-  let prodId = 40344;
+  // let prodId = 40388;
+
+  let changeProdId = () => {
+    setProdId(40388);
+  };
 
   let getProdReviews = (prodId) => {
     axios.get(`/reviews/${prodId}`)
@@ -48,12 +53,12 @@ let RatingReview = () => {
   useEffect(() => {
     getProdReviews(prodId);
     getProdReviewMeta(prodId);
-  }, []);
+  }, [prodId]);
 
   return (
     <div id="ratings-reviews">
       <Rating reviewMeta={reviewMeta} averageRating={averageRating} scrape={scrape} totalRatings={totalRatings}/>
-      <Review reviews={reviews} />
+      <Review reviews={reviews} changeProdId={changeProdId} />
     </div>
   );
 

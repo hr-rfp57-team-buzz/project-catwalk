@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
 
 
-  let starSet = () => {
+  let statSet = () => {
     let width = 0;
     if (!scrape) {
       return;
@@ -19,7 +19,7 @@ let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
   };
 
   useEffect(() => {
-    starSet();
+    statSet();
   });
 
 

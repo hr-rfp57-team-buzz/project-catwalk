@@ -3,26 +3,7 @@ import ReviewListEntry from './ReviewListEntry.jsx';
 import axios from 'axios';
 import TOKEN from '../../config.js';
 
-let Review = ({reviews, setReviews}) => {
-
-  // let [reviews, setReviews] = useState([0]);
-
-  // let prodId = 40345;
-
-  // let getProdReviews = (prodId) => {
-  //   axios.get(`/reviews/${prodId}`)
-  //     .then((res) => {
-  //       // console.log(res);
-  //       setReviews(res.data.results);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  // React.useEffect(() => {
-  //   getProdReviews(prodId);
-  // }, []);
+let Review = ({reviews, setReviews, changeProdId}) => {
 
   return (
 
@@ -38,7 +19,7 @@ let Review = ({reviews, setReviews}) => {
       })}
       <div className="gridContainer2Col">
         <div className="gridItemCenter"><button>More Reviews</button></div>
-        <div className="gridItemCenter"><button>Add A Review +</button></div>
+        <div className="gridItemCenter"><button onClick={changeProdId}>Add A Review +</button></div>
       </div>
       <br/><br/>
     </div>

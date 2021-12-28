@@ -13,7 +13,7 @@ let ReviewListEntry = (props) => {
 
   useEffect(() => {
     createPhotoArray();
-  }, []);
+  }, [props.review]);
 
   return (
 

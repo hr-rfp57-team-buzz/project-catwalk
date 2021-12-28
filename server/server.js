@@ -136,7 +136,6 @@ app.get('/reviews/:product_id/meta', (req, res) => {
 app.get('/qa/questions', (req, res) => {
   let id = req.query.id;
   console.log('req in server: ', req);
-  // console.log('Id in server: ', id);
   let endpoint = url + 'qa/questions';
 
   axios.get(endpoint, {

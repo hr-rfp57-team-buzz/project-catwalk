@@ -1,7 +1,24 @@
 import React, { useState, useEffect } from 'react';
 
-let Rating = ({reviewMeta, averageRating}) => {
+let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
 
+
+  let starSet = () => {
+    let width = 0;
+    if (!scrape) {
+      return;
+    } else {
+      for (var key in reviewMeta.ratings) {
+        let progressBar = document.getElementById(`${key}progress`);
+        let progressWidth = (reviewMeta.ratings[key] / totalRatings) * 100;
+        progressBar.style.width = `${Math.round(progressWidth)}%`;
+      }
+    }
+  };
+
+  useEffect(() => {
+    starSet();
+  });
 
 
 
@@ -20,7 +37,7 @@ let Rating = ({reviewMeta, averageRating}) => {
             5 Stars
           </div>
           <div class="reviewBar">
-            <div style={{width: '89%'}} class="reviewBarProgress"></div>
+            <div id="5progress" className='reviewBarProgress'></div>
           </div>
         </div>
         <div class="reviewBarStats">
@@ -28,7 +45,7 @@ let Rating = ({reviewMeta, averageRating}) => {
             4 Stars
           </div>
           <div class="reviewBar">
-            <div style={{width: '44%'}} class="reviewBarProgress"></div>
+            <div id="4progress" className='reviewBarProgress'></div>
           </div>
         </div>
         <div class="reviewBarStats">
@@ -36,7 +53,7 @@ let Rating = ({reviewMeta, averageRating}) => {
             3 Stars
           </div>
           <div class="reviewBar">
-            <div style={{width: '8%'}} class="reviewBarProgress"></div>
+            <div id="3progress" className='reviewBarProgress'></div>
           </div>
         </div>
         <div class="reviewBarStats">
@@ -44,7 +61,7 @@ let Rating = ({reviewMeta, averageRating}) => {
             2 Stars
           </div>
           <div class="reviewBar">
-            <div style={{width: '65%'}} class="reviewBarProgress"></div>
+            <div id="2progress" className='reviewBarProgress'></div>
           </div>
         </div>
         <div class="reviewBarStats">
@@ -52,7 +69,7 @@ let Rating = ({reviewMeta, averageRating}) => {
             1 Stars
           </div>
           <div class="reviewBar">
-            <div style={{width: '24%'}} class="reviewBarProgress"></div>
+            <div id="1progress" className='reviewBarProgress'></div>
           </div>
         </div>
       </div>

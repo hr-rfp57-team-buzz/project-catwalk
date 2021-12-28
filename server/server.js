@@ -23,7 +23,7 @@ app.get('/products', (req, res) => {
   let endpoint = url + 'products';
   axios.get(endpoint, {
     headers: {
-      "Authorization": TOKEN.TOKEN,
+      'Authorization': TOKEN.TOKEN,
     }
   })
     .then((response) => {
@@ -41,7 +41,7 @@ app.get('/products/:product_id', (req, res) => {
   let endpoint = url + 'products/' + id;
   axios.get(endpoint, {
     headers: {
-      "Authorization": TOKEN.TOKEN,
+      'Authorization': TOKEN.TOKEN,
     }
   })
     .then((response) => {
@@ -59,7 +59,7 @@ app.get('/products/:product_id/styles', (req, res) => {
 
   axios.get(endpoint, {
     headers: {
-      "Authorization": TOKEN.TOKEN,
+      'Authorization': TOKEN.TOKEN,
     }
   })
     .then((response) => {
@@ -77,7 +77,7 @@ app.get('/products/:product_id/related', (req, res) => {
 
   axios.get(endpoint, {
     headers: {
-      "Authorization": TOKEN.TOKEN,
+      'Authorization': TOKEN.TOKEN,
     }
   })
     .then((response) => {
@@ -96,10 +96,10 @@ app.get('/reviews/:product_id', (req, res) => {
 
   axios.get(endpoint, {
     headers: {
-      "Authorization": TOKEN.TOKEN,
+      'Authorization': TOKEN.TOKEN,
     },
     params: {
-      "product_id": id,
+      'product_id': id,
     }
   })
     .then((response) => {
@@ -117,10 +117,10 @@ app.get('/reviews/:product_id/meta', (req, res) => {
 
   axios.get(endpoint, {
     headers: {
-      "Authorization": TOKEN.TOKEN,
+      'Authorization': TOKEN.TOKEN,
     },
     params: {
-      "product_id": id,
+      'product_id': id,
     }
   })
     .then((response) => {
@@ -139,10 +139,10 @@ app.get('/qa/:product_id/questions', (req, res) => {
 
   axios.get(endpoint, {
     headers: {
-      "Authorization": TOKEN.TOKEN,
+      'Authorization': TOKEN.TOKEN,
     },
     params: {
-      "product_id": id,
+      'product_id': id,
     }
   })
     .then((response) => {
@@ -160,7 +160,7 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
 
   axios.get(endpoint, {
     headers: {
-      "Authorization": TOKEN.TOKEN,
+      'Authorization': TOKEN.TOKEN,
     },
     // params: {
     //   "product_id": id,
@@ -175,6 +175,6 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
     });
 });
 
-app.listen(port, function(){
-  console.log("Listening on port ", port);
+app.listen(port, function() {
+  console.log('Listening on port ', port);
 });

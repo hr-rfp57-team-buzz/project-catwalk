@@ -39,7 +39,7 @@ let ReviewListEntry = (props) => {
       <div className="reviewPhotosContainer">
         {reviewPhotos.map((photo, index) => {
           if (photo === undefined) {
-            return <span></span>;
+            return;
           } else {
             return <img className="reviewPhotos" src={photo.url} alt={photo.id} key={index} />;
           }

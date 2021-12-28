@@ -407,6 +407,11 @@ h1 {
   grid-column-end: 2;
 }
 
+.reviewBarReviewNumber {
+  grid-column-start: 5;
+  grid-column-end: 6;
+}
+
 .reviewBar {
   display: grid;
   grid-column-start: 2;

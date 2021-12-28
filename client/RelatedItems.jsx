@@ -3,17 +3,21 @@ import React, {useState} from 'react';
 
 var Related = () => {
   const [x, setX] = useState(50);
-  const styles = {
-    transformRelated: `translate(${x}px, 0px)`
+  const [x2, setX2] = useState(50);
+  const stylesRelated = {
+    transform: `translate(${x}px, 0px)`
+  };
+  const stylesOutfit = {
+    transform: `translate(${x2}px, 0px)`
   };
   return (
     <div>
-      <div className="reel"style={styles}onClick={()=>setX(x + 50)}>
+      <div className="reel"style={stylesRelated}onClick={()=>setX(x + 50)}>
         <Cards/>
         <Cards/>
         <Cards/>
       </div>
-      <div className="reel"style={styles}onClick={()=>setX(x + 50)}>
+      <div className="reel"style={stylesOutfit}onClick={()=>setX2(x2 + 50)}>
         <Cards/>
       </div>
     </div>

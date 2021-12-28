@@ -12,12 +12,11 @@ let RatingReview = () => {
   let [totalRatings, setTotalRatings] = useState(0);
 
   //to be hooked up to productId context
-  let prodId = 40337;
+  let prodId = 40344;
 
   let getProdReviews = (prodId) => {
     axios.get(`/reviews/${prodId}`)
       .then((res) => {
-        // console.log(res);
         setReviews(res.data.results);
       })
       .catch((err) => {
@@ -45,19 +44,6 @@ let RatingReview = () => {
         console.log(err);
       });
   };
-
-  // let generateAverageRating = () => {
-  //   console.log('THIS LOGGED', reviewMeta.ratings);
-  //   if (reviewMeta.ratings !== undefined) {
-  //     let average = 0;
-  //     for (var key in reviewMeta.ratings) {
-  //       average += reviewMeta.ratings[key];
-  //     }
-  //     setAverageRating(average);
-  //   } else {
-  //     return;
-  //   }
-  // };
 
   useEffect(() => {
     getProdReviews(prodId);

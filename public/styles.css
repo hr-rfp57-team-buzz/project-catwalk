@@ -399,7 +399,7 @@ h1 {
 .reviewBarStats {
   padding: 8px 0px 8px 8px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .reviewBarStarNumber {
@@ -419,5 +419,7 @@ h1 {
 .reviewBarProgress {
   background-color: green;
   border-radius: 16px;
+  width: 0%;
+  transition: ease-in-out 0.5s;
 }
 

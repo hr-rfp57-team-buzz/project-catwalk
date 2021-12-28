@@ -1,4 +1,5 @@
 import React from 'react';
+import AnswersList from './AnswersList.jsx';
 
 const Question = (props) => (
   <>
@@ -8,15 +9,19 @@ const Question = (props) => (
       {/* <span className="top-links"> */}
       <span className="top-links">
         <p className="top-line helpful">Helpful?</p>
-        <a className="top-line helpful">Yes(25)</a>
+        <a className="top-line helpful">
+          Yes(
+          {props.question.question_helpfulness})
+          </a>
         <div id="line"></div>
         <a className="top-line">Add Answer</a>
       </span>
       {/* </span> */}
     </div>
     <div className="a-line">
-      <h4>A:</h4>
-      <p>Icing macaron bear claw jelly beans chocolate cake. Cookie oat cake chocolate halvah jelly cake cotton candy souuflé topping. Jujubes topping cake gummies lemon drops.</p>
+      <AnswersList answers={props.question.answers} />
+      {/* <h4>A:</h4>
+      <p>Icing macaron bear claw jelly beans chocolate cake. Cookie oat cake chocolate halvah jelly cake cotton candy souuflé topping. Jujubes topping cake gummies lemon drops.</p> */}
     </div>
     <div className="bottom-line">
       <h6>By User1234, January 1, 2019</h6>

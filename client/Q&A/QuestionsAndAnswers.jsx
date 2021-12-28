@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 
 import QuestionsList from './QuestionsList.jsx';
@@ -6,40 +6,58 @@ import SearchBar from './SearchBar.jsx';
 import LoadAnswers from './LoadAnswers.jsx';
 import MoreAnswered from './MoreAnsweredQs.jsx';
 import AddQuestion from './AddQuestion.jsx';
+import Question from './Question.jsx';
 
-let productId = 40344;
 
-let getQuestions = (id) => {
-  axios.get('/qa/:product_id/questions', {
-    params: {product_id: id},
-    responseType: 'json',
-  })
-  .then((response) => {
-    console.log(response);
-  })
-  .catch((err) => {
-    console.error('Error! ', err);
-  });
-}
+class QuestionsAndAnswers extends React.Component {
+  // const [question, setQuestion] = useState([]);
+  constructor(props) {
+    super(props);
 
-let QuestionsAndAnswers = () => {
-  const [question, setQuestion] = useState([]);
+    this.state = {
+      questions: [],
+      productId: 40344
+    };
+    this.getQuestions = this.getQuestions.bind(this);
+  }
 
-  useEffect(() => {
-    getQuestions(productId);
-  }, []);
+  componentDidMount() {
+    this.getQuestions(this.state.productId);
+  }
 
-  return (
-    <>
-      <SearchBar />
-      <div className="questions-list">
-        <QuestionsList question={question}/>
-      </div>
-      <LoadAnswers />
-      <MoreAnswered />
-      <AddQuestion />
-    </>
-  )
+
+  getQuestions = (id) => {
+    axios.get('/qa/questions', {
+      params: { id },
+      responseType: 'json',
+    })
+    .then((response) => {
+      console.log('Response in Q&A: ', response);
+      this.setState({
+        questions: response.data.results
+      })
+    })
+    .catch((err) => {
+      console.error('Error! ', err);
+    });
+  }
+  // useEffect(() => {
+  //   getQuestions(productId);
+  // }, []);
+
+  render() {
+    return (
+      <>
+        <SearchBar />
+        <div className="questions-list">
+          <QuestionsList questions={this.state.questions}/>
+        </div>
+        <LoadAnswers />
+        <MoreAnswered />
+        <AddQuestion />
+      </>
+    );
+  }
 };
 
 export default QuestionsAndAnswers;

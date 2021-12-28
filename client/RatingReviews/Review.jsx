@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import ReviewListEntry from './ReviewListEntry.jsx';
 import axios from 'axios';
-import token from '../../config.js';
+import TOKEN from '../../config.js';
 import reviewsEndPoint from '../../config.js';
 
 let Review = () => {
@@ -11,7 +11,7 @@ let Review = () => {
   let dontSpam = () => {
     axios.get(reviewsEndPoint.reviewsEndPoint, {
       headers: {
-        'Authorization': token.token
+        'Authorization': TOKEN.TOKEN
       },
       params: {
         'product_id': 40344

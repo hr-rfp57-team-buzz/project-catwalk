@@ -16,7 +16,7 @@ console.log(path.join(__dirname, '../public/index.html'));
 // Products Routes
 app.get('/', function(req, res) {
   console.log('Hi');
-  res.send()
+  res.send();
 });
 
 app.get('/products', (req, res) => {
@@ -26,14 +26,14 @@ app.get('/products', (req, res) => {
       "Authorization": TOKEN.TOKEN,
     }
   })
-  .then((response) => {
-    console.log('Data from get to Products endpoint: ', response);
-    // let jsonData = JSON.stringify(response.data);
-    res.send(response.data);
-  })
-  .catch((err) => {
-    console.log('Error! ', err);
-  })
+    .then((response) => {
+      console.log('Data from get to Products endpoint: ', response);
+      // let jsonData = JSON.stringify(response.data);
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    });
 });
 
 app.get('/products/:product_id', (req, res) => {
@@ -44,13 +44,13 @@ app.get('/products/:product_id', (req, res) => {
       "Authorization": TOKEN.TOKEN,
     }
   })
-  .then((response) => {
-    console.log(response);
-    res.send(response.data);
-  })
-  .catch((err) => {
-    console.log('Error! ', err);
-  })
+    .then((response) => {
+      console.log(response);
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    });
 });
 
 app.get('/products/:product_id/styles', (req, res) => {
@@ -62,13 +62,13 @@ app.get('/products/:product_id/styles', (req, res) => {
       "Authorization": TOKEN.TOKEN,
     }
   })
-  .then((response) => {
-    console.log(response);
-    res.send(response.data);
-  })
-  .catch((err) => {
-    console.log('Error! ', err);
-  })
+    .then((response) => {
+      console.log(response);
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    });
 });
 
 app.get('/products/:product_id/related', (req, res) => {
@@ -80,13 +80,13 @@ app.get('/products/:product_id/related', (req, res) => {
       "Authorization": TOKEN.TOKEN,
     }
   })
-  .then((response) => {
-    console.log(response);
-    res.send(response.data);
-  })
-  .catch((err) => {
-    console.log('Error! ', err);
-  })
+    .then((response) => {
+      console.log(response);
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    });
 });
 
 // Reviews Routes
@@ -102,13 +102,13 @@ app.get('/reviews/:product_id', (req, res) => {
       "product_id": id,
     }
   })
-  .then((response) => {
-    console.log(response);
-    res.send(response.data);
-  })
-  .catch((err) => {
-    console.log('Error! ', err);
-  })
+    .then((response) => {
+      console.log(response);
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    });
 });
 
 app.get('/reviews/:product_id/meta', (req, res) => {
@@ -123,13 +123,13 @@ app.get('/reviews/:product_id/meta', (req, res) => {
       "product_id": id,
     }
   })
-  .then((response) => {
-    console.log(response);
-    res.send(response.data);
-  })
-  .catch((err) => {
-    console.log('Error! ', err);
-  })
+    .then((response) => {
+      console.log(response);
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    });
 });
 
 // Q&A Routes
@@ -145,13 +145,13 @@ app.get('/qa/:product_id/questions', (req, res) => {
       "product_id": id,
     }
   })
-  .then((response) => {
-    console.log(response);
-    res.send(response.data);
-  })
-  .catch((err) => {
-    console.log('Error! ', err);
-  })
+    .then((response) => {
+      console.log(response);
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    });
 });
 
 app.get('/qa/questions/:product_id/answers', (req, res) => {
@@ -166,15 +166,15 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
     //   "product_id": id,
     // }
   })
-  .then((response) => {
-    console.log(response);
-    res.send(response.data);
-  })
-  .catch((err) => {
-    console.log('Error! ', err);
-  })
+    .then((response) => {
+      console.log(response);
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    });
 });
 
 app.listen(port, function(){
   console.log("Listening on port ", port);
-})
+});

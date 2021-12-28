@@ -16,7 +16,77 @@ console.log(path.join(__dirname, '../public/index.html'));
 // Products Routes
 app.get('/', function(req, res) {
   console.log('Hi');
-  res.send();
+  res.send()
+});
+
+app.get('/products', (req, res) => {
+  let endpoint = url + 'products';
+  axios.get(endpoint, {
+    headers: {
+      "Authorization": TOKEN.TOKEN,
+    }
+  })
+  .then((response) => {
+    console.log('Data from get to Products endpoint: ', response);
+    // let jsonData = JSON.stringify(response.data);
+    res.send(response.data);
+  })
+  .catch((err) => {
+    console.log('Error! ', err);
+  })
+});
+
+app.get('/products/:product_id', (req, res) => {
+  let id = req.params.product_id;
+  let endpoint = url + 'products/' + id;
+  axios.get(endpoint, {
+    headers: {
+      "Authorization": TOKEN.TOKEN,
+    }
+  })
+  .then((response) => {
+    console.log(response);
+    res.send(response.data);
+  })
+  .catch((err) => {
+    console.log('Error! ', err);
+  })
+});
+
+app.get('/products/:product_id/styles', (req, res) => {
+  let id = req.params.product_id;
+  let endpoint = url + 'products/' + id + '/styles';
+
+  axios.get(endpoint, {
+    headers: {
+      "Authorization": TOKEN.TOKEN,
+    }
+  })
+  .then((response) => {
+    console.log(response);
+    res.send(response.data);
+  })
+  .catch((err) => {
+    console.log('Error! ', err);
+  })
+});
+
+app.get('/products/:product_id/related', (req, res) => {
+  let id = req.params.product_id;
+  let endpoint = url + 'products/' + id + '/related';
+
+  axios.get(endpoint, {
+    headers: {
+      "Authorization": TOKEN.TOKEN,
+    }
+  })
+  .then((response) => {
+    console.log(response);
+    res.send(response.data);
+  })
+  .catch((err) => {
+    console.log('Error! ', err);
+  })
 });
 
 // Reviews Routes
@@ -63,10 +133,8 @@ app.get('/reviews/:product_id/meta', (req, res) => {
 });
 
 // Q&A Routes
-app.get('/qa/questions', (req, res) => {
-  let id = req.query.id;
-  console.log('req in server: ', req);
-  // console.log('Id in server: ', id);
+app.get('/qa/:product_id/questions', (req, res) => {
+  let id = req.params.product_id;
   let endpoint = url + 'qa/questions';
 
   axios.get(endpoint, {
@@ -74,7 +142,7 @@ app.get('/qa/questions', (req, res) => {
       "Authorization": TOKEN.TOKEN,
     },
     params: {
-      product_id: id,
+      "product_id": id,
     }
   })
   .then((response) => {
@@ -94,9 +162,9 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
     headers: {
       "Authorization": TOKEN.TOKEN,
     },
-    params: {
-      "product_id": id,
-    }
+    // params: {
+    //   "product_id": id,
+    // }
   })
   .then((response) => {
     console.log(response);
@@ -107,6 +175,6 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
   })
 });
 
-app.listen(port, function() {
-  console.log('Listening on port ', port);
-});
+app.listen(port, function(){
+  console.log("Listening on port ", port);
+})

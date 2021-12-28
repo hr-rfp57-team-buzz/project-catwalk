@@ -353,6 +353,17 @@ h1 {
   padding: 4px;
 }
 
+.reviewPhotosContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 5px;
+}
+
+.reviewPhotos {
+  max-width: 150px;
+  max-height: auto;
+}
+
 .ratingOverview {
   grid-column-start: 1;
   grid-column-end: 3;

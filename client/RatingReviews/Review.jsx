@@ -8,23 +8,21 @@ let Review = () => {
 
   let [reviews, setReviews] = useState([0]);
 
-  let dontSpam = () => {
-    axios.get(reviewsEndPoint.reviewsEndPoint, {
-      headers: {
-        'Authorization': TOKEN.TOKEN
-      },
-      params: {
-        'product_id': 40344
-      }
-    })
+  let prodId = 40345;
+
+  let getProdReviews = (prodId) => {
+    axios.get(`/reviews/${prodId}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setReviews(res.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
   React.useEffect(() => {
-    dontSpam();
+    getProdReviews(prodId);
   }, []);
 
   return (
@@ -41,7 +39,7 @@ let Review = () => {
       })}
       {/* <ReviewListEntry /> */}
       <div className="gridContainer1Col">
-        <div><button onClick={dontSpam}>More Reviews</button></div>
+        <div><button>More Reviews</button></div>
         <div><button>Add A Review +</button></div>
       </div>
       <br/><br/>

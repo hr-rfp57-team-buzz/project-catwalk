@@ -40,12 +40,12 @@ class Overview extends React.Component {
   }
 
   handleStyleChange(index) {
-    console.log('hello')
-    // for (let i = 0; i < this.state.variations.length; i++) {
-    //   variations[i].selected = false;
-    // }
-    // variations[index].selected = true;
-    // this.setState({variations: variations});
+    console.log('hello');
+    for (let i = 0; i < this.state.variations.length; i++) {
+      this.state.variations[i].selected = false;
+    }
+    this.state.variations[index].selected = true;
+    this.setState({variations: this.state.variations});
   }
 
   render() {

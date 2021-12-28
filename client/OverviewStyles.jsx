@@ -12,7 +12,7 @@ class OverviewStyles extends React.Component {
       <div className="po-styles">
         {
           this.props.variations.map((variation, index) => {
-            return (<OverviewStyle key={variation.style_id} variation={variation} index={index} styleChanges={styleChanges} />);
+            return (<OverviewStyle key={variation.style_id} variation={variation} index={index} handleStyleChange={this.props.handleStyleChange} />);
           })
         }
       </div>
@@ -27,7 +27,6 @@ class OverviewStyle extends React.Component {
 
 
   render() {
-
     let styling = {
       'background': 'url(' + this.props.variation.photos[0].thumbnail_url + ')',
       'backgroundSize': 'cover',
@@ -37,7 +36,7 @@ class OverviewStyle extends React.Component {
     this.props.variation.selected ? checkmark = 'po-style-check active' : checkmark = 'po-style-check';
 
     return (
-      <div className="po-style" style={styling} onClick={this.styleChanges} >
+      <div className="po-style" style={styling} onClick={() => {this.props.handleStyleChange(this.props.index)}}>
         <div className={checkmark}><i className="fas fa-check"></i></div>
       </div>
     );

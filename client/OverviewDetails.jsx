@@ -7,7 +7,6 @@ class OverviewDetails extends React.Component {
   }
 
   render() {
-    console.log(this.props.variations);
     return (
       <div className="po-details">
         <div className="po-ratings">

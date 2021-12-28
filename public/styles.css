@@ -17,6 +17,58 @@ h1 {
 /* Daniel */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
+.po-description {
+  display: flex;
+  margin: 40px 0;
+}
+
+.po-desc-expanded {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 58%;
+  padding: 20px;
+}
+
+.po-desc-wrap {
+  width: 80%;
+}
+
+.po-desc-expanded h2 {
+  margin-top: 10px;
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.po-desc-expanded p {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.po-desc-points {
+  width: 42%;
+  padding: 20px;
+  border-left: 3px solid #eee;
+}
+
+.po-desc-points ul {
+  list-style: none;
+}
+
+.po-desc-points li {
+  display: flex;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.po-desc-points i {
+  margin-right: 10px;
+}
+
+
 #product-overview {
   background-color: #fff;
   color: #444;
@@ -63,8 +115,8 @@ h1 {
 
 .po-style {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   margin: 10px;
   border-radius: 50%;
@@ -75,14 +127,22 @@ h1 {
 
 .po-style-check {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -2px;
+  right: -2px;
   display: none;
-  font-size: 20px;
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  font-size: 16px;
+  text-align: center;
 }
 
 .po-style-check.active {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

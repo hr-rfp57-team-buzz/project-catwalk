@@ -5,7 +5,6 @@ class OverviewStyles extends React.Component {
     super(props);
   }
 
-
   render() {
     const styleChanges = this.props.handleStyleChange;
     return (
@@ -25,14 +24,13 @@ class OverviewStyle extends React.Component {
     super(props);
   }
 
-
   render() {
     let styling = {
       'background': 'url(' + this.props.variation.photos[0].thumbnail_url + ')',
       'backgroundSize': 'cover',
       'backgroundPosition': 'center'
     };
-    let checkmark = 'po-style-check active';
+    let checkmark = 'po-style-check';
     this.props.variation.selected ? checkmark = 'po-style-check active' : checkmark = 'po-style-check';
 
     return (
@@ -42,66 +40,5 @@ class OverviewStyle extends React.Component {
     );
   }
 }
-// const OverviewStyles = (props) => {
-//   const initial = props.fashion || [];
-//   if (initial) {
-//     for (let i = 0; i < initial.length; i++) {
-//       initial[i].selected = false;
-//       if (i === 1) {
-//         initial[i].selected = true;
-//       }
-//     }
-//     // initial[0].selected = false;
-//   }
-//   const [fashion, setFashion] = useState(initial);
-//   useEffect(() => {
-//     setFashion(initial);
-//   });
-
-//   const handleReset = (index) => {
-//     console.log('eresting');
-//     const newNew = initial.slice();
-//     for (let i = 0; i < newNew.length; i++) {
-//       newNew[i].selected = true;
-//     }
-//     setFashion(newNew);
-//   };
-
-//   return (
-
-//   );
-// };
-
-// const OverviewStyle = (props) => {
-
-
-//   const [check, setCheck] = useState(checking);
-
-//   // if (props.fashion.selected) {
-//   //   setCheck('po-style-check active');
-//   // }
-
-//   // if (props.chosen === 'true') {
-//   //   setCheck('po-style-check active');
-//   // } else {
-//   //   setCheck('po-style-check');
-//   // }
-
-
-//   const toggleCheck = () => {
-//     console.log('hello')
-//     props.handleReset(2);
-//     // if (check === 'po-style-check') {
-//     //   setCheck('po-style-check active');
-//     // } else {
-//     //   setCheck('po-style-check');
-//     // }
-//   };
-
-
-//   return (
-
-//   );
-// };
 
 export default OverviewStyles;

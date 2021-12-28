@@ -19,7 +19,7 @@ class OverviewDetails extends React.Component {
         <div className="po-price">${this.props.product ? this.props.product.default_price : 'placeholder'}</div>
         <div className="po-style-name">
           <div>Style <i className="fas fa-chevron-right"></i></div>
-          <div className="po-selected-style-name">{this.props.product ? this.props.product.selectedStyle : 'placeholder'}</div>
+          <div className="po-selected-style-name">{this.props.variations.length > 0 ? this.props.variations.selected : ''}</div>
         </div>
         <OverviewStyles variations={this.props.variations} handleStyleChange={this.props.handleStyleChange} />
         <div className="po-select-section">

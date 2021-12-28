@@ -20,22 +20,76 @@ h1 {
 #product-overview {
   background-color: #fff;
   color: #444;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
-.slide-reel {
-  display: flex;
-  transform: translateX(0%);
-  transition: all 0.4s ease-in-out;
-}
-
-.announcement {
+.po-announcement {
   padding: 18px 10px;
   font-size: 16px;
   font-weight: 300;
   letter-spacing: 0.5px;
   text-align: center;
   text-transform: uppercase;
+}
+
+.po-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.po-image {
+  position: relative;
+  width: 55%;
+  max-height: 700px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.po-details {
+  width: 45%;
+  padding: 40px;
+  background-color: #fff;
+}
+
+
+
+
+
+.po-styles {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px -10px 0 -10px;
+}
+
+.po-style {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 10px;
+  border-radius: 50%;
+  border: 3px solid #eee;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.po-style-check {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+  font-size: 20px;
+}
+
+.po-style-check.active {
+  display: block;
+}
+
+
+.slide-reel {
+  display: flex;
+  transform: translateX(0%);
+  transition: all 0.4s ease-in-out;
 }
 
 .po-left-arrow {
@@ -60,18 +114,7 @@ h1 {
   z-index: 99;
 }
 
-.po-flex {
-  display: flex;
-  justify-content: center;
-}
 
-.po-image {
-  position: relative;
-  width: 55%;
-  max-height: 700px;
-  overflow: hidden;
-  background-color: #fff;
-}
 
 .po-mini-images {
   position: absolute;
@@ -143,11 +186,7 @@ h1 {
   background-color: #444;
 }
 
-.po-details {
-  width: 45%;
-  padding: 40px;
-  background-color: #fff;
-}
+
 
 .po-category {
   margin-top: 20px;
@@ -171,22 +210,7 @@ h1 {
   letter-spacing: 1px;
 }
 
-.po-styles {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 20px -10px 0 -10px;
-}
 
-.po-style {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin: 10px;
-  border-radius: 50%;
-  border: 3px solid #eee;
-  margin: 10px;
-  cursor: pointer;
-}
 
 .po-style img {
   width: 80px;

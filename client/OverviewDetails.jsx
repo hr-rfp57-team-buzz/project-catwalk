@@ -14,23 +14,17 @@ class OverviewDetails extends React.Component {
           </div>
           <div className="po-reviews">Read all reviews</div>
         </div>
-        <div className="po-category">{this.props.product ? this.props.product.category : 'placeholder'}</div>
-        <div className="po-product-name">{this.props.product ? this.props.product.name : 'placeholder'}</div>
-        <div className="po-price">${this.props.product ? this.props.product.default_price : 'placeholder'}</div>
+        <div className="po-category">{this.props.product ? this.props.product.category : ''}</div>
+        <div className="po-product-name">{this.props.product ? this.props.product.name : ''}</div>
+        <div className="po-price">{this.props.extra ? '$' + this.props.extra.original_price : ''}</div>
         <div className="po-style-name">
           <div>Style <i className="fas fa-chevron-right"></i></div>
-          <div className="po-selected-style-name">{this.props.variations.length > 0 ? this.props.variations.selected : ''}</div>
+          {/* <div className="po-selected-style-name">{this.props.variations.length > 0 ? this.props.variations.selected : ''}</div> */}
+          <div className="po-selected-style-name">{this.props.extra ? this.props.extra.name : ''}</div>
         </div>
         <OverviewStyles variations={this.props.variations} handleStyleChange={this.props.handleStyleChange} />
         <div className="po-select-section">
-          <select id="po-select-size">
-            <option selected disabled>Select Size</option>
-            <option>Extra Small</option>
-            <option>Small</option>
-            <option>Medium</option>
-            <option>Large</option>
-            <option>Extra Large</option>
-          </select>
+          <OverviewSizes extra={this.props.extra} />
           <select id="po-select-qty">
             <option>1</option>
             <option>2</option>
@@ -49,6 +43,39 @@ class OverviewDetails extends React.Component {
           <button id="po-favorite"><i className="far fa-star"></i></button>
         </div>
       </div>
+    );
+  }
+}
+
+class OverviewSizes extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    console.log('???', this.props.extra.sizes);
+    return (
+      <select id="po-select-size">
+        <option selected disabled>Select Size</option>
+        {
+          this.props.extra.sizes.map((size) => {
+            return <OverviewSize size={size} />;
+          })
+        }
+      </select>
+    );
+  }
+}
+
+class OverviewSize extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    console.log('Quantity', this.props.size[1]);
+    return (
+      <option>{this.props.size[0]}</option>
     );
   }
 }

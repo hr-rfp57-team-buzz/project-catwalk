@@ -4,11 +4,30 @@ import OverviewDetails from './OverviewDetails.jsx';
 import OverviewDescription from './OverviewDescription.jsx';
 import axios from 'axios';
 
+const sortSizes = (product) => {
+  const result = {
+    sizes: []
+  };
+  for (let key in product.skus) {
+    result['sizes'].push([product.skus[key]['size'], product.skus[key]['quantity']]);
+  }
+  return result;
+};
+
+const resetSelection = (array) => {
+  for (let i = 0; i < array.length; i++) {
+    array[i].selected = false;
+  }
+};
+
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       product: {},
+      extra: {
+        sizes: []
+      },
       variations: []
     };
     this.handleStyleChange = this.handleStyleChange.bind(this);
@@ -17,23 +36,24 @@ class Overview extends React.Component {
   componentDidMount() {
     axios.get('http://localhost:3000/products')
       .then((res) => {
-        console.log(res.data);
         const id = res.data[0].id;
         return axios.get(`http://localhost:3000/products/${id}`);
       })
       .then((res) => {
-        console.log(res.data);
         this.setState({product: res.data});
       })
       .then((res) => {
         return axios.get('http://localhost:3000/products/40344/styles');
       })
       .then((res) => {
-        for (let i = 0; i < res.data.results.length; i++) {
-          res.data.results[i].selected = false;
-        }
-        res.data.results[0].selected = true;
-        res.data.results.selected = res.data.results[0].name;
+        resetSelection(res.data.results);
+        const selected = res.data.results[0];
+        selected.selected = true;
+        const container = sortSizes(selected);
+        container['name'] = selected.name;
+        container['original_price'] = selected.original_price;
+        container['sale_price'] = selected.sale_price;
+        this.setState({extra: container});
         this.setState({variations: res.data.results});
       })
       .catch((err) => {
@@ -42,11 +62,10 @@ class Overview extends React.Component {
   }
 
   handleStyleChange(index) {
-    for (let i = 0; i < this.state.variations.length; i++) {
-      this.state.variations[i].selected = false;
-    }
+    resetSelection(this.state.variations);
     this.state.variations[index].selected = true;
-    this.state.variations.selected = this.state.variations[index].name;
+    this.state.extra.name = this.state.variations[index].name;
+    this.setState({extra: this.state.extra});
     this.setState({variations: this.state.variations});
   }
 
@@ -56,7 +75,7 @@ class Overview extends React.Component {
         <div className="po-announcement">Site-Wide Announcement Message! -- Sale / Discount <strong>Offer</strong> -- <u>New Product Highlight</u></div>
         <div className="po-flex">
           <OverviewImage />
-          <OverviewDetails product={this.state.product} variations={this.state.variations} handleStyleChange={this.handleStyleChange} />
+          <OverviewDetails product={this.state.product} extra={this.state.extra} variations={this.state.variations} handleStyleChange={this.handleStyleChange} />
         </div>
         <OverviewDescription product={this.state.product} />
       </div>

@@ -62,4 +62,3 @@ var Cards = () => {
 };
 
 export default Related;
-

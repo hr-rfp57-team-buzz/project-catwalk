@@ -133,8 +133,10 @@ app.get('/reviews/:product_id/meta', (req, res) => {
 });
 
 // Q&A Routes
-app.get('/qa/:product_id/questions', (req, res) => {
-  let id = req.params.product_id;
+app.get('/qa/questions', (req, res) => {
+  let id = req.query.id;
+  console.log('req in server: ', req);
+  // console.log('Id in server: ', id);
   let endpoint = url + 'qa/questions';
 
   axios.get(endpoint, {
@@ -142,7 +144,7 @@ app.get('/qa/:product_id/questions', (req, res) => {
       "Authorization": TOKEN.TOKEN,
     },
     params: {
-      "product_id": id,
+      product_id: id,
     }
   })
   .then((response) => {
@@ -162,9 +164,9 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
     headers: {
       "Authorization": TOKEN.TOKEN,
     },
-    // params: {
-    //   "product_id": id,
-    // }
+    params: {
+      "product_id": id,
+    }
   })
   .then((response) => {
     console.log(response);

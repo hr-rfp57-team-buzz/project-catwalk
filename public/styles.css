@@ -303,31 +303,124 @@ h1 {
 
 /* Alex */
 #questions-answers {
-  background-color: moccasin;
   display: grid;
+  padding-bottom: 10px;
 }
 
-#seperator {
-  border-left: 6px solid gray;
-  height: 25px;
+.q-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.a-line {
+  display: flex;
+  /* justify-content: space-between; */
 }
 
 .top-links {
   display: flex;
+  justify-content: space-around;
+  padding-right: 10px;
+}
+.top-line {
+  display: flex;
+  padding-right: 10px;
 }
 
-.question-list {
+.bottom-btn {
+  display: inline-flex;
+  margin-left: 10px;
+  background-color: transparent;
+  border: 1px solid black;
+  width: 200px;
+  height: 50px;
+  justify-content: center;
+  padding-top:15px;
+  font-weight: bolder;
 }
+
+.bottom-line {
+  display: flex;
+  padding-left: 10px;
+}
+
+.bottom-links {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.helpful {
+  display: flex;
+  justify-content: space-evenly;
+  padding-right: 3px;
+  padding-left: 4px;
+}
+
+.search-wrapper {
+  border: 1px solid black;
+  display: inline-block;
+}
+
+.search-bar{
+  font-weight: bold;
+  text-decoration: black;
+  display:inline-flex;
+  justify-content: center;
+  /* text-align: start; */
+  width: 1000px;
+  height: 50px;
+  background-color: transparent;
+  border: 0;
+}
+
+.search-bar::-webkit-input-placeholder{
+  font-weight: bold;
+  color: black;
+  text-decoration: black;
+  display:inline-flex;
+  justify-content: center;
+  /* text-align: start; */
+  width: 1000px;
+  height: 50px;
+  background-color: transparent;
+  border: 0;
+}
+
+.search-button {
+  background-color: transparent;
+  border: 0;
+  width: 50px;
+}
+
+.fa-search {
+  background-color: transparent;
+}
+
+.questions {
+  margin-top: 20px;
+}
+
+ #line {
+   border-left: 2px solid gray;
+   height: 18px;
+   padding-left: 5px;
+}
+
+
+/* .question-header {
+} */
+
+/* .question-list {
+} */
 
 .questionCard {
-  background-color: antiquewhite;
+  background-color: white;
   border-radius: 0%;
   border-width: medium;
 }
 
-.top-text {
-  display: flex;
-}
 
 
 /* Ryne */

@@ -53,7 +53,6 @@ class OverviewSizes extends React.Component {
   }
 
   render() {
-    console.log('???', this.props.extra.sizes);
     return (
       <select id="po-select-size">
         <option selected disabled>Select Size</option>
@@ -73,7 +72,6 @@ class OverviewSize extends React.Component {
   }
 
   render() {
-    console.log('Quantity', this.props.size[1]);
     return (
       <option>{this.props.size[0]}</option>
     );

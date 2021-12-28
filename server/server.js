@@ -16,7 +16,7 @@ console.log(path.join(__dirname, '../public/index.html'));
 // Products Routes
 app.get('/', function(req, res) {
   console.log('Hi');
-  res.send()
+  res.send();
 });
 
 app.get('/products', (req, res) => {
@@ -175,6 +175,6 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
   })
 });
 
-app.listen(port, function(){
-  console.log("Listening on port ", port);
-})
+app.listen(port, function() {
+  console.log('Listening on port ', port);
+});

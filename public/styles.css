@@ -177,14 +177,22 @@ h1 {
   margin: 20px -10px 0 -10px;
 }
 
-.po-indv-style {
-  width: 70px;
-  height: 70px;
+.po-style {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
   margin: 10px;
   border-radius: 50%;
-  background-color: lightpink;
   border: 3px solid #eee;
+  margin: 10px;
   cursor: pointer;
+}
+
+.po-style img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #eee;
 }
 
 .po-select-section {

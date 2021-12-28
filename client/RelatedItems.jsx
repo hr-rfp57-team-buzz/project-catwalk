@@ -25,6 +25,7 @@ var Related = () => {
 };
 
 var Cards = () => {
+<<<<<<< HEAD
 
 
   return (
@@ -37,6 +38,16 @@ var Cards = () => {
         <h4>Sportswear</h4>
         <h4>$29.99</h4>
       </div>
+=======
+  const [x, setX] = useState(50);
+  const styles = {
+    transform: `translate(${x}px, 0px)`
+  };
+
+  return (
+    <div className="Card" style={styles}onClick={()=>setX(x + 50)}>
+      Hello
+>>>>>>> 77b114f (Implemented basic moving for cards when clicked, added basic borders)
     </div>
   );
 };

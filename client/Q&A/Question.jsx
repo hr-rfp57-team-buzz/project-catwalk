@@ -2,7 +2,7 @@ import React from 'react';
 
 let Question = () => {
   return (
-    <>
+    <div className="questions">
       <div className="q-line">
         <h4>Q: Who what which when where why whether how?</h4>
         {/* <span className="top-links"> */}
@@ -26,7 +26,7 @@ let Question = () => {
         <div id="line"></div>
         <a className="bottom-links">Report</a>
       </div>
-    </>
+    </div>
   )
 };
 

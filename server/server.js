@@ -135,15 +135,16 @@ app.get('/reviews/:product_id/meta', (req, res) => {
 // Q&A Routes
 app.get('/qa/:product_id/questions', (req, res) => {
   let id = req.params.product_id;
+  console.log(id);
   let endpoint = url + 'qa/questions';
 
   axios.get(endpoint, {
     headers: {
       "Authorization": TOKEN.TOKEN,
     },
-    params: {
-      "product_id": id,
-    }
+    // params: {
+    //   "product_id": id,
+    // }
   })
   .then((response) => {
     console.log(response);

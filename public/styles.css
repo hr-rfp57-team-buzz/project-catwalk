@@ -303,8 +303,8 @@ h1 {
 
 /* Alex */
 #questions-answers {
-  background-color: moccasin;
   display: grid;
+  padding-bottom: 10px;
 }
 
 .q-line {
@@ -325,6 +325,18 @@ h1 {
 .top-line {
   display: flex;
   padding-right: 10px;
+}
+
+.bottom-btn {
+  display: inline-flex;
+  margin-left: 10px;
+  background-color: transparent;
+  border: 1px solid black;
+  width: 200px;
+  height: 50px;
+  justify-content: center;
+  padding-top:15px;
+  font-weight: bolder;
 }
 
 .bottom-line {
@@ -351,11 +363,43 @@ h1 {
   display: inline-block;
 }
 
-.search-bar {
-  width: 100px;
-  height: 40px;
+.search-bar{
+  font-weight: bold;
+  text-decoration: black;
+  display:inline-flex;
+  justify-content: center;
+  /* text-align: start; */
+  width: 1000px;
+  height: 50px;
   background-color: transparent;
   border: 0;
+}
+
+.search-bar::-webkit-input-placeholder{
+  font-weight: bold;
+  color: black;
+  text-decoration: black;
+  display:inline-flex;
+  justify-content: center;
+  /* text-align: start; */
+  width: 1000px;
+  height: 50px;
+  background-color: transparent;
+  border: 0;
+}
+
+.search-button {
+  background-color: transparent;
+  border: 0;
+  width: 50px;
+}
+
+.fa-search {
+  background-color: transparent;
+}
+
+.questions {
+  margin-top: 20px;
 }
 
  #line {

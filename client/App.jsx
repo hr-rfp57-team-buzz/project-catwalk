@@ -1,10 +1,7 @@
 import React from 'react';
 import Overview from './Overview.jsx';
-<<<<<<< HEAD
 import QuestionsAndAnswers from './Q&A/QuestionsAndAnswers.jsx';
-=======
 import Related from './RelatedItems.jsx';
->>>>>>> 0cd7f17 (Added RelatedItems.jsx, and included it in App.jsx, designing basics in CSS/HTML next)
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +17,7 @@ class App extends React.Component {
         <Overview />
         <div id="related-products">Related Products</div>
         <div className="related">
-          <Related/>
+          <Related />
         </div>
         <div className="your-outfit">Outfit</div>
         <div id="questions-answers">Questions &amp; Answers</div>

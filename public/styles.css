@@ -303,7 +303,6 @@ h1 {
   background-color: mediumslateblue;
 }
 
-<<<<<<< HEAD
 .reel {
   overflow: hidden;
   display: flex;
@@ -328,16 +327,8 @@ h1 {
   margin-top: 20px;
   margin-bottom: 20px;
   border-width: 2px;
-=======
-.Card {
-  width: 50px;
-  height: 100px;
->>>>>>> 77b114f (Implemented basic moving for cards when clicked, added basic borders)
-  border-style: solid;
-
 }
 
-<<<<<<< HEAD
 .relatedPic {
   max-width: 100%;
   max-height: 100%;
@@ -348,8 +339,6 @@ h1 {
   max-width: 100%;
 }
 
-=======
->>>>>>> 77b114f (Implemented basic moving for cards when clicked, added basic borders)
 /* Alex */
 #questions-answers {
   background-color: moccasin;

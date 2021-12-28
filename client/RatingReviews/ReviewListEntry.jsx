@@ -1,19 +1,22 @@
 import React from 'react';
 
-let ReviewListEntry = () => (
+let ReviewListEntry = (props) => (
   <div>
-    <h2>NUM reviews, sorted by <u>CONDITION</u></h2>
     <div className="gridContainer2Col">
       <div className="gridItemLeft">
-        <h3>* * * * *</h3>
+        <i className="far fa-star" style={{background: 'yellow'}}></i>
+        <i className="far fa-star" style={{background: 'yellow'}}></i>
+        <i className="far fa-star" style={{background: 'linear-gradient(to right, yellow 50%, white 50%)'}}></i>
+        <i className="far fa-star"></i>
+        <i className="far fa-star"></i>
       </div>
       <div className="gridItemRight">
-        <sub>SOMEUSERNAME</sub>
+        <sub>{props.review.reviewer_name}, {props.review.date}</sub>
       </div>
     </div>
-    <h4>Lorem ipsum dolor sit amet, consectetur adipiscing</h4>
-    <p>ucibus. Aliquam at ultricies sem. Sed iaculis eros tempus tortor semper vestibulum. Integer interdum egestas sapien quis facilisis. Suspendisse velit tortor, posuere a scelerisque quis, porttitor ut leo. Vestibulum ac neque quis justo imperdiet venenatis. Maecenas ante lorem, gravida ac feugiat quis, lacin</p>
-    <div class="responseFromSeller">
+    <h4>{props.review.summary}</h4>
+    <p>{props.review.body}</p>
+    <div hidden="true" class="responseFromSeller">
       <h4 className="pad15">Response from seller:</h4>
       <p className="pad15">re ultrices diam tincidunt at. Maecenas sit amet iaculis odio, a viverra felis. Aliquam sit amet</p>
     </div>

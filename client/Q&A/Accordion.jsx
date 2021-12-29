@@ -29,7 +29,7 @@ class Accordion extends React.Component {
       if (this.state.isActive === false) {
         loadedAnswersCopy.push(answer);
         this.setState({
-          loadedAnswers: [...loadedAnswersCopy, answer]
+          loadedAnswers: [...loadedAnswersCopy]
         })
       } else if (this.state.isActive === true) {
         this.setState({

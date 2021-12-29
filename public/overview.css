@@ -98,14 +98,14 @@
 
 .po-image {
   position: relative;
-  width: 55%;
+  width: 50%;
   max-height: 700px;
   background-color: #fff;
   overflow: hidden;
 }
 
 .po-details {
-  width: 45%;
+  width: 50%;
   padding: 40px;
   background-color: #fff;
 }

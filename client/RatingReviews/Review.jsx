@@ -18,8 +18,8 @@ let Review = ({reviews, setReviews, changeProdId}) => {
         return <ReviewListEntry review={review} key={index} />;
       })}
       <div className="gridContainer2Col">
-        <div className="gridItemCenter"><button>More Reviews</button></div>
-        <div className="gridItemCenter"><button onClick={changeProdId}>Add A Review +</button></div>
+        <div className="gridItemCenter"><button className="bottom-btn">More Reviews</button></div>
+        <div className="gridItemCenter"><button className="bottom-btn" onClick={changeProdId}>Add A Review +</button></div>
       </div>
       <br/><br/>
     </div>

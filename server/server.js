@@ -15,7 +15,7 @@ console.log(path.join(__dirname, '../public/index.html'));
 
 // Products Routes
 app.get('/', function(req, res) {
-  console.log('Hi');
+  // console.log('Hi');
   res.send();
 });
 
@@ -27,7 +27,7 @@ app.get('/products', (req, res) => {
     }
   })
     .then((response) => {
-      console.log('Data from get to Products endpoint: ', response);
+      // console.log('Data from get to Products endpoint: ', response);
       // let jsonData = JSON.stringify(response.data);
       res.send(response.data);
     })
@@ -45,7 +45,7 @@ app.get('/products/:product_id', (req, res) => {
     }
   })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       res.send(response.data);
     })
     .catch((err) => {
@@ -63,7 +63,7 @@ app.get('/products/:product_id/styles', (req, res) => {
     }
   })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       res.send(response.data);
     })
     .catch((err) => {
@@ -81,7 +81,7 @@ app.get('/products/:product_id/related', (req, res) => {
     }
   })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       res.send(response.data);
     })
     .catch((err) => {
@@ -103,7 +103,7 @@ app.get('/reviews/:product_id', (req, res) => {
     }
   })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       res.send(response.data);
     })
     .catch((err) => {
@@ -124,7 +124,7 @@ app.get('/reviews/:product_id/meta', (req, res) => {
     }
   })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       res.send(response.data);
     })
     .catch((err) => {
@@ -135,7 +135,7 @@ app.get('/reviews/:product_id/meta', (req, res) => {
 // Q&A Routes
 app.get('/qa/questions', (req, res) => {
   let id = req.query.id;
-  console.log('req in server: ', req);
+  // console.log('req in server: ', req);
   let endpoint = url + 'qa/questions';
 
   axios.get(endpoint, {
@@ -147,7 +147,7 @@ app.get('/qa/questions', (req, res) => {
     }
   })
   .then((response) => {
-    console.log(response);
+    // console.log(response);
     res.send(response.data);
   })
   .catch((err) => {
@@ -167,7 +167,7 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
     // }
   })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       res.send(response.data);
     })
     .catch((err) => {

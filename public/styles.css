@@ -717,3 +717,34 @@ h1 {
   transition: ease-in-out 0.5s;
 }
 
+.reviewStarsContainer {
+  white-space: nowrap;
+}
+
+.reviewStars {
+  display: grid;
+  font-size: 28px;
+}
+
+.reviewStarsFill {
+  grid-column: 1;
+  grid-row: 1;
+  background-color: rgb(255, 208, 0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.reviewStarsNoFill {
+  grid-column: 1;
+  grid-row: 1;
+  background-color: gray;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.reviewInlineBlock {
+  display: inline-block
+}
+

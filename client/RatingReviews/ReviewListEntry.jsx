@@ -20,11 +20,38 @@ let ReviewListEntry = (props) => {
     <div>
       <div className="gridContainer2Col">
         <div className="gridItemLeft">
-          <i className="far fa-star" style={{background: 'yellow'}}></i>
-          <i className="far fa-star" style={{background: 'yellow'}}></i>
-          <i className="far fa-star" style={{background: 'linear-gradient(to right, yellow 50%, white 50%)'}}></i>
-          <i className="far fa-star"></i>
-          <i className="far fa-star"></i>
+          <div className="reviewStarsContainer">
+            <div className="reviewInlineBlock">
+              <div className="reviewStars">
+                <i className="fas fa-star reviewStarsNoFill"></i>
+                <i className="fas fa-star reviewStarsFill"></i>
+              </div>
+            </div>
+            <div className="reviewInlineBlock">
+              <div className="reviewStars">
+                <i className="fas fa-star reviewStarsNoFill"></i>
+                <i className="fas fa-star reviewStarsFill"></i>
+              </div>
+            </div>
+            <div className="reviewInlineBlock">
+              <div className="reviewStars">
+                <i className="fas fa-star reviewStarsNoFill"></i>
+                <i className="fas fa-star reviewStarsFill"></i>
+              </div>
+            </div>
+            <div className="reviewInlineBlock">
+              <div className="reviewStars">
+                <i className="fas fa-star reviewStarsNoFill"></i>
+                <i className="fas fa-star reviewStarsFill"></i>
+              </div>
+            </div>
+            <div className="reviewInlineBlock">
+              <div className="reviewStars">
+                <i className="fas fa-star reviewStarsNoFill"></i>
+                <i style={{width: '21px'}} className="fas fa-star reviewStarsFill"></i>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="gridItemRight">
           <sub>{props.review.reviewer_name}, {props.review.date}</sub>

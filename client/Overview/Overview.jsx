@@ -53,6 +53,7 @@ class Overview extends React.Component {
         container['name'] = selected.name;
         container['original_price'] = selected.original_price;
         container['sale_price'] = selected.sale_price;
+        container['photos'] = selected.photos;
         this.setState({extra: container});
         this.setState({variations: res.data.results});
       })
@@ -63,9 +64,14 @@ class Overview extends React.Component {
 
   handleStyleChange(index) {
     resetSelection(this.state.variations);
-    this.state.variations[index].selected = true;
-    this.state.extra.name = this.state.variations[index].name;
-    this.setState({extra: this.state.extra});
+    const selected = this.state.variations[index];
+    selected.selected = true;
+    const container = sortSizes(selected);
+    container['name'] = selected.name;
+    container['original_price'] = selected.original_price;
+    container['sale_price'] = selected.sale_price;
+    container['photos'] = selected.photos;
+    this.setState({extra: container});
     this.setState({variations: this.state.variations});
   }
 
@@ -74,7 +80,7 @@ class Overview extends React.Component {
       <div id="product-overview">
         <div className="po-announcement">Site-Wide Announcement Message! -- Sale / Discount <strong>Offer</strong> -- <u>New Product Highlight</u></div>
         <div className="po-flex">
-          <OverviewImage />
+          <OverviewImage extra={this.state.extra} />
           <OverviewDetails product={this.state.product} extra={this.state.extra} variations={this.state.variations} handleStyleChange={this.handleStyleChange} />
         </div>
         <OverviewDescription product={this.state.product} />

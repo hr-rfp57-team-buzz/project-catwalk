@@ -7,6 +7,10 @@ class OverviewDetails extends React.Component {
   }
 
   render() {
+    let sale = 'po-price';
+    if (this.props.extra.sale_price) {
+      sale = 'po-price active';
+    }
     return (
       <div className="po-details">
         <div className="po-ratings">
@@ -14,13 +18,16 @@ class OverviewDetails extends React.Component {
           </div>
           <div className="po-reviews">Read all reviews</div>
         </div>
-        <div className="po-category">{this.props.product ? this.props.product.category : ''}</div>
-        <div className="po-product-name">{this.props.product ? this.props.product.name : ''}</div>
-        <div className="po-price">{this.props.extra ? '$' + this.props.extra.original_price : ''}</div>
+        <div className="po-category">{this.props.product.category ? this.props.product.category : ''}</div>
+        <div className="po-product-name">{this.props.product.name ? this.props.product.name : ''}</div>
+        <div className={sale}>
+          <div className="po-sale">{this.props.extra.sale_price ? '$' + this.props.extra.sale_price : ''}</div>
+          <div className="po-retail">{this.props.extra.original_price ? '$' + this.props.extra.original_price : ''}</div>
+        </div>
         <div className="po-style-name">
           <div>Style <i className="fas fa-chevron-right"></i></div>
           {/* <div className="po-selected-style-name">{this.props.variations.length > 0 ? this.props.variations.selected : ''}</div> */}
-          <div className="po-selected-style-name">{this.props.extra ? this.props.extra.name : ''}</div>
+          <div className="po-selected-style-name">{this.props.extra.name ? this.props.extra.name : ''}</div>
         </div>
         <OverviewStyles variations={this.props.variations} handleStyleChange={this.props.handleStyleChange} />
         <div className="po-select-section">

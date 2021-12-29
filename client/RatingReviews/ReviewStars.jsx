@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-let RatingStars = ({averageRating, scrape}) => {
+let ReviewStars = ({review, scrapeReview, starIndex}) => {
 
   let classStripper = (elem, classArray) => {
     classArray.forEach(function(item) {
@@ -11,12 +11,11 @@ let RatingStars = ({averageRating, scrape}) => {
 
   let stripArray = ['reviewStarsFill', 'reviewStarsFill75', 'reviewStarsFill50', 'reviewStarsFill25'];
 
-
-  let star5 = document.getElementById('5star');
-  let star4 = document.getElementById('4star');
-  let star3 = document.getElementById('3star');
-  let star2 = document.getElementById('2star');
-  let star1 = document.getElementById('1star');
+  let star5 = document.getElementById(`5star${starIndex}`);
+  let star4 = document.getElementById(`4star${starIndex}`);
+  let star3 = document.getElementById(`3star${starIndex}`);
+  let star2 = document.getElementById(`2star${starIndex}`);
+  let star1 = document.getElementById(`1star${starIndex}`);
 
   let fillStars = (averageRating) => {
     classStripper(star5, stripArray);
@@ -111,16 +110,16 @@ let RatingStars = ({averageRating, scrape}) => {
 
 
   let setStars = () => {
-    if (!scrape) {
+    if (!scrapeReview) {
       return;
     } else {
-      fillStars(Number(averageRating));
+      fillStars(review.rating);
     }
   };
 
   useEffect(() => {
     setStars();
-  }, [averageRating, scrape]);
+  }, [review, scrapeReview]);
 
   return (
 
@@ -128,31 +127,31 @@ let RatingStars = ({averageRating, scrape}) => {
       <div className="reviewInlineBlock">
         <div className="reviewStars">
           <i className="fas fa-star reviewStarsNoFill"></i>
-          <i id='1star' className="fas fa-star"></i>
+          <i id={`1star${starIndex}`} className="fas fa-star"></i>
         </div>
       </div>
       <div className="reviewInlineBlock">
         <div className="reviewStars">
           <i className="fas fa-star reviewStarsNoFill"></i>
-          <i id='2star' className="fas fa-star"></i>
+          <i id={`2star${starIndex}`} className="fas fa-star"></i>
         </div>
       </div>
       <div className="reviewInlineBlock">
         <div className="reviewStars">
           <i className="fas fa-star reviewStarsNoFill"></i>
-          <i id='3star' className="fas fa-star"></i>
+          <i id={`3star${starIndex}`} className="fas fa-star"></i>
         </div>
       </div>
       <div className="reviewInlineBlock">
         <div className="reviewStars">
           <i className="fas fa-star reviewStarsNoFill"></i>
-          <i id='4star' className="fas fa-star"></i>
+          <i id={`4star${starIndex}`} className="fas fa-star"></i>
         </div>
       </div>
       <div className="reviewInlineBlock">
         <div className="reviewStars">
           <i className="fas fa-star reviewStarsNoFill"></i>
-          <i id='5star' className="fas fa-star"></i>
+          <i id={`5star${starIndex}`} className="fas fa-star"></i>
         </div>
       </div>
     </div>
@@ -164,4 +163,4 @@ let RatingStars = ({averageRating, scrape}) => {
 
 
 
-export default RatingStars;
+export default ReviewStars;

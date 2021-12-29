@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReviewStars from './RatingStars.jsx';
+import ReviewStars from './ReviewStars.jsx';
 
 let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
 

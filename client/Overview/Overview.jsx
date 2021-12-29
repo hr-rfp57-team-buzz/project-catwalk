@@ -1,4 +1,5 @@
 import React from 'react';
+import OverviewAnnouncement from './OverviewAnnouncement.jsx';
 import OverviewImage from './OverviewImage.jsx';
 import OverviewDetails from './OverviewDetails.jsx';
 import OverviewDescription from './OverviewDescription.jsx';
@@ -78,7 +79,7 @@ class Overview extends React.Component {
   render() {
     return (
       <div id="product-overview">
-        <div className="po-announcement">Site-Wide Announcement Message! -- Sale / Discount <strong>Offer</strong> -- <u>New Product Highlight</u></div>
+        <OverviewAnnouncement />
         <div className="po-flex">
           <OverviewImage extra={this.state.extra} />
           <OverviewDetails product={this.state.product} extra={this.state.extra} variations={this.state.variations} handleStyleChange={this.handleStyleChange} />

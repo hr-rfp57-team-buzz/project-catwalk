@@ -1,5 +1,7 @@
 import React from 'react';
 import OverviewStyles from './OverviewStyles.jsx';
+import OverviewSizes from './OverviewSizes.jsx';
+import OverviewQty from './OverviewQty.jsx';
 
 class OverviewDetails extends React.Component {
   constructor(props) {
@@ -26,7 +28,6 @@ class OverviewDetails extends React.Component {
         </div>
         <div className="po-style-name">
           <div>Style <i className="fas fa-chevron-right"></i></div>
-          {/* <div className="po-selected-style-name">{this.props.variations.length > 0 ? this.props.variations.selected : ''}</div> */}
           <div className="po-style-name-selected">{this.props.extra.name ? this.props.extra.name : ''}</div>
         </div>
         <OverviewStyles variations={this.props.variations} handleStyleChange={this.props.handleStyleChange} />
@@ -39,60 +40,6 @@ class OverviewDetails extends React.Component {
           <button className="po-favorite"><i className="far fa-star"></i></button>
         </div>
       </div>
-    );
-  }
-}
-
-class OverviewSizes extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <select id="po-select-size">
-        <option selected disabled>Select Size</option>
-        {
-          this.props.extra.sizes.map((size) => {
-            return <OverviewSize size={size} />;
-          })
-        }
-      </select>
-    );
-  }
-}
-
-class OverviewSize extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <option>{this.props.size[0]}</option>
-    );
-  }
-}
-
-class OverviewQty extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <select id="po-select-qty">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-      </select>
     );
   }
 }

@@ -1,77 +1,29 @@
 import React from 'react';
-
-let counter = 0;
-const prevSlide = () => {
-  const slideReel = document.querySelector('.po-slide-reel');
-  counter--;
-  const move = (counter * -100) + '%';
-  slideReel.style.transform = 'translateX(' + move + ')';
-};
-
-const nextSlide = () => {
-  const slideReel = document.querySelector('.po-slide-reel');
-  counter++;
-  const move = (counter * -100) + '%';
-  slideReel.style.transform = 'translateX(' + move + ')';
-};
+import Previews from './OverviewPreviews.jsx';
+import SlideReel from './OverviewSlideReel.jsx';
 
 class OverviewImage extends React.Component {
   constructor(props) {
     super(props);
+    this.counter = 0;
+    this.moveSlideReel = this.moveSlideReel.bind(this);
+  }
+
+  moveSlideReel(val) {
+    const slideReel = document.querySelector('.po-slide-reel');
+    this.counter = val;
+    const move = (this.counter * -100) + '%';
+    slideReel.style.transform = 'translateX(' + move + ')';
   }
 
   render() {
-    console.log('extra', this.props.extra);
-    if (this.props.extra.photos) {
-      console.log(this.props.extra.photos[0].url);
-    }
     return (
       <div className="po-image">
-        <div onClick={prevSlide} className="po-left-arrow"><i className="fas fa-arrow-left"></i></div>
-        <div onClick={nextSlide} className="po-right-arrow"><i className="fas fa-arrow-right"></i></div>
-        <div className="po-mini-images">
-          <div className="po-mini-indv"></div>
-          <div className="po-mini-indv"></div>
-          <div className="po-mini-indv"></div>
-          <div className="po-mini-indv"></div>
-          <div className="po-mini-indv"></div>
-        </div>
+        <div onClick={() => { this.moveSlideReel(this.counter - 1); }} className="po-left-arrow"><i className="fas fa-arrow-left"></i></div>
+        <div onClick={() => { this.moveSlideReel(this.counter + 1); }} className="po-right-arrow"><i className="fas fa-arrow-right"></i></div>
+        <Previews extra={this.props.extra} moveSlideReel={this.moveSlideReel} />
         <SlideReel extra={this.props.extra} />
       </div>
-    );
-  }
-}
-
-class SlideReel extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let photos = [];
-    if (this.props.extra.photos) {
-      photos = this.props.extra.photos;
-    }
-    return (
-      <div className="po-slide-reel">
-        {
-          photos.map((photo) => {
-            return <Slide photo={photo} />;
-          })
-        }
-      </div>
-    );
-  }
-}
-
-class Slide extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <img src={this.props.photo.url} />
     );
   }
 }

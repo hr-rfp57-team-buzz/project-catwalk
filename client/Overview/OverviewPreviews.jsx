@@ -34,7 +34,7 @@ class Preview extends React.Component {
       'backgroundPosition': 'center'
     };
     return (
-      <div onClick={() => { this.props.moveSlideReel(this.props.index); }} className="po-preview" style={styling}></div>
+      <div onClick={() => { this.props.moveSlideReel(this.props.index + 1); }} className="po-preview" style={styling}></div>
     );
   }
 }

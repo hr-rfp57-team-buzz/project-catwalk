@@ -12,11 +12,13 @@ class SlideReel extends React.Component {
     }
     return (
       <div className="po-slide-reel">
+        <Slide key="last" photo={photos.length > 0 ? photos[photos.length - 1] : {url: ''}} />
         {
           photos.map((photo, index) => {
             return <Slide key={index} photo={photo} />;
           })
         }
+        <Slide key="first" photo={photos.length > 0 ? photos[0] : {url: ''}} />
       </div>
     );
   }

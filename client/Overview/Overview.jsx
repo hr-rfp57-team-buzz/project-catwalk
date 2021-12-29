@@ -55,6 +55,7 @@ class Overview extends React.Component {
         container['original_price'] = selected.original_price;
         container['sale_price'] = selected.sale_price;
         container['photos'] = selected.photos;
+        container['counter'] = 1;
         this.setState({extra: container});
         this.setState({variations: res.data.results});
       })
@@ -72,6 +73,7 @@ class Overview extends React.Component {
     container['original_price'] = selected.original_price;
     container['sale_price'] = selected.sale_price;
     container['photos'] = selected.photos;
+    container['counter'] = 1;
     this.setState({extra: container});
     this.setState({variations: this.state.variations});
   }

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import RatingStars from './RatingStars.jsx';
 
-let ReviewListEntry = ({review}) => {
+let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
 
   let [reviewPhotos, setReviewPhotos] = useState([undefined]);
 
   let createPhotoArray = () => {
-    if (review.photos !== undefined) {
+    if (!scrapeReview) {
+      return;
+    } else {
       setReviewPhotos(review.photos);
     }
   };
@@ -14,14 +16,14 @@ let ReviewListEntry = ({review}) => {
 
   useEffect(() => {
     createPhotoArray();
-  }, [review]);
+  }, [scrapeReview]);
 
   return (
 
     <div>
       <div className="gridContainer2Col">
         <div className="gridItemLeft">
-          <RatingStars review={review} />
+          <RatingStars review={review} scrapeReview={scrapeReview} starIndex={starIndex} />
         </div>
         <div className="gridItemRight">
           <sub>{review.reviewer_name}, {review.date}</sub>

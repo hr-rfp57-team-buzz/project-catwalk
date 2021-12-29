@@ -3,7 +3,7 @@ import ReviewListEntry from './ReviewListEntry.jsx';
 import axios from 'axios';
 import TOKEN from '../../config.js';
 
-let Review = ({reviews, setReviews, changeProdId}) => {
+let Review = ({reviews, setReviews, changeProdId, scrapeReview}) => {
 
   return (
 
@@ -15,7 +15,7 @@ let Review = ({reviews, setReviews, changeProdId}) => {
       </select></p>
       <hr />
       {reviews.map((review, index) => {
-        return <ReviewListEntry review={review} key={index} />;
+        return <ReviewListEntry review={review} scrapeReview={scrapeReview} key={index} starIndex={index} />;
       })}
       <div className="gridContainer2Col">
         <div className="gridItemCenter"><button className="bottom-btn">More Reviews</button></div>

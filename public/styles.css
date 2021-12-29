@@ -735,6 +735,36 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
+.reviewStarsFill25 {
+  grid-column: 1;
+  grid-row: 1;
+  width: 11px;
+  background-color: rgb(255, 208, 0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.reviewStarsFill50 {
+  grid-column: 1;
+  grid-row: 1;
+  width: 15px;
+  background-color: rgb(255, 208, 0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.reviewStarsFill75 {
+  grid-column: 1;
+  grid-row: 1;
+  width: 21px;
+  background-color: rgb(255, 208, 0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .reviewStarsNoFill {
   grid-column: 1;
   grid-row: 1;

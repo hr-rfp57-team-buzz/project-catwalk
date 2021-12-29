@@ -38,7 +38,7 @@ let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
       <div className="reviewStarsContainer">
         <h1 className="reviewInlineBlock pad15horz">{averageRating}</h1>
         <span className="reviewInlineBlock">
-          <RatingStars />
+          {/* <RatingStars /> */}
         </span>
       </div>
 

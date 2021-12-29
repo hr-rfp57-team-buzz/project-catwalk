@@ -1,64 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import RatingStars from './RatingStars.jsx';
 
-let ReviewListEntry = (props) => {
+let ReviewListEntry = ({review}) => {
 
   let [reviewPhotos, setReviewPhotos] = useState([undefined]);
 
   let createPhotoArray = () => {
-    if (props.review.photos !== undefined) {
-      setReviewPhotos(props.review.photos);
+    if (review.photos !== undefined) {
+      setReviewPhotos(review.photos);
     }
   };
 
 
   useEffect(() => {
     createPhotoArray();
-  }, [props.review]);
+  }, [review]);
 
   return (
 
     <div>
       <div className="gridContainer2Col">
         <div className="gridItemLeft">
-          <div className="reviewStarsContainer">
-            <div className="reviewInlineBlock">
-              <div className="reviewStars">
-                <i className="fas fa-star reviewStarsNoFill"></i>
-                <i className="fas fa-star reviewStarsFill"></i>
-              </div>
-            </div>
-            <div className="reviewInlineBlock">
-              <div className="reviewStars">
-                <i className="fas fa-star reviewStarsNoFill"></i>
-                <i className="fas fa-star reviewStarsFill"></i>
-              </div>
-            </div>
-            <div className="reviewInlineBlock">
-              <div className="reviewStars">
-                <i className="fas fa-star reviewStarsNoFill"></i>
-                <i className="fas fa-star reviewStarsFill"></i>
-              </div>
-            </div>
-            <div className="reviewInlineBlock">
-              <div className="reviewStars">
-                <i className="fas fa-star reviewStarsNoFill"></i>
-                <i className="fas fa-star reviewStarsFill"></i>
-              </div>
-            </div>
-            <div className="reviewInlineBlock">
-              <div className="reviewStars">
-                <i className="fas fa-star reviewStarsNoFill"></i>
-                <i style={{width: '21px'}} className="fas fa-star reviewStarsFill"></i>
-              </div>
-            </div>
-          </div>
+          <RatingStars review={review} />
         </div>
         <div className="gridItemRight">
-          <sub>{props.review.reviewer_name}, {props.review.date}</sub>
+          <sub>{review.reviewer_name}, {review.date}</sub>
         </div>
       </div>
-      <h4>{props.review.summary}</h4>
-      <p>{props.review.body}</p>
+      <h4>{review.summary}</h4>
+      <p>{review.body}</p>
       <div hidden={true} class="responseFromSeller">
         <h4 className="pad15">Response from seller:</h4>
         <p className="pad15">re ultrices diam tincidunt at. Maecenas sit amet iaculis odio, a viverra felis. Aliquam sit amet</p>

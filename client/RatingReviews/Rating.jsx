@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import RatingStars from './RatingStars.jsx';
 
 let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
 
@@ -34,8 +35,11 @@ let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
 
     <div className="ratingOverview">
 
-      <div>
-        <h1 >{averageRating} STARIMGS</h1>
+      <div className="reviewStarsContainer">
+        <h1 className="reviewInlineBlock pad15horz">{averageRating}</h1>
+        <span className="reviewInlineBlock">
+          <RatingStars />
+        </span>
       </div>
 
       <div>

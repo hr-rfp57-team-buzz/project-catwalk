@@ -1,5 +1,5 @@
 h1 {
-  color: red
+  /* color: red */
 }
 
 * {
@@ -746,5 +746,9 @@ h1 {
 
 .reviewInlineBlock {
   display: inline-block
+}
+
+.pad15horz {
+  padding: 0 5px 0 5px;
 }
 

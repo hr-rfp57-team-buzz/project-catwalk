@@ -21,6 +21,18 @@ class OverviewGallery extends React.Component {
 
     const slideReel = document.querySelector('.po-slide-reel');
     this.counter = val;
+
+    let topCounter = this.counter;
+    if (topCounter === lastIndex) {
+      topCounter = 1;
+    } else if (topCounter === 0) {
+      topCounter = lastIndex - 1;
+    }
+    const underline = document.querySelector('.po-previews-underline');
+    const top = (topCounter * 70) + ((topCounter - 1) * 25) + 4;
+    underline.style.top = top + 'px';
+
+
     let move = (this.counter * -100) + '%';
     slideReel.style.transition = 'all 0.4s ease-in-out';
     slideReel.style.transform = 'translateX(' + move + ')';
@@ -43,8 +55,6 @@ class OverviewGallery extends React.Component {
   }
 
   render() {
-    console.log('rendering!!!');
-
     return (
       <div className="po-gallery">
         <div onClick={() => { this.moveSlideReel(this.counter - 1); }} className="po-left-arrow"><i className="fas fa-arrow-left"></i></div>

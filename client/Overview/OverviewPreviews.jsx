@@ -7,6 +7,7 @@ class Previews extends React.Component {
 
   render() {
     let previews = [];
+    let styling;
     if (this.props.extra.photos) {
       previews = this.props.extra.photos;
     }
@@ -17,6 +18,7 @@ class Previews extends React.Component {
             return <Preview key={Math.random().toFixed(8)} preview={preview} index={index} moveSlideReel={this.props.moveSlideReel} />;
           })
         }
+        <div className="po-previews-underline"></div>
       </div>
     );
   }

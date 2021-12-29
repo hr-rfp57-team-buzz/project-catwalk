@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import QuestionsList from './QuestionsList.jsx';
 import SearchBar from './SearchBar.jsx';
-import LoadAnswers from './LoadAnswers.jsx';
 import MoreAnswered from './MoreAnsweredQs.jsx';
 import AddQuestion from './AddQuestion.jsx';
 import Question from './Question.jsx';
@@ -52,7 +51,6 @@ class QuestionsAndAnswers extends React.Component {
         <div className="questions-list">
           <QuestionsList questions={this.state.questions}/>
         </div>
-        <LoadAnswers />
         <MoreAnswered />
         <AddQuestion />
       </>

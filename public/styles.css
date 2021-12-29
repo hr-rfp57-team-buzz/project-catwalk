@@ -351,6 +351,18 @@ h1 {
   padding-right: 10px;
 }
 
+.q-a-img {
+  display: inline-block;
+  border: 1px solid black;
+  width: 150px;
+  margin-left: 40px;
+  /* padding: 4px; */
+}
+
+.q-a-img:hover {
+  box-shadow: 0 0 2px 1px rgb(87, 245, 14);
+}
+
 .helpful {
   display: flex;
   justify-content: space-evenly;

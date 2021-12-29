@@ -154,7 +154,7 @@ app.get('/qa/questions', (req, res) => {
     console.log('Error! ', err);
   })
 });
-==
+
 app.get('/qa/questions/:product_id/answers', (req, res) => {
   let id = req.params.product_id;
   let endpoint = url + 'qa/questions/' + id + '/answers';

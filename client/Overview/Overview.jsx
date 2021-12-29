@@ -1,6 +1,6 @@
 import React from 'react';
 import OverviewAnnouncement from './OverviewAnnouncement.jsx';
-import OverviewImage from './OverviewImage.jsx';
+import OverviewGallery from './OverviewGallery.jsx';
 import OverviewDetails from './OverviewDetails.jsx';
 import OverviewDescription from './OverviewDescription.jsx';
 import axios from 'axios';
@@ -81,7 +81,7 @@ class Overview extends React.Component {
       <div id="product-overview">
         <OverviewAnnouncement />
         <div className="po-flex">
-          <OverviewImage extra={this.state.extra} />
+          <OverviewGallery extra={this.state.extra} />
           <OverviewDetails product={this.state.product} extra={this.state.extra} variations={this.state.variations} handleStyleChange={this.handleStyleChange} />
         </div>
         <OverviewDescription product={this.state.product} />

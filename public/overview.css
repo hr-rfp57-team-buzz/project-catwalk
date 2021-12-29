@@ -39,14 +39,14 @@
 
 
 /*  PRODUCT GALLERY  */
-.po-image {
+.po-gallery {
   position: relative;
   width: 50%;
   max-height: 700px;
   overflow: hidden;
 }
 
-.po-image img {
+.po-gallery img {
   display: block;
   max-width: 100%;
   margin-top: -100px;

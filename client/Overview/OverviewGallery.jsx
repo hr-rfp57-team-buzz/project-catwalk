@@ -2,7 +2,7 @@ import React from 'react';
 import Previews from './OverviewPreviews.jsx';
 import SlideReel from './OverviewSlideReel.jsx';
 
-class OverviewImage extends React.Component {
+class OverviewGallery extends React.Component {
   constructor(props) {
     super(props);
     this.counter = 0;
@@ -18,7 +18,7 @@ class OverviewImage extends React.Component {
 
   render() {
     return (
-      <div className="po-image">
+      <div className="po-gallery">
         <div onClick={() => { this.moveSlideReel(this.counter - 1); }} className="po-left-arrow"><i className="fas fa-arrow-left"></i></div>
         <div onClick={() => { this.moveSlideReel(this.counter + 1); }} className="po-right-arrow"><i className="fas fa-arrow-right"></i></div>
         <Previews extra={this.props.extra} moveSlideReel={this.moveSlideReel} />
@@ -28,4 +28,4 @@ class OverviewImage extends React.Component {
   }
 }
 
-export default OverviewImage;
+export default OverviewGallery;

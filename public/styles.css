@@ -627,6 +627,17 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
+#ratings-reviews .fas {
+  grid-column: 1;
+  grid-row: 1;
+  color: gray;
+}
+
+#ratings-reviews .fa-star {
+  grid-column: 1;
+  grid-row: 1;
+}
+
 .review {
   grid-column-start: 3;
   grid-column-end: 7;

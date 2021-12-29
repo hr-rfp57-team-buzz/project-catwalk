@@ -17,7 +17,9 @@ let RatingReview = () => {
   // let prodId = 40388;
 
   let changeProdId = () => {
-    setProdId(40388);
+    let prods = [40345, 40388, 40453, 40355];
+    let randProd = prods[(Math.random() * prods.length) | 0];
+    setProdId(randProd);
   };
 
   let getProdReviews = (prodId) => {

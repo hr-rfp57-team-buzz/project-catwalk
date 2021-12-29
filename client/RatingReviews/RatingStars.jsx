@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 
-let RatingStars = ({review, scrapeReview, starIndex}) => {
+let ReviewStars = ({review, scrapeReview, starIndex}) => {
+
 
   let star5 = document.getElementById(`5star${starIndex}`);
   let star4 = document.getElementById(`4star${starIndex}`);
@@ -10,11 +11,12 @@ let RatingStars = ({review, scrapeReview, starIndex}) => {
   let star1 = document.getElementById(`1star${starIndex}`);
 
   let fillStars = () => {
-    star5.classList.remove('reviewStarsFill,reviewStarsFill25,reviewStarsFill50,reviewStarsFill75');
-    star4.classList.remove('reviewStarsFill,reviewStarsFill25,reviewStarsFill50,reviewStarsFill75');
-    star3.classList.remove('reviewStarsFill,reviewStarsFill25,reviewStarsFill50,reviewStarsFill75');
-    star2.classList.remove('reviewStarsFill,reviewStarsFill25,reviewStarsFill50,reviewStarsFill75');
-    star1.classList.remove('reviewStarsFill,reviewStarsFill25,reviewStarsFill50,reviewStarsFill75');
+    // console.log('THIS RAN FILLSTARS');
+    star5.classList.remove('reviewStarsFill');
+    star4.classList.remove('reviewStarsFill');
+    star3.classList.remove('reviewStarsFill');
+    star2.classList.remove('reviewStarsFill');
+    star1.classList.remove('reviewStarsFill');
     if (review.rating === 5) {
       star5.classList.add('reviewStarsFill');
       star4.classList.add('reviewStarsFill');
@@ -35,8 +37,6 @@ let RatingStars = ({review, scrapeReview, starIndex}) => {
       star1.classList.add('reviewStarsFill');
     } else if (review.rating === 1) {
       star1.classList.add('reviewStarsFill');
-    } else if (review.rating === 0.5) {
-      star1.classList.add('reviewStarsFill25');
     }
   };
 
@@ -51,7 +51,7 @@ let RatingStars = ({review, scrapeReview, starIndex}) => {
 
   useEffect(() => {
     setStars();
-  }, [scrapeReview, review]);
+  }, [review, scrapeReview]);
 
   return (
 
@@ -95,4 +95,4 @@ let RatingStars = ({review, scrapeReview, starIndex}) => {
 
 
 
-export default RatingStars;
+export default ReviewStars;

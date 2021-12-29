@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import RatingStars from './RatingStars.jsx';
+import ReviewStars from './RatingStars.jsx';
 
 let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
 
@@ -23,7 +23,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
     <div>
       <div className="gridContainer2Col">
         <div className="gridItemLeft">
-          <RatingStars review={review} scrapeReview={scrapeReview} starIndex={starIndex} />
+          <ReviewStars review={review} scrapeReview={scrapeReview} starIndex={starIndex} />
         </div>
         <div className="gridItemRight">
           <sub>{review.reviewer_name}, {review.date}</sub>

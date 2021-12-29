@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 
 class OverviewStyles extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class OverviewStyle extends React.Component {
     this.props.variation.selected ? checkmark = 'po-style-check active' : checkmark = 'po-style-check';
 
     return (
-      <div className="po-style" style={styling} onClick={() => {this.props.handleStyleChange(this.props.index)}}>
+      <div className="po-style" style={styling} onClick={() => { this.props.handleStyleChange(this.props.index); }}>
         <div className={checkmark}><i className="fas fa-check"></i></div>
       </div>
     );

@@ -13,8 +13,8 @@ class OverviewDetails extends React.Component {
     }
     return (
       <div className="po-details">
-        <div className="po-ratings">
-          <div className="po-stars"><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star-half-alt"></i>
+        <div className="po-rating-reviews">
+          <div className="po-rating"><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star-half-alt"></i>
           </div>
           <div className="po-reviews">Read all reviews</div>
         </div>
@@ -27,7 +27,7 @@ class OverviewDetails extends React.Component {
         <div className="po-style-name">
           <div>Style <i className="fas fa-chevron-right"></i></div>
           {/* <div className="po-selected-style-name">{this.props.variations.length > 0 ? this.props.variations.selected : ''}</div> */}
-          <div className="po-selected-style-name">{this.props.extra.name ? this.props.extra.name : ''}</div>
+          <div className="po-style-name-selected">{this.props.extra.name ? this.props.extra.name : ''}</div>
         </div>
         <OverviewStyles variations={this.props.variations} handleStyleChange={this.props.handleStyleChange} />
         <div className="po-select-section">

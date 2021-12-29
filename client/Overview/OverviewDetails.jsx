@@ -32,22 +32,11 @@ class OverviewDetails extends React.Component {
         <OverviewStyles variations={this.props.variations} handleStyleChange={this.props.handleStyleChange} />
         <div className="po-select-section">
           <OverviewSizes extra={this.props.extra} />
-          <select id="po-select-qty">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-          </select>
+          <OverviewQty />
         </div>
-        <div className="po-add-to-bag">
-          <button id="po-add-to-bag">Add to Bag <i className="fas fa-plus"></i></button>
-          <button id="po-favorite"><i className="far fa-star"></i></button>
+        <div className="po-flex">
+          <button className="po-add-to-bag">Add to Bag <i className="fas fa-plus"></i></button>
+          <button className="po-favorite"><i className="far fa-star"></i></button>
         </div>
       </div>
     );
@@ -81,6 +70,29 @@ class OverviewSize extends React.Component {
   render() {
     return (
       <option>{this.props.size[0]}</option>
+    );
+  }
+}
+
+class OverviewQty extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <select id="po-select-qty">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+      </select>
     );
   }
 }

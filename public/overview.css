@@ -210,6 +210,34 @@
   outline: none;
 }
 
+.po-add-to-bag {
+  display: flex;
+  justify-content: space-between;
+  width: 77%;
+  padding: 20px;
+  background-color: #fff;
+  border: 2px solid #eee;
+  border-radius: 4px;
+  color: #444;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  appearance: none;
+  outline: none;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.po-favorite {
+  width: 18%;
+  margin-left: 5%;
+  background-color: #fff;
+  border: 1px solid #eee;
+  cursor: pointer;
+  font-size: 22px;
+  outline: none;
+}
 
 
 
@@ -319,41 +347,8 @@
   margin-top: -100px;
 }
 
-.po-add-to-bag {
-  display: flex;
-}
 
-.po-add-to-bag #po-add-to-bag {
-  display: flex;
-  justify-content: space-between;
-  width: 77%;
-  padding: 20px;
-  background-color: #fff;
-  border: 2px solid #eee;
-  border-radius: 4px;
-  color: #444;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  appearance: none;
-  outline: none;
-  text-align: left;
-  text-transform: uppercase;
-}
 
-.po-add-to-bag #po-favorite {
-  width: 18%;
-  margin-left: 5%;
-  background-color: #fff;
-  border: 1px solid #eee;
-  cursor: pointer;
-  outline: none;
-}
-
-#po-favorite i {
-  font-size: 22px;
-}
 
 
 

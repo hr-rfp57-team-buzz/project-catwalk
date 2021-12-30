@@ -10,6 +10,7 @@ class OverviewDetails extends React.Component {
       qty: 0
     };
     this.updateSize = this.updateSize.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   updateSize(e) {
@@ -21,6 +22,12 @@ class OverviewDetails extends React.Component {
     }
     qty > 15 ? qty = 15 : qty = qty;
     this.setState({qty, qty});
+  }
+
+  addToCart() {
+    const size = document.querySelector('#po-select-size').value;
+    const qty = document.querySelector('#po-select-qty').value;
+    console.log(size, qty, this.props.extra.name);
   }
 
   render() {
@@ -51,7 +58,7 @@ class OverviewDetails extends React.Component {
           <OverviewQty qty={this.state.qty} />
         </div>
         <div className="po-flex">
-          <button className="po-add-to-bag">Add to Bag <i className="fas fa-plus"></i></button>
+          <button onClick={this.addToCart} className="po-add-to-bag">Add to Bag <i className="fas fa-plus"></i></button>
           <button className="po-favorite"><i className="far fa-star"></i></button>
         </div>
       </div>

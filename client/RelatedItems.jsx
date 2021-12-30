@@ -1,15 +1,72 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
 
 var Related = () => {
   const [x, setX] = useState(0);
   const [x2, setX2] = useState(0);
+  let [relPictures, setRelPictures] = useState([]);
+  let [relCategories, setRelCategories] = useState([]);
+  let [relNames, setRelNames] = useState([]);
+  let [relPrices, setRelPrices] = useState([]);
+  let [relReviews, setRelReviews] = useState([]);
+  let [relProdId, setRelProdId] = useState(40344);
+
+  //initial data hardcoded
+
   const stylesRelated = {
     transform: `translate(${x}px, 0px)`
   };
   const stylesOutfit = {
     transform: `translate(${x2}px, 0px)`
   };
+
+  let getInfo = (id) => {
+    axios.get(`products/${id}`)
+      .then((res) => {
+        setRelNames(relNames.push(res.data.name));
+        console.log('relNames ', relNames);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  let getMeta = (id) => {
+
+  };
+
+
+  let getPicture = (id) => {
+    axios.get(`products/${id}/styles`)
+      .then((res) => {
+        let tempPics = relPictures;
+        tempPics.push({'picture': res.data.results[0].photos[0].thumbnail_url});
+        setRelPictures(tempPics);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  let getData = (relProdId) => {
+    axios.get(`products/${relProdId}/related`)
+      .then((res) => {
+        res.data.map(item => {
+          getPicture(item);
+          getInfo(item);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
+
+  useEffect(() => {
+    getData(relProdId);
+  }, []);
 
   var moveLeft = function() {
     if (x > 0) {

@@ -10,9 +10,10 @@ var Related = () => {
   let [relNames, setRelNames] = useState([]);
   let [relPrices, setRelPrices] = useState([]);
   let [relReviews, setRelReviews] = useState([]);
-  let [relProdId, setRelProdId] = useState(40344);
+  let [relProdId, setRelProdId] = useState([]);
+  let [initialId, setInitialId] = useState(40344);
+  let [cardNumber, setCardNumber] = useState([]);
 
-  //initial data hardcoded
 
   const stylesRelated = {
     transform: `translate(${x}px, 0px)`
@@ -21,27 +22,63 @@ var Related = () => {
     transform: `translate(${x2}px, 0px)`
   };
 
+  //averages reviews from metadata
+  let reviewAverage = (revs) => {
+    let totalNum = 0;
+    let revProduct = 0;
+    let keys = Object.keys(revs);
+    for (let i = 0; i < keys.length; i++) {
+      let key = keys[i];
+      totalNum += parseInt(revs[key]);
+      revProduct += parseInt(key) * revs[key];
+    }
+    //console.log("totalNum: ", totalNum, " Product: ", revProduct);
+    let average = ((revProduct / totalNum) / 5);
+    return average.toFixed(2);
+  };
+
+  //grabs product name, category, and price
   let getInfo = (id) => {
     axios.get(`products/${id}`)
       .then((res) => {
-        setRelNames(relNames.push(res.data.name));
-        console.log('relNames ', relNames);
+        let temp = relNames;
+        temp.push(res.data.name);
+        setRelNames(temp);
+        temp = relCategories;
+        temp.push(res.data.category);
+        setRelCategories(temp);
+        temp = relPrices;
+        temp.push(res.data.default_price);
+        setRelPrices(temp);
+
+        //console.log('relNames ', relNames);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  //takes product's metadata, and averages out review
   let getMeta = (id) => {
-
+    axios.get(`/reviews/${id}/meta`)
+      .then((res) => {
+        let obj = res.data.ratings;
+        let temp = relReviews;
+        temp.push(reviewAverage(obj));
+        setRelReviews(temp);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-
+  //grabs product thumbnail
   let getPicture = (id) => {
     axios.get(`products/${id}/styles`)
       .then((res) => {
+        //console.log(res.data.results);
         let tempPics = relPictures;
-        tempPics.push({'picture': res.data.results[0].photos[0].thumbnail_url});
+        tempPics.push(res.data.results[0].photos[0].thumbnail_url);
         setRelPictures(tempPics);
       })
       .catch((err) => {
@@ -49,28 +86,50 @@ var Related = () => {
       });
   };
 
-  let getData = (relProdId) => {
-    axios.get(`products/${relProdId}/related`)
+  let getData = (id) => {
+    axios.get(`products/${id}/related`)
       .then((res) => {
+        let temp = [];
         res.data.map(item => {
           getPicture(item);
           getInfo(item);
+          getMeta(item);
+          temp.push(item);
         });
+        setRelProdId(temp);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-
+  let showState = () => {
+    console.log(relProdId);
+    console.log(relPictures);
+    console.log(relReviews);
+    console.log(relPrices);
+    console.log(relNames);
+    console.log(relCategories);
+  };
 
   useEffect(() => {
-    getData(relProdId);
-  }, []);
+    getData(initialId);
+    let makestuff = () => {
+      console.log("HELLO?");
+    };
 
+
+    return () => {
+      console.log("ALL DONE");
+    };
+
+  }, [initialId]);
+
+  //left for the carousels needs a function so they don't go further to the left than possible
   var moveLeft = function() {
     if (x > 0) {
       setX(x - 340);
+      showState();
     }
   };
 

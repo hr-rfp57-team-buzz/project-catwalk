@@ -14,14 +14,41 @@ class QuestionsAndAnswers extends React.Component {
     super(props);
 
     this.state = {
+      allQuestions: [],
       questions: [],
+      count: 1,
       productId: 40360
     };
     this.getQuestions = this.getQuestions.bind(this);
+    this.getAllQuestions = this.getAllQuestions.bind(this);
   }
 
   componentDidMount() {
     this.getQuestions(this.state.productId);
+    this.getAllQuestions(this.state.productId, this.state.count);
+  }
+
+  getAllQuestions = (id, page) => {
+    axios.get('/qa/questions', {
+      params: { id, page },
+      responseType: 'json',
+    })
+    .then((response) => {
+      if (response.data.results.length) {
+        this.getAllQuestions(this.state.productId, this.state.count)
+      }
+      console.log('Response in getAllQuestions: ', response);
+      response.data.results.map(question =>
+        this.setState({
+          allQuestions: [...this.state.allQuestions, question],
+        }));
+    })
+    .then(() => {
+      this.setState({ count: this.state.count += 1 })
+    })
+    .catch((err) => {
+      console.error('Error! ', err);
+    });
   }
 
 

@@ -61,17 +61,18 @@ class MoreAnsweredQs extends React.Component {
   render() {
     return (
       <>
-      {this.state.toRender.length ?
-        this.state.toRender.map(question =>
-          <Question question={question}/>
-        ) : () => {this.handleShow()}}
-        <form>
-        <input className='bottom-btn' type="submit" value="More Answered Question"
-        onClick={ (e) => {
-          this.getMoreQs(this.props.prodId, this.state.count, e);
-          this.increasePage();
-        }}/>
-        </form>
+        {this.state.toRender.length ?
+          this.state.toRender.map(question =>
+            <Question question={question}/>
+          ) : null
+        }
+          <form>
+            <input className='bottom-btn' type="submit" value="More Answered Question"
+            onClick={ (e) => {
+              this.getMoreQs(this.props.prodId, this.state.count, e);
+              this.increasePage();
+            }}/>
+          </form>
           {/* <>
           <button className='bottom-btn'
           onClick={ () => {
@@ -79,7 +80,7 @@ class MoreAnsweredQs extends React.Component {
             this.increasePage();
           }}> More Answered Questions</button>
           </> */}
-       </>
+      </>
     )
   }
 }

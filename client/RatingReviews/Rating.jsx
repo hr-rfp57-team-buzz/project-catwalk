@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RatingStars from './RatingStars.jsx';
+import ReviewProductBreakdown from './ReviewProductBreakdown.jsx';
 
 let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
 
@@ -100,6 +101,19 @@ let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
           </div>
         </div>
       </div>
+
+      <div className="gridContainer2Col">
+        <div>
+          <br />
+          <hr />
+          <br />
+        </div>
+        <div></div>
+      </div>
+
+      <ReviewProductBreakdown scrape={scrape} reviewMeta={reviewMeta} />
+
+
     </div>
 
   );

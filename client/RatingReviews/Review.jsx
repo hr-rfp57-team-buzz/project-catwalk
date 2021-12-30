@@ -1,14 +1,30 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReviewListEntry from './ReviewListEntry.jsx';
 import axios from 'axios';
 import TOKEN from '../../config.js';
 
 let Review = ({reviews, setReviews, changeProdId, scrapeReview}) => {
 
+  let sliceReviewArray = () => {
+    if (!scrapeReview) {
+      return;
+    } else {
+      let numberOfReviews = document.getElementById('numberOfReviews');
+      numberOfReviews.innerHTML = reviews.length;
+    }
+  };
+
+  useEffect(() => {
+    sliceReviewArray();
+  }, [scrapeReview]);
+
+
+
   return (
 
     <div className="review">
-      <p>NUM reviews, sorted by <select name='sortConditions' id='sortCondition'>
+      <p><span id="numberOfReviews">Loading...</span> reviews, sorted by <select name='sortConditions' id='sortCondition'>
+        <option value='Helpful'>Default</option>
         <option value='Helpful'>Helpful</option>
         <option value='Newest'>Newest</option>
         <option value='Relevant'>Relevant</option>

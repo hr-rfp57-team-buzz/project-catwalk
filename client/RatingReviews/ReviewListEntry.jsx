@@ -5,6 +5,26 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
 
   let [reviewPhotos, setReviewPhotos] = useState([undefined]);
 
+  let [responseFromSeller, setResponseFromSeller] = useState(null);
+  let [responseFromSellerMessage, setResponseFromSellerMessage] = useState(null);
+
+  let generateSellerResponse = () => {
+    setResponseFromSeller(null);
+    setResponseFromSellerMessage(null);
+    if (!scrapeReview) {
+      return;
+    }
+    if (review.response === null) {
+      return;
+    }
+    if (review.response === '') {
+      return;
+    }
+    setResponseFromSeller(<span className="pad15">Response From Seller: </span>);
+    setResponseFromSellerMessage(<span className="pad15">{review.response}</span>);
+  };
+
+
   let createPhotoArray = () => {
     if (!scrapeReview) {
       return;
@@ -16,11 +36,12 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
 
   useEffect(() => {
     createPhotoArray();
+    generateSellerResponse();
   }, [scrapeReview]);
 
   return (
 
-    <div>
+    <div className="reviewCard">
       <div className="gridContainer2Col">
         <div className="gridItemLeft">
           <ReviewStars review={review} scrapeReview={scrapeReview} starIndex={starIndex} />
@@ -31,9 +52,9 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
       </div>
       <h4>{review.summary}</h4>
       <p>{review.body}</p>
-      <div hidden={true} class="responseFromSeller">
-        <h4 className="pad15">Response from seller:</h4>
-        <p className="pad15">re ultrices diam tincidunt at. Maecenas sit amet iaculis odio, a viverra felis. Aliquam sit amet</p>
+      <div class="responseFromSeller">
+        <h4>{responseFromSeller}</h4>
+        <p>{responseFromSellerMessage}</p>
       </div>
       <div className="reviewPhotosContainer">
         {reviewPhotos.map((photo, index) => {

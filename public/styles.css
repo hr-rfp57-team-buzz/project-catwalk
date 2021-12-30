@@ -674,6 +674,13 @@ h1 {
   grid-template-columns: 1fr 1fr;
 }
 
+.gridContainer3Col {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .gridContainer1Col {
   display: grid;
   grid-template-rows: 1fr;
@@ -710,6 +717,19 @@ h1 {
 .reviewBarReviewNumber {
   grid-column-start: 5;
   grid-column-end: 6;
+}
+
+.reviewProductBreakdown {
+  display: grid;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-template-rows: 1fr;
+  background-color: gray;
+  border-radius: 16px;
+}
+
+.reviewTextRight {
+  text-align: right;
 }
 
 .reviewBar {

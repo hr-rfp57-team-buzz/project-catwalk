@@ -135,6 +135,7 @@ app.get('/reviews/:product_id/meta', (req, res) => {
 // Q&A Routes
 app.get('/qa/questions', (req, res) => {
   let id = req.query.id;
+  let page = req.query.page;
   console.log('req in server: ', req);
   let endpoint = url + 'qa/questions';
 
@@ -144,6 +145,8 @@ app.get('/qa/questions', (req, res) => {
     },
     params: {
       product_id: id,
+      count: 4,
+      page: page
     }
   })
   .then((response) => {

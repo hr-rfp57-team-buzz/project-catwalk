@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Answer = (props) => {
   let date = props.answer[1].date;
   let newDate = (new Date(date)).toDateString().slice(4);
+
+  const [count, setCount] = useState(props.answer[1].helpfulness);
 
   return (
     <>
@@ -19,10 +21,13 @@ const Answer = (props) => {
         <h6>By {props.answer[1].answerer_name}, </h6>
         <h6>{ newDate }</h6>
         <div id="line"></div>
-        <p className="bottom-links helpful">Helpful?</p>
-        <a className="bottom-links helpful">Yes({props.answer[1].helpfulness})</a>
-        <div id="line"></div>
-        <a className="bottom-links">Report</a>
+        <div className="bottom-links">
+          <h5>Helpful?</h5>
+          <h5 style={{ textDecoration: 'underline', cursor: 'pointer'}} onClick={() => { setCount(count + 1)}}
+          className="helpful">Yes({ count })</h5>
+          <div id="line"></div>
+          <a className="bottom-links">Report</a>
+        </div>
       </div>
     </>
   )

@@ -356,9 +356,9 @@ h1 {
 }
 
 .no-questions {
-  display: flex;
-  justify-content: center;
-  padding-top: 25px;
+  margin: auto;
+  width: 40%;
+  padding: 25px;
 }
 
 .q-a-img {
@@ -378,7 +378,13 @@ h1 {
   justify-content: space-evenly;
   padding-right: 3px;
   padding-left: 4px;
+  cursor: 'pointer';
 }
+
+.helpful:hover {
+  color: rgb(87, 245, 14);
+}
+
 
 .search-wrapper {
   border: 1px solid black;

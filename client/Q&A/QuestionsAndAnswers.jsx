@@ -17,7 +17,7 @@ class QuestionsAndAnswers extends React.Component {
       allQuestions: [],
       questions: [],
       count: 1,
-      productId: 400053
+      productId: 40053
     };
     this.getQuestions = this.getQuestions.bind(this);
     this.getAllQuestions = this.getAllQuestions.bind(this);

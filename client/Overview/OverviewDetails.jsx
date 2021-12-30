@@ -6,6 +6,21 @@ import OverviewQty from './OverviewQty.jsx';
 class OverviewDetails extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      qty: 0
+    };
+    this.updateSize = this.updateSize.bind(this);
+  }
+
+  updateSize(e) {
+    let qty = 0;
+    for (let i = 0; i < this.props.extra.sizes.length; i++) {
+      if (this.props.extra.sizes[i][0] === e.target.value) {
+        qty += this.props.extra.sizes[i][1];
+      }
+    }
+    qty > 15 ? qty = 15 : qty = qty;
+    this.setState({qty, qty});
   }
 
   render() {
@@ -32,8 +47,8 @@ class OverviewDetails extends React.Component {
         </div>
         <OverviewStyles variations={this.props.variations} handleStyleChange={this.props.handleStyleChange} />
         <div className="po-select-section">
-          <OverviewSizes extra={this.props.extra} />
-          <OverviewQty />
+          <OverviewSizes extra={this.props.extra} updateSize={this.updateSize} />
+          <OverviewQty qty={this.state.qty} />
         </div>
         <div className="po-flex">
           <button className="po-add-to-bag">Add to Bag <i className="fas fa-plus"></i></button>

@@ -6,11 +6,25 @@ class OverviewSizes extends React.Component {
   }
 
   render() {
+    let selectSize = 'select Size';
+    let uniqueSizes = [];
+    for (let i = 0; i < this.props.extra.sizes.length; i++) {
+      if (uniqueSizes.length === 0 || this.props.extra.sizes[i][0] !== uniqueSizes[uniqueSizes.length - 1]) {
+        if (this.props.extra.sizes[i][1]) {
+          uniqueSizes.push(this.props.extra.sizes[i][0]);
+        }
+      }
+      if (i === this.props.extra.sizes.length - 1) {
+        if (uniqueSizes.length === 0) {
+          selectSize = 'OUT OF STOCK';
+        }
+      }
+    }
     return (
-      <select id="po-select-size">
-        <option selected disabled>Select Size</option>
+      <select id="po-select-size" onChange={(e) => { this.props.updateSize(e); }}>
+        <option selected disabled>{selectSize}</option>
         {
-          this.props.extra.sizes.map((size, index) => {
+          uniqueSizes.map((size, index) => {
             return <OverviewSize key={index} size={size} />;
           })
         }
@@ -26,7 +40,7 @@ class OverviewSize extends React.Component {
 
   render() {
     return (
-      <option>{this.props.size[0]}</option>
+      <option value={this.props.size}>{this.props.size}</option>
     );
   }
 }

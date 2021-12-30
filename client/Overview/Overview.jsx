@@ -42,9 +42,10 @@ class Overview extends React.Component {
       })
       .then((res) => {
         this.setState({product: res.data});
+        return res.data.id;
       })
-      .then((res) => {
-        return axios.get('http://localhost:3000/products/40344/styles');
+      .then((id) => {
+        return axios.get(`http://localhost:3000/products/${id}/styles`);
       })
       .then((res) => {
         resetSelection(res.data.results);

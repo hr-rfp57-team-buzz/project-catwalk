@@ -6,22 +6,36 @@ class OverviewQty extends React.Component {
   }
 
   render() {
+    let arr;
+    if (this.props.qty) {
+      arr = [...Array(this.props.qty).keys()].map((item) => {
+        return item + 1;
+      });
+    } else {
+      arr = ['-'];
+    }
     return (
       <select id="po-select-qty">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
+        {
+          arr.map((qty) => {
+            return <QtyOption qty={qty} />;
+          })
+        }
       </select>
     );
   }
 }
 
+class QtyOption extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <option value={this.props.qty}>{this.props.qty}</option>
+    );
+  }
+}
 
 export default OverviewQty;

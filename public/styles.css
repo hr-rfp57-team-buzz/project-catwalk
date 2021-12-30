@@ -351,6 +351,16 @@ h1 {
   padding-right: 10px;
 }
 
+.fa-search {
+  background-color: transparent;
+}
+
+.no-questions {
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+}
+
 .q-a-img {
   display: inline-block;
   border: 1px solid black;
@@ -406,9 +416,6 @@ h1 {
   width: 50px;
 }
 
-.fa-search {
-  background-color: transparent;
-}
 
 .questions {
   margin-top: 20px;

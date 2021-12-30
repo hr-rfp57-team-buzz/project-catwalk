@@ -17,7 +17,7 @@ class QuestionsAndAnswers extends React.Component {
       allQuestions: [],
       questions: [],
       count: 1,
-      productId: 40360
+      productId: 400053
     };
     this.getQuestions = this.getQuestions.bind(this);
     this.getAllQuestions = this.getAllQuestions.bind(this);
@@ -79,8 +79,17 @@ class QuestionsAndAnswers extends React.Component {
         <div className="questions-list">
           <QuestionsList questions={this.state.questions}/>
         </div>
-        <MoreAnsweredQs prodId={this.state.productId} />
-        <AddQuestion />
+        <>
+          {this.state.allQuestions.length ?
+            <>
+              <MoreAnsweredQs prodId={this.state.productId} />
+              <AddQuestion />
+            </>
+            : <div className='no-questions'>
+                <AddQuestion />
+              </div>
+          }
+        </>
       </>
     );
   }

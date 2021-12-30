@@ -3,7 +3,40 @@ import React, {useState, useEffect} from 'react';
 
 let ReviewProductBreakdown = ({scrape, reviewMeta}) => {
 
+  let calculatePercent = (rating) => {
+    let hardRate = Math.round(rating * 10) / 10;
+    let percentage = Math.round((hardRate / 5) * 100);
+    return percentage;
+  };
 
+  let charArr = ['Size', 'Width', 'Comfort', 'Quality', 'Length', 'Fit'];
+
+  let resetSliders = (arr) => {
+    arr.forEach(char => {
+      let targetSlider = document.getElementById(`${char}Slider`);
+      targetSlider.hidden = true;
+    });
+  };
+
+  let setProductBreakdown = () => {
+    if (!scrape) {
+      return;
+    } else {
+      // reset all sliders
+      resetSliders(charArr);
+      // get data for sliders
+      for (var key in reviewMeta.characteristics) {
+        let percentage = calculatePercent(reviewMeta.characteristics[key].value);
+        let targetSlider = document.getElementById(`${key}Slider`);
+        targetSlider.style.width = `${percentage}%`;
+        targetSlider.hidden = false;
+      }
+    }
+  };
+
+  useEffect(() => {
+    setProductBreakdown();
+  }, [scrape]);
 
 
   return (
@@ -15,8 +48,8 @@ let ReviewProductBreakdown = ({scrape, reviewMeta}) => {
             Size
         </div>
         <div className="reviewProductBreakdown">
-          <div id="sizeSlider" className='reviewTextRight'>
-            <span id={sizeSlider}>I</span>
+          <div id="SizeSlider" className='reviewTextRight'>
+            <span>▼</span>
           </div>
         </div>
       </div>
@@ -40,8 +73,8 @@ let ReviewProductBreakdown = ({scrape, reviewMeta}) => {
             Width
         </div>
         <div className="reviewProductBreakdown">
-          <div id="widthSlider" className='reviewTextRight'>
-            <span>I</span>
+          <div id="WidthSlider" className='reviewTextRight'>
+            <span>▼</span>
           </div>
         </div>
       </div>
@@ -65,8 +98,8 @@ let ReviewProductBreakdown = ({scrape, reviewMeta}) => {
             Comfort
         </div>
         <div className="reviewProductBreakdown">
-          <div id="comfortSlider" className='reviewTextRight'>
-            <span>I</span>
+          <div id="ComfortSlider" className='reviewTextRight'>
+            <span>▼</span>
           </div>
         </div>
       </div>
@@ -77,7 +110,32 @@ let ReviewProductBreakdown = ({scrape, reviewMeta}) => {
             <sub>poor</sub>
           </div>
           <div className="gridItemCenter">
-            <sub>Perfect</sub>
+            <sub>perfect</sub>
+          </div>
+          <div className="gridItemRight">
+            <sub>great</sub>
+          </div>
+        </div>
+      </div>
+
+      <div className="reviewBarStats">
+        <div className="reviewBarStarNumber">
+            Quality
+        </div>
+        <div className="reviewProductBreakdown">
+          <div id="QualitySlider" className='reviewTextRight'>
+            <span>▼</span>
+          </div>
+        </div>
+      </div>
+      <div className="reviewBarStats">
+        <div className="reviewBarStarNumber"></div>
+        <div className="gridContainer3Col">
+          <div className="gridItemLeft">
+            <sub>poor</sub>
+          </div>
+          <div className="gridItemCenter">
+            <sub>perfect</sub>
           </div>
           <div className="gridItemRight">
             <sub>great</sub>
@@ -90,8 +148,8 @@ let ReviewProductBreakdown = ({scrape, reviewMeta}) => {
             Length
         </div>
         <div className="reviewProductBreakdown">
-          <div id="lengthSlider" className='reviewTextRight'>
-            <span>I</span>
+          <div id="LengthSlider" className='reviewTextRight'>
+            <span>▼</span>
           </div>
         </div>
       </div>
@@ -115,8 +173,8 @@ let ReviewProductBreakdown = ({scrape, reviewMeta}) => {
             Fit
         </div>
         <div className="reviewProductBreakdown">
-          <div id="fitSlider" className='reviewTextRight'>
-            <span>I</span>
+          <div id="FitSlider" className='reviewTextRight'>
+            <span>▼</span>
           </div>
         </div>
       </div>

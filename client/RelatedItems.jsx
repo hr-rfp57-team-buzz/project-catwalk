@@ -5,16 +5,12 @@ import axios from 'axios';
 var Related = () => {
   const [x, setX] = useState(0);
   const [x2, setX2] = useState(0);
-  let [relPictures, setRelPictures] = useState([]);
-  let [relCategories, setRelCategories] = useState([]);
-  let [relNames, setRelNames] = useState([]);
-  let [relPrices, setRelPrices] = useState([]);
+  const [relPictures, setRelPictures] = useState([]);
   const [relReviews, setRelReviews] = useState([]);
-  let [relProdId, setRelProdId] = useState([]);
-  let [initialId, setInitialId] = useState(40344);
-  let [cardNumber, setCardNumber] = useState([]);
-  let [completeRelated, setCompleteRelated] = useState([]);
-  let [doneLoading, setDoneLoading] = useState(0);
+  const [relProdId, setRelProdId] = useState([]);
+  const [initialId, setInitialId] = useState(40344);
+  const [completeRelated, setCompleteRelated] = useState([]);
+  const [doneLoading, setDoneLoading] = useState(0);
 
 
   const stylesRelated = {
@@ -31,6 +27,8 @@ var Related = () => {
       temp[i]['picture'] = relPictures[i];
     }
     setCompleteRelated(temp);
+    setX(x + 1);
+    setX(0);
     //console.log(completeRelated);
   };
 
@@ -131,30 +129,25 @@ var Related = () => {
 
     getData(initialId, showState);
 
-
-
-
-
-
   }, [doneLoading] );
 
   //left for the carousels needs a function so they don't go further to the left than possible
   var moveLeft = function() {
-    if (x > 0) {
-      setX(x - 340);
-      showState();
+    if (x < 0) {
+      setX(x + 340);
+      //showState();
     }
   };
 
   var moveLeftOutfit = function() {
-    if (x2 > 0) {
-      setX2(x2 - 340);
+    if (x2 < 0) {
+      setX2(x2 + 340);
     }
   };
 
   return (
     <div>
-      <i class="fas fa-arrow-right rArrow" onClick={()=>setX(x + 340)}></i>
+      <i class="fas fa-arrow-right rArrow" onClick={()=>setX(x - 340)}></i>
       <i class="fas fa-arrow-left lArrow" onClick={()=>moveLeft()}></i>
       <div className="reel"style={stylesRelated}>
         {completeRelated.length > 0 ? completeRelated.map((data) =>
@@ -162,7 +155,7 @@ var Related = () => {
         ) : <Cards/>}
       </div>
       <i className="lArrow" class="fas fa-arrow-left lArrow2" onClick={()=> moveLeftOutfit()}></i>
-      <i className="rArrow" class="fas fa-arrow-right rArrow2" onClick={()=>setX2(x2 + 340)}></i>
+      <i className="rArrow" class="fas fa-arrow-right rArrow2" onClick={()=>setX2(x2 - 340)}></i>
       <div className="reel"style={stylesOutfit}>
         <Cards/>
       </div>
@@ -175,6 +168,9 @@ var Cards = (props) => {
 
   return (
     <div className="Card" >
+      <span onClick={() => console.log("hi")}>
+        <i class="far fa-star relatedStar"></i>
+      </span>
       <div className="relatedPicHolder">
         <img className="relatedPic" src={props.data ? props.data.picture : null}></img>
       </div>

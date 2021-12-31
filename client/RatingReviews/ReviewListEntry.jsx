@@ -67,7 +67,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
       </div>
       <br/>
       <p>Was this review helpful?</p>
-      <sub><i><span className="reviewPointer" value='Yes'>YES</span>  <span className="reviewPointer" value='No'>NO</span></i></sub>
+      <sub><i><span className="reviewPointer" value='Yes'>YES <i class="fas fa-thumbs-up"></i></span>  <span className="reviewPointer" value='No'>NO <i class="fas fa-thumbs-down"></i></span></i></sub>
       <br/><br/>
       <hr/>
       <br/><br/>

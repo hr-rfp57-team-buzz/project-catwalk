@@ -4,7 +4,7 @@ import AddAReview from './AddAReview.jsx';
 import axios from 'axios';
 import TOKEN from '../../config.js';
 
-let Review = ({reviews, setReviews, changeProdId, scrapeReview}) => {
+let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId}) => {
 
   let [reviewListArray, setReviewListArray] = useState([]);
   let [numberOfReviews, setNumberOfReviews] = useState('Loading...');
@@ -38,7 +38,7 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview}) => {
   return (
 
     <div className="review">
-      <AddAReview window={window} />
+      <AddAReview window={window} prodId={prodId} />
       <p><span id="numberOfReviews">{numberOfReviews}</span> reviews, sorted by <select name='sortConditions' id='sortCondition'>
         <option value='Helpful'>Default</option>
         <option value='Helpful'>Helpful</option>

@@ -27,8 +27,8 @@ app.get('/products', (req, res) => {
     }
   })
     .then((response) => {
-      // console.log('Data from get to Products endpoint: ', response);
-      // let jsonData = JSON.stringify(response.data);
+      console.log('Data from get to Products endpoint: ', response);
+      let jsonData = JSON.stringify(response.data);
       res.send(response.data);
     })
     .catch((err) => {
@@ -151,11 +151,22 @@ app.put('/reviews/:reveiw_id/helpful', (req, res) => {
 });
 
 app.post('/reviews', (req, res) => {
-  let endpoint = url + '/reviews';
-  console.log(req.data);
-
-  // axios.post(endpoint)
-})
+  let endpoint = url + 'reviews';
+  let newReview = req.body;
+  // console.log(newReview);
+  axios.post(endpoint, newReview, {
+    headers: {
+      'Authorization': TOKEN.TOKEN,
+      'Content-Type': 'application/JSON'
+    }
+  })
+    .then(response => {
+      res.end(response.body);
+    })
+    .catch((err) => {
+      console.log('ERRRRRRRRRR: ', err);
+    });
+});
 
 // Q&A Routes
 app.get('/qa/questions', (req, res) => {

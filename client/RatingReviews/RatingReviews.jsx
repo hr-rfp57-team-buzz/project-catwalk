@@ -65,7 +65,7 @@ let RatingReview = () => {
   return (
     <div id="ratings-reviews">
       <Rating reviewMeta={reviewMeta} averageRating={averageRating} scrape={scrape} totalRatings={totalRatings}/>
-      <Review reviews={reviews} changeProdId={changeProdId} scrapeReview={scrapeReview} />
+      <Review reviews={reviews} changeProdId={changeProdId} scrapeReview={scrapeReview} prodId={prodId}/>
     </div>
   );
 

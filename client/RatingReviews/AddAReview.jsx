@@ -222,11 +222,11 @@ let AddAReview = ({window}) => {
           <div>{charCount}</div>
           <button>Upload Photo</button>
           <p>What is your nickname *</p>
-          <textarea id="reviewNickname" name="reviewNickname" col="50" rows="1" placeholder="Example: jackson11!"></textarea>
+          <textarea id="reviewNickname" name="reviewNickname" col="50" rows="1" maxlength="21" placeholder="Example: jackson11!"></textarea>
           <p>For privacy reasons, do not use your full nae or email address</p>
           <br/>
           <p>Your Email *</p>
-          <textarea id="reviewEmail" name="reviewEmail" cols="50" rows="1" placeholder="Example: jackson11@email.com"></textarea>
+          <textarea id="reviewEmail" name="reviewEmail" cols="50" rows="1" maxlength="50" placeholder="Example: jackson11@email.com"></textarea>
           <p>For authentication reasons, you will not be emailed</p>
           <button>Submit</button>
         </div>

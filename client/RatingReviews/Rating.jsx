@@ -44,7 +44,7 @@ let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
       </div>
 
       <div>
-        <p><span id="numberOfHelpfulReviews">%NUM</span> of reviews recommend this product</p>
+        <p className="pad15horz"><span id="numberOfHelpfulReviews">%NUM</span> of reviews recommend this product</p>
         <div className="reviewBarStats">
           <div className="reviewBarStarNumber">
             5 Stars

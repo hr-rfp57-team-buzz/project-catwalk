@@ -41,7 +41,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
 
   return (
 
-    <div className="reviewCard">
+    <div>
       <div className="gridContainer2Col">
         <div className="gridItemLeft">
           <ReviewStars review={review} scrapeReview={scrapeReview} starIndex={starIndex} />
@@ -67,7 +67,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
       </div>
       <br/>
       <p>Was this review helpful?</p>
-      <sub><a href="#">YES</a>  <a href="#">NO</a></sub>
+      <sub><i><span className="reviewPointer" value='Yes'>YES</span>  <span className="reviewPointer" value='No'>NO</span></i></sub>
       <br/><br/>
       <hr/>
       <br/><br/>

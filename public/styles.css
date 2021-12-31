@@ -622,6 +622,7 @@ h1 {
 /* Ryne */
 /* Don't put ; after closing brackets of css rules */
 #ratings-reviews {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   padding-top: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -641,6 +642,19 @@ h1 {
 .review {
   grid-column-start: 3;
   grid-column-end: 7;
+}
+
+.reviewCard {
+  height: 900px;
+  overflow-y: scroll;
+}
+
+.reviewCardShow {
+  display: block;
+}
+
+.reviewCardHide {
+  display: none;
 }
 
 .responseFromSeller {
@@ -796,6 +810,10 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
+.reviewAddTable {
+  text-align: center;
+}
+
 .reviewStarsNoFill {
   grid-column: 1;
   grid-row: 1;
@@ -811,5 +829,35 @@ h1 {
 
 .pad15horz {
   padding: 0 5px 0 5px;
+}
+
+.reviewPointer:hover {
+  cursor: pointer;
+}
+
+.reviewModel {
+  border-radius: 25px;
+  visibility: hidden;
+  position: absolute;
+  left: 3vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  background-color: rgba(39, 38, 38, 0.601);
+  z-index: 2;
+  width: 95%;
+  height: 100%;
+}
+
+.reviewAdd {
+  padding: 25px;
+  border-radius: 25px;
+  grid-column: 1fr;
+  grid-row: 1fr;
+  justify-self: center;
+  align-self: center;
+  max-width: 1100px;
+  height: auto;
+  background-color: whitesmoke;
 }
 

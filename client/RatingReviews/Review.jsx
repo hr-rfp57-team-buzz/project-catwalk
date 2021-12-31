@@ -1,28 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import ReviewListEntry from './ReviewListEntry.jsx';
+import AddAReview from './AddAReview.jsx';
 import axios from 'axios';
 import TOKEN from '../../config.js';
 
 let Review = ({reviews, setReviews, changeProdId, scrapeReview}) => {
 
-  let sliceReviewArray = () => {
+  let [reviewListArray, setReviewListArray] = useState([]);
+
+
+  let window = document.getElementById('reviewAddWindow');
+
+  let openAddReviewWindow = () => {
+    window.style.visibility = 'visible';
+  };
+
+  let revealHiddenReviews = () => {
     if (!scrapeReview) {
       return;
     } else {
-      let numberOfReviews = document.getElementById('numberOfReviews');
-      numberOfReviews.innerHTML = reviews.length;
+      setReviewListArray(document.getElementsByClassName('reviewCardHide'));
+      console.log(reviewListArray);
+      for (var i = 0; i < reviewListArray.length; i++) {
+        console.log(reviewListArray[i]);
+        reviewListArray[i].classList.remove('reviewCardHide');
+        document.getElementById('reviewMore').hidden = 'true';
+      }
     }
   };
 
   useEffect(() => {
-    sliceReviewArray();
+    revealHiddenReviews();
   }, [scrapeReview]);
-
-
 
   return (
 
     <div className="review">
+      <AddAReview window={window} />
       <p><span id="numberOfReviews">Loading...</span> reviews, sorted by <select name='sortConditions' id='sortCondition'>
         <option value='Helpful'>Default</option>
         <option value='Helpful'>Helpful</option>
@@ -30,12 +44,27 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview}) => {
         <option value='Relevant'>Relevant</option>
       </select></p>
       <hr />
-      {reviews.map((review, index) => {
-        return <ReviewListEntry review={review} scrapeReview={scrapeReview} key={index} starIndex={index} />;
-      })}
+      <div className="reviewCard">
+        {reviews.map((review, index) => {
+          if (index <= 1) {
+            return <div className="reviewCardShow">
+              <ReviewListEntry review={review} scrapeReview={scrapeReview} key={index} starIndex={index} />
+            </div>;
+          } else {
+            return <div className="reviewCardHide">
+              <ReviewListEntry review={review} scrapeReview={scrapeReview} key={index} starIndex={index} />
+            </div>;
+          }
+        })}
+      </div>
       <div className="gridContainer2Col">
-        <div className="gridItemCenter"><button className="bottom-btn">More Reviews</button></div>
-        <div className="gridItemCenter"><button className="bottom-btn" onClick={changeProdId}>Add A Review +</button></div>
+        <div className="gridItemCenter">
+          <button id="reviewMore" className="bottom-btn" onClick={revealHiddenReviews}>More Reviews</button>
+          <button className="bottom-btn" onClick={changeProdId}>Change ProdId</button>
+        </div>
+        <div className="gridItemCenter">
+          <button className="bottom-btn" onClick={openAddReviewWindow}>Add A Review +</button>
+        </div>
       </div>
       <br/><br/>
     </div>

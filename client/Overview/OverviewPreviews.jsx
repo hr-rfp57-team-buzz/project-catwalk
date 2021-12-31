@@ -8,8 +8,8 @@ class Previews extends React.Component {
   render() {
     let previews = [];
     let styling;
-    if (this.props.extra.photos) {
-      previews = this.props.extra.photos;
+    if (this.props.product.photos) {
+      previews = this.props.product.photos;
     }
     return (
       <div className="po-previews">

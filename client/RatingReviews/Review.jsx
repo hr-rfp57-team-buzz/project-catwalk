@@ -7,6 +7,7 @@ import TOKEN from '../../config.js';
 let Review = ({reviews, setReviews, changeProdId, scrapeReview}) => {
 
   let [reviewListArray, setReviewListArray] = useState([]);
+  let [numberOfReviews, setNumberOfReviews] = useState('Loading...');
 
 
   let window = document.getElementById('reviewAddWindow');
@@ -19,6 +20,7 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview}) => {
     if (!scrapeReview) {
       return;
     } else {
+      setNumberOfReviews(reviews.length);
       setReviewListArray(document.getElementsByClassName('reviewCardHide'));
       console.log(reviewListArray);
       for (var i = 0; i < reviewListArray.length; i++) {
@@ -37,7 +39,7 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview}) => {
 
     <div className="review">
       <AddAReview window={window} />
-      <p><span id="numberOfReviews">Loading...</span> reviews, sorted by <select name='sortConditions' id='sortCondition'>
+      <p><span id="numberOfReviews">{numberOfReviews}</span> reviews, sorted by <select name='sortConditions' id='sortCondition'>
         <option value='Helpful'>Default</option>
         <option value='Helpful'>Helpful</option>
         <option value='Newest'>Newest</option>

@@ -46,7 +46,7 @@ let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
       <div>
         <p className="pad15horz"><span id="numberOfHelpfulReviews">%NUM</span> of reviews recommend this product</p>
         <div className="reviewBarStats">
-          <div className="reviewBarStarNumber">
+          <div className="reviewBarStarNumber reviewPointerRed">
             5 Stars
           </div>
           <div class="reviewBar">
@@ -57,7 +57,7 @@ let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
           </div>
         </div>
         <div className="reviewBarStats">
-          <div className="reviewBarStarNumber">
+          <div className="reviewBarStarNumber reviewPointerRed">
             4 Stars
           </div>
           <div className="reviewBar">
@@ -68,7 +68,7 @@ let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
           </div>
         </div>
         <div className="reviewBarStats">
-          <div className="reviewBarStarNumber">
+          <div className="reviewBarStarNumber reviewPointerRed">
             3 Stars
           </div>
           <div className="reviewBar">
@@ -79,7 +79,7 @@ let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
           </div>
         </div>
         <div className="reviewBarStats">
-          <div className="reviewBarStarNumber">
+          <div className="reviewBarStarNumber reviewPointerRed">
             2 Stars
           </div>
           <div className="reviewBar">
@@ -90,7 +90,7 @@ let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
           </div>
         </div>
         <div className="reviewBarStats">
-          <div className="reviewBarStarNumber">
+          <div className="reviewBarStarNumber reviewPointerRed">
             1 Stars
           </div>
           <div className="reviewBar">

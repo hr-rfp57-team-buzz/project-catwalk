@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReviewStars from './ReviewStars.jsx';
+import axios from 'axios';
 
 let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
 
@@ -23,6 +24,10 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
     setResponseFromSeller(<span className="pad15">Response From Seller: </span>);
     setResponseFromSellerMessage(<span className="pad15">{review.response}</span>);
   };
+
+  // let wasThisReviewHelpful = () => {
+  //   axios.put();
+  // };
 
 
   let createPhotoArray = () => {
@@ -66,8 +71,8 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
         })}
       </div>
       <br/>
-      <p>Was this review helpful?</p>
-      <sub><i><span className="reviewPointer" value='Yes'>YES <i class="fas fa-thumbs-up"></i></span>  <span className="reviewPointer" value='No'>NO <i class="fas fa-thumbs-down"></i></span></i></sub>
+      <p>Was this review helpful? ({review.helpfulness})</p>
+      <sub><i><span className="reviewPointerRed" value='Yes'>YES <i class="fas fa-thumbs-up"></i></span>  <span className="reviewPointerRed" value='No'>NO <i class="fas fa-thumbs-down"></i></span></i></sub>
       <br/><br/>
       <hr/>
       <br/><br/>

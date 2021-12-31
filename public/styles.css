@@ -714,9 +714,6 @@ h1 {
   justify-self: center;
 }
 
-
-
-
 .reviewBarStats {
   padding: 8px 0px 8px 8px;
   display: grid;
@@ -780,6 +777,7 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
+
 .reviewStarsFill25 {
   grid-column: 1;
   grid-row: 1;
@@ -818,6 +816,13 @@ h1 {
   grid-column: 1;
   grid-row: 1;
   background-color: gray;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.reviewClickableStars .reviewStars i:nth-child(n):hover {
+  background-color: rgb(255, 208, 0);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

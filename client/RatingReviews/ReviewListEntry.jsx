@@ -25,9 +25,17 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
     setResponseFromSellerMessage(<span className="pad15">{review.response}</span>);
   };
 
-  // let wasThisReviewHelpful = () => {
-  //   axios.put();
-  // };
+  let wasThisReviewHelpful = (e) => {
+    console.log(review.review_id);
+    axios.put(`/reviews/${review.review_id}/helpful`)
+      .then(res => {
+        console.log(res);
+        e.target.innerHTML = 'Thank you for your feedback!';
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
 
   let createPhotoArray = () => {
@@ -72,7 +80,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
       </div>
       <br/>
       <p>Was this review helpful? ({review.helpfulness})</p>
-      <sub><i><span className="reviewPointerRed" value='Yes'>YES <i class="fas fa-thumbs-up"></i></span>  <span className="reviewPointerRed" value='No'>NO <i class="fas fa-thumbs-down"></i></span></i></sub>
+      <sub id={`reviewHelpful${starIndex}`}><i><span className="reviewPointerRed" value='Yes' onClick={wasThisReviewHelpful}>YES <i class="fas fa-thumbs-up"></i></span>  </i></sub>
       <br/><br/>
       <hr/>
       <br/><br/>

@@ -49,11 +49,11 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview}) => {
       <div className="reviewCard">
         {reviews.map((review, index) => {
           if (index <= 1) {
-            return <div className="reviewCardShow">
+            return <div key={`reviewCard${index}`} className="reviewCardShow">
               <ReviewListEntry review={review} scrapeReview={scrapeReview} key={index} starIndex={index} />
             </div>;
           } else {
-            return <div className="reviewCardHide">
+            return <div key={`reviewCard${index}`} className="reviewCardHide">
               <ReviewListEntry review={review} scrapeReview={scrapeReview} key={index} starIndex={index} />
             </div>;
           }

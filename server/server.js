@@ -132,10 +132,35 @@ app.get('/reviews/:product_id/meta', (req, res) => {
     });
 });
 
+app.put('/reviews/:reveiw_id/helpful', (req, res) => {
+  let id = req.params.reveiw_id;
+  let endpoint = url + `reviews/${id}/helpful`;
+
+  axios.put(endpoint, null, {
+    headers: {
+      'Authorization': TOKEN.TOKEN,
+    }
+  })
+    .then((response) => {
+      // console.log(response);
+      res.end(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    });
+});
+
+app.post('/reviews', (req, res) => {
+  let endpoint = url + '/reviews';
+  console.log(req.data);
+
+  // axios.post(endpoint)
+})
+
 // Q&A Routes
 app.get('/qa/questions', (req, res) => {
   let id = req.query.id;
-  // console.log('req in server: ', req);
+  console.log('req in server: ', req);
   let endpoint = url + 'qa/questions';
 
   axios.get(endpoint, {
@@ -146,14 +171,15 @@ app.get('/qa/questions', (req, res) => {
       product_id: id,
     }
   })
-  .then((response) => {
+    .then((response) => {
     // console.log(response);
-    res.send(response.data);
-  })
-  .catch((err) => {
-    console.log('Error! ', err);
-  })
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    })
 });
+
 app.get('/qa/questions/:product_id/answers', (req, res) => {
   let id = req.params.product_id;
   let endpoint = url + 'qa/questions/' + id + '/answers';
@@ -168,7 +194,7 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
   })
     .then((response) => {
       // console.log(response);
-      res.send(response.data);
+      res.send(response);
     })
     .catch((err) => {
       console.log('Error! ', err);
@@ -178,3 +204,36 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
 app.listen(port, function() {
   console.log('Listening on port ', port);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.put('/reviews/:reveiw_id/helpful', (req, res) => {
+//   let id = req.params.reveiw_id;
+//   let endpoint = url + `reviews/${id}/helpful`;
+//   console.log(endpoint);
+
+//   axios.put(endpoint, null, {
+//     headers: {
+//       'Authorization': TOKEN.TOKEN,
+//     }
+//   })
+//     .then((response) => {
+//       // console.log(response);
+//       res.send(response);
+//     })
+//     .catch((err) => {
+//       console.log('Error! ', err);
+//     });
+// });

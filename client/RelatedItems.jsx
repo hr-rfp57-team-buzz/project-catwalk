@@ -9,10 +9,12 @@ var Related = () => {
   let [relCategories, setRelCategories] = useState([]);
   let [relNames, setRelNames] = useState([]);
   let [relPrices, setRelPrices] = useState([]);
-  let [relReviews, setRelReviews] = useState([]);
+  const [relReviews, setRelReviews] = useState([]);
   let [relProdId, setRelProdId] = useState([]);
   let [initialId, setInitialId] = useState(40344);
   let [cardNumber, setCardNumber] = useState([]);
+  let [completeRelated, setCompleteRelated] = useState([]);
+  let [doneLoading, setDoneLoading] = useState(0);
 
 
   const stylesRelated = {
@@ -20,6 +22,16 @@ var Related = () => {
   };
   const stylesOutfit = {
     transform: `translate(${x2}px, 0px)`
+  };
+
+  let showState = () => {
+    var temp = completeRelated;
+    for (var i = 0; i < temp.length; i++) {
+      temp[i]['reviews'] = relReviews[i];
+      temp[i]['picture'] = relPictures[i];
+    }
+    setCompleteRelated(temp);
+    //console.log(completeRelated);
   };
 
   //averages reviews from metadata
@@ -37,35 +49,20 @@ var Related = () => {
     return average.toFixed(2);
   };
 
-  //grabs product name, category, and price
-  let getInfo = (id) => {
-    axios.get(`products/${id}`)
-      .then((res) => {
-        let temp = relNames;
-        temp.push(res.data.name);
-        setRelNames(temp);
-        temp = relCategories;
-        temp.push(res.data.category);
-        setRelCategories(temp);
-        temp = relPrices;
-        temp.push(res.data.default_price);
-        setRelPrices(temp);
 
-        //console.log('relNames ', relNames);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   //takes product's metadata, and averages out review
-  let getMeta = (id) => {
+  let getMeta = (id, index, cb) => {
     axios.get(`/reviews/${id}/meta`)
       .then((res) => {
         let obj = res.data.ratings;
         let temp = relReviews;
-        temp.push(reviewAverage(obj));
+        temp[index] = (reviewAverage(obj));
         setRelReviews(temp);
+        console.log("Getting reviews");
+      })
+      .then(() => {
+        cb();
       })
       .catch((err) => {
         console.log(err);
@@ -73,29 +70,53 @@ var Related = () => {
   };
 
   //grabs product thumbnail
-  let getPicture = (id) => {
+  let getPicture = (id, index, cb) => {
     axios.get(`products/${id}/styles`)
       .then((res) => {
-        //console.log(res.data.results);
         let tempPics = relPictures;
-        tempPics.push(res.data.results[0].photos[0].thumbnail_url);
+        tempPics[index] = (res.data.results[0].photos[0].thumbnail_url);
         setRelPictures(tempPics);
+        console.log("getting pictures");
+      })
+      .then(() => {
+        cb(id, index, showState);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  let getData = (id) => {
+  //grabs product name, category, and price
+  let getInfo = (id, index) => {
+    axios.get(`products/${id}`)
+      .then((res) => {
+        var temp = completeRelated;
+        temp[index] = {
+          name: res.data.name,
+          category: res.data.category,
+          price: res.data.default_price
+        };
+        console.log("getting product info");
+        setCompleteRelated(temp);
+      })
+      .then(() => {
+        getPicture(id, index, getMeta);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  let getData = (id, cb) => {
     axios.get(`products/${id}/related`)
       .then((res) => {
-        let temp = [];
-        res.data.map(item => {
-          getPicture(item);
-          getInfo(item);
-          getMeta(item);
-          temp.push(item);
+        let index = 0;
+        let temp = res.data;
+        temp.map(num => {
+          getInfo(num, index);
+          index++;
         });
+        getInfo(res.data[0]);
         setRelProdId(temp);
       })
       .catch((err) => {
@@ -103,27 +124,19 @@ var Related = () => {
       });
   };
 
-  let showState = () => {
-    console.log(relProdId);
-    console.log(relPictures);
-    console.log(relReviews);
-    console.log(relPrices);
-    console.log(relNames);
-    console.log(relCategories);
-  };
+
+
 
   useEffect(() => {
-    getData(initialId);
-    let makestuff = () => {
-      console.log("HELLO?");
-    };
+
+    getData(initialId, showState);
 
 
-    return () => {
-      console.log("ALL DONE");
-    };
 
-  }, [initialId]);
+
+
+
+  }, [doneLoading] );
 
   //left for the carousels needs a function so they don't go further to the left than possible
   var moveLeft = function() {
@@ -144,11 +157,9 @@ var Related = () => {
       <i class="fas fa-arrow-right rArrow" onClick={()=>setX(x + 340)}></i>
       <i class="fas fa-arrow-left lArrow" onClick={()=>moveLeft()}></i>
       <div className="reel"style={stylesRelated}>
-        <Cards/>
-        <Cards/>
-        <Cards/>
-        <Cards/>
-        <Cards/>
+        {completeRelated.length > 0 ? completeRelated.map((data) =>
+          <Cards data={data}/>
+        ) : <Cards/>}
       </div>
       <i className="lArrow" class="fas fa-arrow-left lArrow2" onClick={()=> moveLeftOutfit()}></i>
       <i className="rArrow" class="fas fa-arrow-right rArrow2" onClick={()=>setX2(x2 + 340)}></i>
@@ -159,19 +170,19 @@ var Related = () => {
   );
 };
 
-var Cards = () => {
+var Cards = (props) => {
 
 
   return (
     <div className="Card" >
       <div className="relatedPicHolder">
-        <img className="relatedPic" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=300&amp;q=80"></img>
+        <img className="relatedPic" src={props.data ? props.data.picture : null}></img>
       </div>
       <div className="relatedTextHolder">
-        <p id="relatedCategory">Sportswear</p>
-        <h3>Forest Green Jacket With Detachable Hood</h3>
-        <p>$29.99</p>
-        <p>5 Stars</p>
+        <p id="relatedCategory">{props.data ? props.data.category : 'Undefined'}</p>
+        <h3>{props.data ? props.data.name : 'Are not there'}</h3>
+        <p>{props.data ? props.data.price : 'Undefined'}</p>
+        <p>{props.data ? props.data.reviews : 'Undefined'}</p>
       </div>
     </div>
   );

@@ -16,8 +16,8 @@ class QuestionsAndAnswers extends React.Component {
     this.state = {
       allQuestions: [],
       questions: [],
-      count: 1,
-      productId: 40053
+      count: 0,
+      productId: 40355
     };
     this.getQuestions = this.getQuestions.bind(this);
     this.getAllQuestions = this.getAllQuestions.bind(this);
@@ -34,6 +34,9 @@ class QuestionsAndAnswers extends React.Component {
       responseType: 'json',
     })
     .then((response) => {
+      if (response.data.results.length === 0) {
+        return;
+      }
       if (response.data.results.length) {
         this.getAllQuestions(this.state.productId, this.state.count)
       }

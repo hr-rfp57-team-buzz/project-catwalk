@@ -307,6 +307,12 @@ h1 {
   padding-bottom: 10px;
 }
 
+.accordion-content {
+  height: 440px;
+  width: 100%;
+  overflow-x:auto;
+}
+
 .q-line {
   display: flex;
   justify-content: space-between;
@@ -373,7 +379,7 @@ h1 {
   box-shadow: 0 0 2px 1px rgb(87, 245, 14);
 }
 
-.helpful {
+.links {
   display: flex;
   justify-content: space-evenly;
   padding-right: 3px;
@@ -381,7 +387,7 @@ h1 {
   cursor: 'pointer';
 }
 
-.helpful:hover {
+.links:hover {
   color: rgb(87, 245, 14);
 }
 

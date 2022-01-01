@@ -20,16 +20,7 @@ const Question = (props) => (
     </div>
     <div className="a-line">
       <AnswersList answers={Object.entries(props.question.answers)} />
-      {/* <h4>A:</h4>
-      <p>Icing macaron bear claw jelly beans chocolate cake. Cookie oat cake chocolate halvah jelly cake cotton candy souuflé topping. Jujubes topping cake gummies lemon drops.</p> */}
     </div>
-    {/* <div className="bottom-line">
-      <div id="line"></div>
-      <p className="bottom-links helpful">Helpful?</p>
-      <a className="bottom-links helpful">Yes(2)</a>
-      <div id="line"></div>
-      <a className="bottom-links">Report</a>
-    </div> */}
   </div>
   </>
 );

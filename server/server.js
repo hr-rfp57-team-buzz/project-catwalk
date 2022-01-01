@@ -15,7 +15,7 @@ console.log(path.join(__dirname, '../public/index.html'));
 
 // Products Routes
 app.get('/', function(req, res) {
-  // console.log('Hi');
+  console.log('Hi');
   res.send();
 });
 
@@ -45,7 +45,7 @@ app.get('/products/:product_id', (req, res) => {
     }
   })
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       res.send(response.data);
     })
     .catch((err) => {
@@ -63,7 +63,7 @@ app.get('/products/:product_id/styles', (req, res) => {
     }
   })
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       res.send(response.data);
     })
     .catch((err) => {
@@ -81,7 +81,7 @@ app.get('/products/:product_id/related', (req, res) => {
     }
   })
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       res.send(response.data);
     })
     .catch((err) => {
@@ -103,7 +103,7 @@ app.get('/reviews/:product_id', (req, res) => {
     }
   })
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       res.send(response.data);
     })
     .catch((err) => {
@@ -124,7 +124,7 @@ app.get('/reviews/:product_id/meta', (req, res) => {
     }
   })
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       res.send(response.data);
     })
     .catch((err) => {
@@ -142,7 +142,7 @@ app.put('/reviews/:reveiw_id/helpful', (req, res) => {
     }
   })
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       res.end(response.data);
     })
     .catch((err) => {
@@ -153,7 +153,7 @@ app.put('/reviews/:reveiw_id/helpful', (req, res) => {
 app.post('/reviews', (req, res) => {
   let endpoint = url + 'reviews';
   let newReview = req.body;
-  // console.log(newReview);
+  console.log(newReview);
   axios.post(endpoint, newReview, {
     headers: {
       'Authorization': TOKEN.TOKEN,
@@ -183,7 +183,7 @@ app.get('/qa/questions', (req, res) => {
     }
   })
     .then((response) => {
-    // console.log(response);
+    console.log(response);
       res.send(response.data);
     })
     .catch((err) => {
@@ -204,7 +204,7 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
     // }
   })
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       res.send(response);
     })
     .catch((err) => {
@@ -230,21 +230,3 @@ app.listen(port, function() {
 
 
 
-// app.put('/reviews/:reveiw_id/helpful', (req, res) => {
-//   let id = req.params.reveiw_id;
-//   let endpoint = url + `reviews/${id}/helpful`;
-//   console.log(endpoint);
-
-//   axios.put(endpoint, null, {
-//     headers: {
-//       'Authorization': TOKEN.TOKEN,
-//     }
-//   })
-//     .then((response) => {
-//       // console.log(response);
-//       res.send(response);
-//     })
-//     .catch((err) => {
-//       console.log('Error! ', err);
-//     });
-// });

@@ -70,6 +70,7 @@ let AddAReview = ({window, prodId}) => {
   };
 
   let minimumCharacterCount = (e) => {
+    // SOMETHING IN THIS FUNCTION IS BREAKING AND RESETTING THE STATE OF THE HOOKS ABOVE
     // e.preventDefault();
     // let charsLeft = 50 - e.target.value.length;
     // if (charsLeft < 1) {
@@ -123,9 +124,9 @@ let AddAReview = ({window, prodId}) => {
       });
   };
 
-  useEffect(() => {
-    console.log(productRating);
-  }, [productRating]);
+  // useEffect(() => {
+  //   // console.log(productRating);
+  // }, [productRating]);
 
 
 

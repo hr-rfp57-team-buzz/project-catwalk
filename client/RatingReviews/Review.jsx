@@ -16,15 +16,20 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId}) => {
     window.style.visibility = 'visible';
   };
 
+  let resortListBy = (e) => {
+    console.log(e.target.value);
+    e.target.value;
+  };
+
   let revealHiddenReviews = () => {
     if (!scrapeReview) {
       return;
     } else {
       setNumberOfReviews(reviews.length);
       setReviewListArray(document.getElementsByClassName('reviewCardHide'));
-      console.log(reviewListArray);
+      // console.log(reviewListArray);
       for (var i = 0; i < reviewListArray.length; i++) {
-        console.log(reviewListArray[i]);
+        // console.log(reviewListArray[i]);
         reviewListArray[i].classList.remove('reviewCardHide');
         document.getElementById('reviewMore').hidden = 'true';
       }
@@ -39,7 +44,7 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId}) => {
 
     <div className="review">
       <AddAReview window={window} prodId={prodId} />
-      <p><span id="numberOfReviews">{numberOfReviews}</span> reviews, sorted by <select name='sortConditions' id='sortCondition'>
+      <p><span id="numberOfReviews">{numberOfReviews}</span> reviews, sorted by <select onChange={resortListBy} name='sortConditions' id='sortCondition'>
         <option value='Helpful'>Default</option>
         <option value='Helpful'>Helpful</option>
         <option value='Newest'>Newest</option>

@@ -1,7 +1,6 @@
 import React from 'react';
 
 const OverviewSizes = (props) => {
-  console.log('sizes', props.sizes);
   let selectSize = 'select Size';
   let uniqueSizes = [];
   for (let i = 0; i < props.sizes.length; i++) {

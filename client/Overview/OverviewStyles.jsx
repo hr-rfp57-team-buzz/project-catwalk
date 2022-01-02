@@ -2,7 +2,6 @@ import React from 'react';
 
 
 const OverviewStyles = (props) => {
-  console.log('hello', props.updateAllStyles);
   return (
     <div className="po-styles">
       {
@@ -21,7 +20,6 @@ const OverviewStyle = (props) => {
     'backgroundPosition': 'center'
   };
   let checkmark = 'po-style-check';
-  console.log('OS', props.variation.selected);
   props.variation.selected ? checkmark = 'po-style-check active' : checkmark = 'po-style-check';
 
   return (

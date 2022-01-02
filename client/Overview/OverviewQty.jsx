@@ -18,7 +18,7 @@ class OverviewQty extends React.Component {
       <select id="po-select-qty">
         {
           arr.map((qty) => {
-            return <QtyOption qty={qty} />;
+            return <QtyOption key={qty} qty={qty} />;
           })
         }
       </select>

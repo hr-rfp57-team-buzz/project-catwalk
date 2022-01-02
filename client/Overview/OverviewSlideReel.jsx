@@ -20,7 +20,7 @@ const SlideReel = (props) => {
 
 const Slide = (props) => {
   return (
-    <img src={props.photo.url} />
+    <img className="po-slide" src={props.photo.url} />
   );
 };
 

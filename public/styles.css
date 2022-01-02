@@ -878,3 +878,9 @@ h1 {
   resize: none;
 }
 
+@media only screen and (max-width: 955px) {
+  #ratings-reviews {
+    display: block;
+  };
+}
+

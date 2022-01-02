@@ -18,7 +18,7 @@ let AddAReview = ({window, prodId}) => {
   let qualityRatingSelection = 0;
   let lengthRatingSelection = 0;
   let fitRatingSelection = 0;
-  let doYouRecommendSelection = true;
+  let doYouRecommendSelection;
   let reviewSummary = document.getElementById('reviewSummary');
   let reviewBody = document.getElementById('reviewBody');
   let reviewNickname = document.getElementById('reviewNickname');
@@ -93,35 +93,55 @@ let AddAReview = ({window, prodId}) => {
     // console.log('length: ', lengthRatingSelection);
     // console.log('fit: ', fitRatingSelection);
     // console.log('overallRating: ', productRating);
-    // console.log('recommended?: ', typeof(doYouRecommendSelection));
+    console.log('recommended?: ', typeof(doYouRecommendSelection));
     // console.log('body: ', reviewBody.value);
     // console.log('summary: ', reviewSummary.value);
-    // console.log('nickname: ', reviewNickname.value);
+    console.log('nickname: ', reviewNickname.value);
     // console.log('email: ', reviewEmail.value);
-    axios.post('/reviews', {
-      'product_id': prodId,
-      'rating': productRating,
-      'summary': reviewSummary.value,
-      'body': reviewBody.value,
-      'recommend': doYouRecommendSelection,
-      'name': reviewNickname.value,
-      'email': reviewEmail.value,
-      'photos': ['http://placecorgi.com/250'],
-      'characteristics': {
-        '133334': Number(sizeRatingSelection),
-        '133333': Number(widthRatingSelection),
-        '133335': Number(comfortRatingSelection),
-        '133336': Number(qualityRatingSelection),
-        '133337': Number(lengthRatingSelection),
-        '133338': Number(fitRatingSelection)
-      }
-    })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    if (productRating === 0) {
+      alert('Please select an Overall Rating for this product');
+      return;
+    }
+    if (doYouRecommendSelection === undefined) {
+      alert('Please select an answer for "Do you recommend this product?"');
+      return;
+    }
+    if (reviewBody.value.length < 49) {
+      alert('Please reach minimum character count for review body text.');
+      return;
+    }
+    if (reviewNickname.value === '' || reviewNickname.value === ' ' || reviewNickname.value === undefined) {
+      alert('Please input a nickname.');
+      return;
+    }
+    if (reviewEmail.value === '' || reviewEmail.value === ' ' || reviewEmail.value === undefined) {
+      alert('Please input a email address.');
+      return;
+    }
+    // axios.post('/reviews', {
+    //   'product_id': prodId,
+    //   'rating': productRating,
+    //   'summary': reviewSummary.value,
+    //   'body': reviewBody.value,
+    //   'recommend': doYouRecommendSelection,
+    //   'name': reviewNickname.value,
+    //   'email': reviewEmail.value,
+    //   'photos': ['http://placecorgi.com/250'],
+    //   'characteristics': {
+    //     '133334': Number(sizeRatingSelection),
+    //     '133333': Number(widthRatingSelection),
+    //     '133335': Number(comfortRatingSelection),
+    //     '133336': Number(qualityRatingSelection),
+    //     '133337': Number(lengthRatingSelection),
+    //     '133338': Number(fitRatingSelection)
+    //   }
+    // })
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   };
 
   // useEffect(() => {

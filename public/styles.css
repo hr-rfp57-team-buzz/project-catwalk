@@ -810,6 +810,7 @@ h1 {
 
 .reviewAddTable {
   text-align: center;
+  width: 100%;
 }
 
 .reviewStarsNoFill {

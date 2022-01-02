@@ -759,6 +759,10 @@ h1 {
   transition: ease-in-out 0.5s;
 }
 
+.reviewCharacteristicProgress {
+  transition: ease-in-out 0.5s;
+}
+
 .reviewStarsContainer {
   white-space: nowrap;
 }
@@ -877,6 +881,12 @@ h1 {
   overflow-y: auto;
   overflow-x: auto;
   resize: none;
+}
+
+.reviewSlider {
+  background-color: lightgreen;
+  border: 6px solid green;
+  border-radius: 16px;
 }
 
 @media only screen and (max-width: 955px) {

@@ -1,16 +1,18 @@
 import React, { useState, useEffect} from 'react';
 import AddAReviewStars from './AddAReviewStars.jsx';
 import axios from 'axios';
+import AddAReviewCharacteristics from './AddAReviewCharacteristics.jsx';
 
 
-let AddAReview = ({window, prodId}) => {
+let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
 
   //captain HOOKs
   let [productRating, setProductRating] = useState(0);
   let [minCharCount, setMinCharCount] = useState(50);
-  let [charCount, setCharCount] = useState(
-    <p id="reviewBodyMin">Minimum required characters left: {minCharCount}</p>
-  );
+  // let [charCount, setCharCount] = useState(
+  //   <p id="reviewBodyMin">Minimum required characters left: {minCharCount}</p>
+  // );
+  let [charCount, setCharCount] = useState( `Minimum required characters left: ${minCharCount}` );
 
   let sizeRatingSelection = 0;
   let widthRatingSelection = 0;
@@ -36,32 +38,26 @@ let AddAReview = ({window, prodId}) => {
 
   let sizeRating = (e) => {
     sizeRatingSelection = e.target.value;
-    // console.log('size: ', sizeRatingSelection);
   };
 
   let widthRating = (e) => {
     widthRatingSelection = e.target.value;
-    // console.log('width: ', widthRatingSelection);
   };
 
   let comfortRating = (e) => {
     comfortRatingSelection = e.target.value;
-    // console.log('comfort: ', comfortRatingSelection);
   };
 
   let qualityRating = (e) => {
     qualityRatingSelection = e.target.value;
-    // console.log('quality: ', qualityRatingSelection);
   };
 
   let lengthRating = (e) => {
     lengthRatingSelection = e.target.value;
-    // console.log('length: ', lengthRatingSelection);
   };
 
   let fitRating = (e) => {
     fitRatingSelection = e.target.value;
-    // console.log('fit: ', fitRatingSelection);
   };
 
 
@@ -71,33 +67,32 @@ let AddAReview = ({window, prodId}) => {
 
   let minimumCharacterCount = (e) => {
     // SOMETHING IN THIS FUNCTION IS BREAKING AND RESETTING THE STATE OF THE HOOKS ABOVE
-    // e.preventDefault();
-    // let charsLeft = 50 - e.target.value.length;
-    // if (charsLeft < 1) {
-    //   setCharCount(<p id="reviewBodyMin">Minimum reached</p>);
-    //   return;
-    // } else {
-    //   setMinCharCount(charsLeft);
-    //   setCharCount(
-    //     <p id="reviewBodyMin">Minimum required characters left: {minCharCount}</p>
-    //   );
-    // }
+    e.preventDefault();
+    let charsLeft = 50 - e.target.value.length;
+    if (charsLeft < 1) {
+      setCharCount('Minimum Count Reached');
+      return;
+    } else {
+      setMinCharCount(charsLeft);
+      setCharCount(`Minimum required characters left: ${minCharCount}`);
+      return;
+    }
   };
 
   let sendNewReview = () => {
-    // console.log('prodcutId: ', prodId);
-    // console.log('size: ', typeof(sizeRatingSelection));
-    // console.log('width: ', widthRatingSelection);
-    // console.log('comfort: ', comfortRatingSelection);
-    // console.log('quality: ', qualityRatingSelection);
-    // console.log('length: ', lengthRatingSelection);
-    // console.log('fit: ', fitRatingSelection);
-    // console.log('overallRating: ', productRating);
-    console.log('recommended?: ', typeof(doYouRecommendSelection));
-    // console.log('body: ', reviewBody.value);
-    // console.log('summary: ', reviewSummary.value);
+    console.log('prodcutId: ', prodId);
+    console.log('size: ', sizeRatingSelection);
+    console.log('width: ', widthRatingSelection);
+    console.log('comfort: ', comfortRatingSelection);
+    console.log('quality: ', qualityRatingSelection);
+    console.log('length: ', lengthRatingSelection);
+    console.log('fit: ', fitRatingSelection);
+    console.log('overallRating: ', productRating);
+    console.log('recommended?: ', doYouRecommendSelection);
+    console.log('body: ', reviewBody.value);
+    console.log('summary: ', reviewSummary.value);
     console.log('nickname: ', reviewNickname.value);
-    // console.log('email: ', reviewEmail.value);
+    console.log('email: ', reviewEmail.value);
     if (productRating === 0) {
       alert('Please select an Overall Rating for this product');
       return;
@@ -118,30 +113,30 @@ let AddAReview = ({window, prodId}) => {
       alert('Please input a email address.');
       return;
     }
-    // axios.post('/reviews', {
-    //   'product_id': prodId,
-    //   'rating': productRating,
-    //   'summary': reviewSummary.value,
-    //   'body': reviewBody.value,
-    //   'recommend': doYouRecommendSelection,
-    //   'name': reviewNickname.value,
-    //   'email': reviewEmail.value,
-    //   'photos': ['http://placecorgi.com/250'],
-    //   'characteristics': {
-    //     '133334': Number(sizeRatingSelection),
-    //     '133333': Number(widthRatingSelection),
-    //     '133335': Number(comfortRatingSelection),
-    //     '133336': Number(qualityRatingSelection),
-    //     '133337': Number(lengthRatingSelection),
-    //     '133338': Number(fitRatingSelection)
-    //   }
-    // })
-    //   .then(res => {
-    //     console.log(res);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    axios.post('/reviews', {
+      'product_id': prodId,
+      'rating': productRating,
+      'summary': reviewSummary.value,
+      'body': reviewBody.value,
+      'recommend': doYouRecommendSelection,
+      'name': reviewNickname.value,
+      'email': reviewEmail.value,
+      'photos': ['http://placecorgi.com/250'],
+      'characteristics': {
+        '133334': Number(sizeRatingSelection),
+        '133333': Number(widthRatingSelection),
+        '133335': Number(comfortRatingSelection),
+        '133336': Number(qualityRatingSelection),
+        '133337': Number(lengthRatingSelection),
+        '133338': Number(fitRatingSelection)
+      }
+    })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   // useEffect(() => {
@@ -182,7 +177,7 @@ let AddAReview = ({window, prodId}) => {
             </div>
           </div>
           <p>Characteristics *</p>
-          <table className="reviewAddTable">
+          {/* <table className="reviewAddTable">
             <tbody>
               <tr>
                 <th></th>
@@ -191,9 +186,9 @@ let AddAReview = ({window, prodId}) => {
                 <th>3</th>
                 <th>4</th>
                 <th>5</th>
-              </tr>
-
-              <tr onChange={sizeRating}>
+              </tr> */}
+          <AddAReviewCharacteristics sizeRating={sizeRating} widthRating={widthRating} comfortRating={comfortRating} qualityRating={qualityRating} lengthRating={lengthRating} fitRating={fitRating} reviewMeta={reviewMeta} scrape={scrape}/>
+          {/* <tr onChange={sizeRating}>
                 <td><b>Size</b></td>
                 <td>
                   <input type="radio" id="sizeAdd1" name="sizeReview" value="1"></input>
@@ -335,14 +330,14 @@ let AddAReview = ({window, prodId}) => {
                   <input type="radio" id="fitAdd5" name="fitReview" value="5"></input>
                   <p>Runs long</p>
                 </td>
-              </tr>
-            </tbody>
-          </table>
+              </tr> */}
+          {/* </tbody>
+          </table> */}
           <p>Review Summary</p>
           <textarea id="reviewSummary" name="reviewSummary" rows="2" cols="50" maxLength="60" placeholder="Example: Best purchase ever!"></textarea>
           <p>Review body *</p>
           <textarea id="reviewBody" name="reviewBody" rows="5" cols="100" maxLength="1000" placeholder="Why did you like the product or not?" onInput={minimumCharacterCount}></textarea>
-          <div>{charCount}</div>
+          <div><p id="reviewBodyMin">{charCount}</p></div>
           <p>Upload Photo(s)</p>
           <input type="file" multiple/>
           <p>What is your nickname *</p>

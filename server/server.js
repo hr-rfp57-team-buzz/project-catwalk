@@ -28,7 +28,7 @@ app.get('/products', (req, res) => {
   })
     .then((response) => {
       console.log('Data from get to Products endpoint: ', response);
-      // let jsonData = JSON.stringify(response.data);
+      let jsonData = JSON.stringify(response.data);
       res.send(response.data);
     })
     .catch((err) => {
@@ -133,6 +133,59 @@ app.get('/reviews/:product_id/meta', (req, res) => {
     });
 });
 
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  let id = req.params.review_id;
+  let endpoint = url + `reviews/${id}/helpful`;
+
+  axios.put(endpoint, null, {
+    headers: {
+      'Authorization': TOKEN.TOKEN,
+    }
+  })
+    .then((response) => {
+      console.log(response);
+      res.end(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    });
+});
+
+app.put('/reviews/:review_id/report', (req, res) => {
+  let id = req.params.review_id;
+  let endpoint = url + `reviews/${id}/report`;
+
+  axios.put(endpoint, null, {
+    headers: {
+      'Authorization': TOKEN.TOKEN,
+    }
+  })
+    .then(response => {
+      res.end(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    });
+});
+
+app.post('/reviews', (req, res) => {
+  let endpoint = url + 'reviews';
+  let newReview = req.body;
+  console.log(newReview);
+  axios.post(endpoint, newReview, {
+    headers: {
+      'Authorization': TOKEN.TOKEN,
+      'Content-Type': 'application/JSON'
+    }
+  })
+    .then(response => {
+      res.end(response.body);
+    })
+    .catch((err) => {
+      console.log('ERRRRRRRRRR: ', err);
+    });
+});
+
 // Q&A Routes
 app.get('/qa/questions', (req, res) => {
   let id = req.query.id;
@@ -150,14 +203,15 @@ app.get('/qa/questions', (req, res) => {
       page: page
     }
   })
-  .then((response) => {
+    .then((response) => {
     console.log(response);
-    res.send(response.data);
-  })
-  .catch((err) => {
-    console.log('Error! ', err);
-  })
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    })
 });
+
 app.get('/qa/questions/:product_id/answers', (req, res) => {
   let id = req.params.product_id;
   let endpoint = url + 'qa/questions/' + id + '/answers';
@@ -172,7 +226,7 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
   })
     .then((response) => {
       console.log(response);
-      res.send(response.data);
+      res.send(response);
     })
     .catch((err) => {
       console.log('Error! ', err);
@@ -221,3 +275,18 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
 app.listen(port, function() {
   console.log('Listening on port ', port);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

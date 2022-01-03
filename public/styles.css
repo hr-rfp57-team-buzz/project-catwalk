@@ -1,5 +1,5 @@
 h1 {
-  color: red
+  /* color: red */
 }
 
 * {
@@ -21,8 +21,8 @@ h1 {
   overflow: hidden;
   margin: auto;
   position: relative;
-  background-color: lightyellow;
-  width: 70%
+  background-color: white;
+  width: 90%
 }
 
 .your-outfit {
@@ -47,6 +47,7 @@ h1 {
 
 .Card {
   display: inline-flex;
+  position: relative;
   flex-direction: column;
   align-self:center;
   width: 200px;
@@ -65,15 +66,52 @@ h1 {
 }
 
 .relatedPicHolder {
-  max-height: 60%;
+  height: 60%;
   max-width: 100%;
   background-color: white;
 }
 
 .relatedTextHolder {
-  height: 100%;
+  height: 40%;
   background-color: slategray;
   text-align: left;
+}
+
+.relModal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  visibility: visible;
+}
+
+.relModalHidden {
+  visibility: hidden;
+}
+
+.relModal-content {
+  width: 500px;
+  background-color: white;
+}
+
+.relModal-header, .relModal-footer{
+  padding: 10px
+}
+
+.relModal-title {
+  margin: 0;
+}
+
+.relModal-body {
+  padding: 10px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
 }
 
 .lArrow {
@@ -124,7 +162,24 @@ h1 {
   border-radius: 2px;
 }
 
+.relatedStar {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  background-color: white;
+}
 
+.relX {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  background-color: white;
+}
+
+.relCheck {
+  position: absolute;
+  right: 5%;
+}
 
 
 /* Alex */
@@ -309,14 +364,39 @@ h1 {
 /* Ryne */
 /* Don't put ; after closing brackets of css rules */
 #ratings-reviews {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   padding-top: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
+#ratings-reviews .fas {
+  grid-column: 1;
+  grid-row: 1;
+  color: gray;
+}
+
+#ratings-reviews .fa-star {
+  grid-column: 1;
+  grid-row: 1;
+}
+
 .review {
   grid-column-start: 3;
   grid-column-end: 7;
+}
+
+.reviewCard {
+  height: 1000px;
+  overflow-y: auto;
+}
+
+.reviewCardShow {
+  display: block;
+}
+
+.reviewCardHide {
+  display: none;
 }
 
 .responseFromSeller {
@@ -350,6 +430,13 @@ h1 {
   grid-template-columns: 1fr 1fr;
 }
 
+.gridContainer3Col {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .gridContainer1Col {
   display: grid;
   grid-template-rows: 1fr;
@@ -369,9 +456,6 @@ h1 {
   justify-self: center;
 }
 
-
-
-
 .reviewBarStats {
   padding: 8px 0px 8px 8px;
   display: grid;
@@ -388,6 +472,19 @@ h1 {
   grid-column-end: 6;
 }
 
+.reviewProductBreakdown {
+  display: grid;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-template-rows: 1fr;
+  background-color: gray;
+  border-radius: 16px;
+}
+
+.reviewTextRight {
+  text-align: right;
+}
+
 .reviewBar {
   display: grid;
   grid-column-start: 2;
@@ -402,5 +499,141 @@ h1 {
   border-radius: 16px;
   width: 0%;
   transition: ease-in-out 0.5s;
+}
+
+.reviewCharacteristicProgress {
+  transition: ease-in-out 0.5s;
+}
+
+.reviewStarsContainer {
+  white-space: nowrap;
+}
+
+.reviewStars {
+  display: grid;
+  font-size: 28px;
+}
+
+.reviewStarsFill {
+  grid-column: 1;
+  grid-row: 1;
+  background-color: rgb(255, 208, 0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.reviewStarsFill25 {
+  grid-column: 1;
+  grid-row: 1;
+  width: 11px;
+  background-color: rgb(255, 208, 0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.reviewStarsFill50 {
+  grid-column: 1;
+  grid-row: 1;
+  width: 15px;
+  background-color: rgb(255, 208, 0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.reviewStarsFill75 {
+  grid-column: 1;
+  grid-row: 1;
+  width: 21px;
+  background-color: rgb(255, 208, 0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.reviewAddTable {
+  text-align: center;
+  width: 100%;
+}
+
+.reviewStarsNoFill {
+  grid-column: 1;
+  grid-row: 1;
+  background-color: gray;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.reviewClickableStars .reviewStars i:nth-child(n):hover {
+  background-color: rgb(255, 208, 0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.reviewInlineBlock {
+  display: inline-block
+}
+
+.pad15horz {
+  padding: 0 5px 0 5px;
+}
+
+.reviewPointer:hover {
+  cursor: pointer;
+}
+
+.reviewPointerRed:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.reviewModel {
+  border-radius: 25px;
+  visibility: hidden;
+  position: absolute;
+  left: 3vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  background-color: rgba(39, 38, 38, 0.601);
+  z-index: 2;
+  width: 95%;
+  height: 80%;
+}
+
+.reviewAdd {
+  padding: 25px;
+  border-radius: 25px;
+  grid-column: 1fr;
+  grid-row: 1fr;
+  justify-self: center;
+  align-self: center;
+  max-width: 1100px;
+  height: auto;
+  background-color: whitesmoke;
+}
+
+.reviewAdd textarea {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  overflow-y: auto;
+  overflow-x: auto;
+  resize: none;
+}
+
+.reviewSlider {
+  background-color: lightgreen;
+  border: 6px solid green;
+  border-radius: 16px;
+}
+
+@media only screen and (max-width: 955px) {
+  #ratings-reviews {
+    display: block;
+  };
 }
 

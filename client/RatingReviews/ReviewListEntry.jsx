@@ -1,40 +1,84 @@
 import React, { useState, useEffect } from 'react';
+import ReviewStars from './ReviewStars.jsx';
+import axios from 'axios';
 
-let ReviewListEntry = (props) => {
+let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
 
   let [reviewPhotos, setReviewPhotos] = useState([undefined]);
 
+  let [responseFromSeller, setResponseFromSeller] = useState(null);
+  let [responseFromSellerMessage, setResponseFromSellerMessage] = useState(null);
+
+  let generateSellerResponse = () => {
+    setResponseFromSeller(null);
+    setResponseFromSellerMessage(null);
+    if (!scrapeReview) {
+      return;
+    }
+    if (review.response === null) {
+      return;
+    }
+    if (review.response === '') {
+      return;
+    }
+    setResponseFromSeller(<span className="pad15">Response From Seller: </span>);
+    setResponseFromSellerMessage(<span className="pad15">{review.response}</span>);
+  };
+
+  let wasThisReviewHelpful = (e) => {
+    console.log(review.review_id);
+    axios.put(`/reviews/${review.review_id}/helpful`)
+      .then(res => {
+        console.log(res);
+        e.target.innerHTML = 'Thank you for your feedback!';
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  let reportReview = (e) => {
+    axios.put(`/reviews/${review.review_id}/report`)
+      .then(res => {
+        console.log(res);
+        e.target.innerHTML = 'Review Reported!';
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+
   let createPhotoArray = () => {
-    if (props.review.photos !== undefined) {
-      setReviewPhotos(props.review.photos);
+    if (!scrapeReview) {
+      return;
+    } else {
+      setReviewPhotos(review.photos);
     }
   };
 
 
   useEffect(() => {
     createPhotoArray();
-  }, [props.review]);
+    generateSellerResponse();
+  }, [scrapeReview]);
 
   return (
 
     <div>
       <div className="gridContainer2Col">
         <div className="gridItemLeft">
-          <i className="far fa-star" style={{background: 'yellow'}}></i>
-          <i className="far fa-star" style={{background: 'yellow'}}></i>
-          <i className="far fa-star" style={{background: 'linear-gradient(to right, yellow 50%, white 50%)'}}></i>
-          <i className="far fa-star"></i>
-          <i className="far fa-star"></i>
+          <ReviewStars review={review} scrapeReview={scrapeReview} starIndex={starIndex} />
         </div>
         <div className="gridItemRight">
-          <sub>{props.review.reviewer_name}, {props.review.date}</sub>
+          <sub>{review.reviewer_name}, {review.date}</sub>
         </div>
       </div>
-      <h4>{props.review.summary}</h4>
-      <p>{props.review.body}</p>
-      <div hidden={true} class="responseFromSeller">
-        <h4 className="pad15">Response from seller:</h4>
-        <p className="pad15">re ultrices diam tincidunt at. Maecenas sit amet iaculis odio, a viverra felis. Aliquam sit amet</p>
+      <h4>{review.summary}</h4>
+      <p>{review.body}</p>
+      <div class="responseFromSeller">
+        <h4>{responseFromSeller}</h4>
+        <p>{responseFromSellerMessage}</p>
       </div>
       <div className="reviewPhotosContainer">
         {reviewPhotos.map((photo, index) => {
@@ -46,8 +90,8 @@ let ReviewListEntry = (props) => {
         })}
       </div>
       <br/>
-      <p>Was this review helpful?</p>
-      <sub><a href="#">YES</a>  <a href="#">NO</a></sub>
+      <p>Was this review helpful? ({review.helpfulness})</p>
+      <sub id={`reviewHelpful${starIndex}`}><i><span className="reviewPointerRed" value='Yes' onClick={wasThisReviewHelpful}>YES <i class="fas fa-thumbs-up"></i></span><span> || </span> <span value="No" className="reviewPointerRed" onClick={reportReview}>NO (Report Review)</span> </i></sub>
       <br/><br/>
       <hr/>
       <br/><br/>

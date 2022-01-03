@@ -17,15 +17,34 @@ class QuestionsAndAnswers extends React.Component {
       allQuestions: [],
       questions: [],
       count: 0,
-      productId: 40550
+      productId: 40550,
+      productName: '',
     };
     this.getQuestions = this.getQuestions.bind(this);
     this.getAllQuestions = this.getAllQuestions.bind(this);
+    this.getProdName = this.getProdName.bind(this);
   }
 
   componentDidMount() {
     this.getQuestions(this.state.productId);
     this.getAllQuestions(this.state.productId, this.state.count);
+    this.getProdName(this.state.productId);
+  }
+
+  getProdName = (product_id) => {
+    console.log('Getting Product Name...')
+    axios.get('/products/' + product_id, {
+      responseType: 'json',
+    })
+    .then((response) => {
+      this.setState({
+        productName: response.data.name
+      })
+      console.log(response.data);
+    })
+    .catch((err) => {
+      console.error('Error! ', err);
+    });
   }
 
   getAllQuestions = (id, page) => {
@@ -80,7 +99,7 @@ class QuestionsAndAnswers extends React.Component {
       <>
         <SearchBar />
         <div className="questions-list">
-          <QuestionsList questions={this.state.questions}/>
+          <QuestionsList questions={this.state.questions} prodName={this.state.productName}/>
         </div>
         <>
           {this.state.allQuestions.length ?

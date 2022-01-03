@@ -10,7 +10,7 @@ let QuestionsList = (props) => (
       <ul>
         {props.questions.map(question =>
           <>
-            <Question question={question}/>
+            <Question question={question} prodName={props.prodName} />
             <Accordion answers={Object.entries(question.answers)}/>
             {/* <AnswersList answers={question.answers} /> */}
           </>

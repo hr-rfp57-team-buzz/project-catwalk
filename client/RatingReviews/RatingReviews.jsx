@@ -9,20 +9,27 @@ let RatingReview = () => {
   let [reviewMeta, setReviewMeta] = useState(undefined);
   let [averageRating, setAverageRating] = useState('Loading...');
   let [scrape, setScrape] = useState(false);
+  let [scrapeReview, setScrapeReview] = useState(false);
   let [totalRatings, setTotalRatings] = useState(0);
   let [prodId, setProdId] = useState(40344);
 
   //to be hooked up to productId context
   // let prodId = 40388;
 
+
+
   let changeProdId = () => {
-    setProdId(40388);
+    let prods = [40345, 40388, 40453, 40355, 40567, 40349, 40392, 40366];
+    let randProd = prods[(Math.random() * prods.length) | 0];
+    setProdId(randProd);
   };
 
   let getProdReviews = (prodId) => {
+    setScrapeReview(false);
     axios.get(`/reviews/${prodId}`)
       .then((res) => {
         setReviews(res.data.results);
+        setScrapeReview(true);
       })
       .catch((err) => {
         console.log(err);
@@ -58,7 +65,7 @@ let RatingReview = () => {
   return (
     <div id="ratings-reviews">
       <Rating reviewMeta={reviewMeta} averageRating={averageRating} scrape={scrape} totalRatings={totalRatings}/>
-      <Review reviews={reviews} changeProdId={changeProdId} />
+      <Review reviews={reviews} changeProdId={changeProdId} scrapeReview={scrapeReview} prodId={prodId} reviewMeta={reviewMeta} scrape={scrape}/>
     </div>
   );
 

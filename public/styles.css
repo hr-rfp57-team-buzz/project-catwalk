@@ -272,6 +272,17 @@ h1 {
   padding: 4px;
 }
 
+.reviewPhotosContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 5px;
+}
+
+.reviewPhotos {
+  max-width: 150px;
+  max-height: auto;
+}
+
 .ratingOverview {
   grid-column-start: 1;
   grid-column-end: 3;
@@ -307,12 +318,17 @@ h1 {
 .reviewBarStats {
   padding: 8px 0px 8px 8px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .reviewBarStarNumber {
   grid-column-start: 1;
   grid-column-end: 2;
+}
+
+.reviewBarReviewNumber {
+  grid-column-start: 5;
+  grid-column-end: 6;
 }
 
 .reviewBar {
@@ -321,9 +337,13 @@ h1 {
   grid-column-end: 5;
   grid-template-rows: 1fr;
   background-color: gray;
+  border-radius: 16px;
 }
 
 .reviewBarProgress {
   background-color: green;
+  border-radius: 16px;
+  width: 0%;
+  transition: ease-in-out 0.5s;
 }
 

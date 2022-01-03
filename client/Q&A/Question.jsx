@@ -1,38 +1,33 @@
-import React from 'react';
-import AnswersList from './AnswersList.jsx';
+import React, { useState } from 'react';
 
-const Question = (props) => (
-  <>
-  <div className="questions">
-    <div className="q-line">
-      <h4>Q: {props.question.question_body}</h4>
-      {/* <span className="top-links"> */}
-      <span className="top-links">
-        <p className="top-line helpful">Helpful?</p>
-        <a className="top-line helpful">
-          Yes(
-          {props.question.question_helpfulness})
-          </a>
-        <div id="line"></div>
-        <a className="top-line">Add Answer</a>
-      </span>
-      {/* </span> */}
-    </div>
-    <div className="a-line">
-      <AnswersList answers={props.question.answers} />
-      {/* <h4>A:</h4>
-      <p>Icing macaron bear claw jelly beans chocolate cake. Cookie oat cake chocolate halvah jelly cake cotton candy souuflé topping. Jujubes topping cake gummies lemon drops.</p> */}
-    </div>
-    <div className="bottom-line">
-      <h6>By User1234, January 1, 2019</h6>
-      <div id="line"></div>
-      <p className="bottom-links helpful">Helpful?</p>
-      <a className="bottom-links helpful">Yes(2)</a>
-      <div id="line"></div>
-      <a className="bottom-links">Report</a>
-    </div>
-  </div>
-  </>
-);
+import AnswersList from './AnswersList.jsx';
+import AddAnswerModal from './AddAnswerModal';
+
+const Question = (props) => {
+  const [count, setCount] = useState(props.question.question_helpfulness);
+  const [isVisible, setVisible] = useState(false);
+  return (
+    <>
+      <div className="questions">
+        <div className="q-line">
+          <h4>Q: {props.question.question_body}</h4>
+          <span className="top-links">
+            <p className="top-line helpful">Helpful?</p>
+            <h5 style={{ textDecoration: 'underline', cursor: 'pointer'}} onClick={() => { setCount(count + 1); }} className="top-line helpful links">
+              Yes({ count })
+              </h5>
+            <div id="line"></div>
+            <a style={{ textDecoration: 'underline', cursor: 'pointer'}} className="top-line links" onClick={() => { setVisible(!isVisible)} }>Add Answer</a>
+            {isVisible ? <AddAnswerModal prodName={props.prodName} qBody={props.question.question_body}/> : null}
+          </span>
+        </div>
+        <div className="a-line">
+          <AnswersList answers={Object.entries(props.question.answers)} />
+        </div>
+      </div>
+    </>
+
+  )
+};
 
 export default Question;

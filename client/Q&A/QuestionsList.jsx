@@ -2,6 +2,7 @@ import React from 'react';
 import Question from './Question.jsx';
 import AnswersList from './AnswersList.jsx';
 import Answer from './Answer.jsx';
+import Accordion from './Accordion.jsx';
 
 let QuestionsList = (props) => (
   <>
@@ -9,7 +10,8 @@ let QuestionsList = (props) => (
       <ul>
         {props.questions.map(question =>
           <>
-            <Question question={question}/>
+            <Question question={question} prodName={props.prodName} />
+            <Accordion answers={Object.entries(question.answers)}/>
             {/* <AnswersList answers={question.answers} /> */}
           </>
         )}

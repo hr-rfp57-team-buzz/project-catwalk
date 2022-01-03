@@ -1,41 +1,30 @@
 import React from 'react';
 
-class OverviewQty extends React.Component {
-  constructor(props) {
-    super(props);
+const OverviewQty = (props) => {
+  let quantities;
+  if (props.qty) {
+    quantities = [...Array(props.qty).keys()].map((item) => {
+      return item + 1;
+    });
+  } else {
+    quantities = ['-'];
   }
 
-  render() {
-    let arr;
-    if (this.props.qty) {
-      arr = [...Array(this.props.qty).keys()].map((item) => {
-        return item + 1;
-      });
-    } else {
-      arr = ['-'];
-    }
-    return (
-      <select id="po-select-qty">
-        {
-          arr.map((qty) => {
-            return <QtyOption key={qty} qty={qty} />;
-          })
-        }
-      </select>
-    );
-  }
-}
+  return (
+    <select id="po-select-qty">
+      {
+        quantities.map((qty) => {
+          return <OverviewQtyOption key={qty} qty={qty} />;
+        })
+      }
+    </select>
+  );
+};
 
-class QtyOption extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <option value={this.props.qty}>{this.props.qty}</option>
-    );
-  }
-}
+const OverviewQtyOption = (props) => {
+  return (
+    <option value={props.qty}>{props.qty}</option>
+  );
+};
 
 export default OverviewQty;

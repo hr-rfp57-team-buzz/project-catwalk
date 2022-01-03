@@ -1,6 +1,5 @@
 import React, {useState, useEffect, createContext} from 'react';
 import { resetSelectedStyle, sortSizes } from './OverviewHelper.jsx';
-
 import axios from 'axios';
 
 export const OverviewContext = createContext();
@@ -16,51 +15,44 @@ export const OverviewProvider = (props) => {
     'original_price': '',
     'sale_price': '',
     photos: [],
-    sizes: []
+    sizes: [],
+    'all_styles': []
   };
 
-  const defaultAllStyles = [];
-
   const [product, setProduct] = useState(defaultProduct);
-  const [allStyles, setAllStyles] = useState(defaultAllStyles);
-
   let productPending;
-  let stylePending;
 
-  const updateAllStyles = (index) => {
-    const stylesClone = allStyles.slice();
-    resetSelectedStyle(stylesClone);
-    const selected = stylesClone[index];
-    console.log('selected', selected);
-    selected.selected = true;
-    const productClone = Object.assign({}, product);
-    productClone['style_name'] = selected.name;
-    productClone['sizes'] = sortSizes(selected);
-    productClone['original_price'] = selected.original_price;
-    productClone['sale_price'] = selected.sale_price;
-    productClone['photos'] = selected.photos;
-    setProduct(productClone);
-    setAllStyles(stylesClone);
+  const updateProduct = (index) => {
+    productPending = Object.assign({}, product);
+    resetSelectedStyle(productPending.all_styles);
+    const selectedStyle = productPending.all_styles[index];
+    selectedStyle.selected = true;
+    productPending['style_name'] = selectedStyle.name;
+    productPending['sizes'] = sortSizes(selectedStyle);
+    productPending['photos'] = selectedStyle.photos;
+    productPending['original_price'] = selectedStyle.original_price;
+    productPending['sale_price'] = selectedStyle.sale_price;
+    setProduct(productPending);
   };
 
   useEffect(() => {
     axios.get('http://localhost:3000/products')
       .then((res) => {
-        productPending = res.data[0];
-        const id = res.data[0].id;
+        productPending = Object.assign({}, res.data[0]);
+        const id = productPending.id;
         return axios.get(`http://localhost:3000/products/${id}/styles`);
       })
       .then((res) => {
-        stylePending = Object.assign({}, res.data.results[0]);
-        stylePending['style_name'] = stylePending['name'];
-        delete stylePending['name'];
-        stylePending['sizes'] = sortSizes(stylePending);
-        delete stylePending['skus'];
-        Object.assign(productPending, stylePending);
+        productPending['all_styles'] = res.data.results;
+        resetSelectedStyle(productPending['all_styles']);
+        const selectedStyle = productPending['all_styles'][0];
+        selectedStyle.selected = true;
+        productPending['style_name'] = selectedStyle['name'];
+        productPending['sizes'] = sortSizes(selectedStyle);
+        productPending['photos'] = selectedStyle.photos;
+        productPending['original_price'] = selectedStyle.original_price;
+        productPending['sale_price'] = selectedStyle.sale_price;
         setProduct(productPending);
-        resetSelectedStyle(res.data.results);
-        res.data.results[0].selected = true;
-        setAllStyles(res.data.results);
       })
       .catch((err) => {
         console.log(err);
@@ -68,7 +60,7 @@ export const OverviewProvider = (props) => {
   }, []);
 
   return (
-    <OverviewContext.Provider value={[product, allStyles, updateAllStyles]}>
+    <OverviewContext.Provider value={[product, updateProduct]}>
       {props.children}
     </OverviewContext.Provider>
   );

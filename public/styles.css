@@ -183,9 +183,41 @@ h1 {
 
 
 /* Alex */
+.reviewModel {
+  border-radius: 25px;
+  visibility: hidden;
+  position: absolute;
+  left: 3vw;
+  display: flex;
+  /* grid-template-columns: 1fr;
+  grid-template-rows: 1fr; */
+  background-color: rgba(39, 38, 38, 0.601);
+  z-index: 2;
+  width: 95%;
+  height: 100%;
+}
+
+.reviewAdd {
+  padding: 25px;
+  border-radius: 25px;
+  grid-column: 1fr;
+  grid-row: 1fr;
+  justify-self: center;
+  align-self: center;
+  max-width: 1100px;
+  height: auto;
+  background-color: whitesmoke;
+}
+
 #questions-answers {
   display: grid;
   padding-bottom: 10px;
+}
+
+.accordion-content {
+  height: 440px;
+  width: 100%;
+  overflow-x:auto;
 }
 
 .q-line {
@@ -232,12 +264,40 @@ h1 {
   padding-right: 10px;
 }
 
-.helpful {
+.fa-search {
+  background-color: transparent;
+}
+
+.no-questions {
+  margin: auto;
+  width: 40%;
+  padding: 25px;
+}
+
+.q-a-img {
+  display: inline-block;
+  border: 1px solid black;
+  width: 150px;
+  margin-left: 40px;
+  /* padding: 4px; */
+}
+
+.q-a-img:hover {
+  box-shadow: 0 0 2px 1px rgb(87, 245, 14);
+}
+
+.links {
   display: flex;
   justify-content: space-evenly;
   padding-right: 3px;
   padding-left: 4px;
+  cursor: 'pointer';
 }
+
+.links:hover {
+  color: rgb(87, 245, 14);
+}
+
 
 .search-wrapper {
   border: 1px solid black;
@@ -275,9 +335,6 @@ h1 {
   width: 50px;
 }
 
-.fa-search {
-  background-color: transparent;
-}
 
 .questions {
   margin-top: 20px;

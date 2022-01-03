@@ -96,7 +96,7 @@ app.get('/reviews/:product_id', (req, res) => {
 
   axios.get(endpoint, {
     headers: {
-      'Authorization': TOKEN.TOKEN,
+      "Authorization": TOKEN.TOKEN,
     },
     params: {
       'product_id': id,
@@ -188,6 +188,7 @@ app.post('/reviews', (req, res) => {
 // Q&A Routes
 app.get('/qa/questions', (req, res) => {
   let id = req.query.id;
+  let page = req.query.page;
   console.log('req in server: ', req);
   let endpoint = url + 'qa/questions';
 
@@ -197,6 +198,8 @@ app.get('/qa/questions', (req, res) => {
     },
     params: {
       product_id: id,
+      count: 4,
+      page: page
     }
   })
     .then((response) => {
@@ -228,6 +231,45 @@ app.get('/qa/questions/:product_id/answers', (req, res) => {
       console.log('Error! ', err);
     });
 });
+
+app.put('/qa/answers/:answer_id/helpful', (req, res) => {
+  let id = req.body.answer_id;
+  let count = JSON.stringify(req.body.count);
+  console.log('ID: ', id);
+  let endpoint = url + 'qa/answers/' + id + '/helpful';
+  console.log('req in server on put request: ', req);
+
+  axios.put(endpoint, count, {
+    headers: {
+      "Authorization": TOKEN.TOKEN,
+    },
+    query: {
+      "answer_id": id,
+    }
+  })
+  .then((response) => {
+    console.log('Response in server:', response)
+    res.send(count);
+  })
+  .catch((err) => {
+    console.log('Error! ', err);
+  })
+});
+
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  let id = req.body.answer_id;
+  let endpoint = url + 'qa/answers/' + id + '/report';
+  console.log('Response in server PUT', res);
+  axios.put(endpoint, id, {
+    headers: {
+      "Authorization": TOKEN.TOKEN,
+    }
+  })
+  .then(response => {
+    console.log(response);
+    res.send();
+  })
+})
 
 app.listen(port, function() {
   console.log('Listening on port ', port);

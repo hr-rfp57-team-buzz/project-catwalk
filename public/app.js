@@ -750,11 +750,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
   \*******************/
 /***/ ((__unused_webpack_module, exports) => {
 
-<<<<<<< HEAD
 eval("var TOKEN = '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';\nvar reviewsEndPoint = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews';\nexports.TOKEN = TOKEN;\nexports.reviewsEndPoint = reviewsEndPoint;\n\n//# sourceURL=webpack://project-catwalk/./config.js?");
-=======
-eval("var TOKEN = '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';\nexports.TOKEN = TOKEN;\n\n//# sourceURL=webpack://project-catwalk/./config.js?");
->>>>>>> main
 
 /***/ }),
 

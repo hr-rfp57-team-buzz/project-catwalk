@@ -37,6 +37,17 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
       });
   };
 
+  let reportReview = (e) => {
+    axios.put(`/reviews/${review.review_id}/report`)
+      .then(res => {
+        console.log(res);
+        e.target.innerHTML = 'Review Reported!';
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
 
   let createPhotoArray = () => {
     if (!scrapeReview) {
@@ -80,7 +91,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
       </div>
       <br/>
       <p>Was this review helpful? ({review.helpfulness})</p>
-      <sub id={`reviewHelpful${starIndex}`}><i><span className="reviewPointerRed" value='Yes' onClick={wasThisReviewHelpful}>YES <i class="fas fa-thumbs-up"></i></span>  </i></sub>
+      <sub id={`reviewHelpful${starIndex}`}><i><span className="reviewPointerRed" value='Yes' onClick={wasThisReviewHelpful}>YES <i class="fas fa-thumbs-up"></i></span><span> || </span> <span value="No" className="reviewPointerRed" onClick={reportReview}>NO (Report Review)</span> </i></sub>
       <br/><br/>
       <hr/>
       <br/><br/>

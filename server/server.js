@@ -132,8 +132,8 @@ app.get('/reviews/:product_id/meta', (req, res) => {
     });
 });
 
-app.put('/reviews/:reveiw_id/helpful', (req, res) => {
-  let id = req.params.reveiw_id;
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  let id = req.params.review_id;
   let endpoint = url + `reviews/${id}/helpful`;
 
   axios.put(endpoint, null, {
@@ -143,6 +143,23 @@ app.put('/reviews/:reveiw_id/helpful', (req, res) => {
   })
     .then((response) => {
       console.log(response);
+      res.end(response.data);
+    })
+    .catch((err) => {
+      console.log('Error! ', err);
+    });
+});
+
+app.put('/reviews/:review_id/report', (req, res) => {
+  let id = req.params.review_id;
+  let endpoint = url + `reviews/${id}/report`;
+
+  axios.put(endpoint, null, {
+    headers: {
+      'Authorization': TOKEN.TOKEN,
+    }
+  })
+    .then(response => {
       res.end(response.data);
     })
     .catch((err) => {

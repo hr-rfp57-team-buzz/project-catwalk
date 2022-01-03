@@ -391,7 +391,7 @@ h1 {
   overflow: hidden;
   margin: auto;
   position: relative;
-  background-color: lightyellow;
+  background-color: white;
   width: 90%
 }
 
@@ -539,7 +539,17 @@ h1 {
   background-color: white;
 }
 
+.relX {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  background-color: white;
+}
 
+.relCheck {
+  position: absolute;
+  right: 5%;
+}
 
 
 /* Alex */

@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import RelatedModal from './RelatedItems/RelatedModal';
+import Cards from './RelatedItems/Cards';
+import OutfitCards from './RelatedItems/OutfitCards';
 
 
 var Related = () => {
@@ -107,7 +110,7 @@ var Related = () => {
         console.log(err);
       });
   };
-
+  //takes all id's related to initial one, then runs them through necessary requests
   let getData = (id, cb) => {
     axios.get(`products/${id}/related`)
       .then((res) => {
@@ -148,6 +151,9 @@ var Related = () => {
     }
   };
 
+
+  //changes the state of the hook responsible for modal visibility
+  //marked for deletion because all modals depending on the same hook is bad
   var modalHide = function () {
     if (showModal === 'hidden') {
       setShowModal('visible');
@@ -164,57 +170,19 @@ var Related = () => {
         {completeRelated.length > 0 ? completeRelated.map((data) =>
           <div>
             <Cards data={data} show={modalHide}/>
-            <RelatedModal visible={showModal}/>
           </div>
         ) : <Cards/>}
       </div>
       <i className="lArrow" class="fas fa-arrow-left lArrow2" onClick={()=> moveLeftOutfit()}></i>
       <i className="rArrow" class="fas fa-arrow-right rArrow2" onClick={()=>setX2(x2 - 340)}></i>
       <div className="reel"style={stylesOutfit}>
-        <Cards/>
+        <OutfitCards/>
       </div>
     </div>
   );
 };
 
-const RelatedModal = (props) => {
-
-  return (
-    <div className="relModal" style={{visibility: props.visible}}>
-      <div className="relModal-content">
-        <div className="relModal-header">
-          <h4 className="relModal-title">Title</h4>
-        </div>
-        <div className="relModal-body">
-          Content Goes Here
-        </div>
-        <div className="relModal-footer">
-          <button className="button">Close</button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-var Cards = (props) => {
 
 
-  return (
-    <div className="Card" >
-      <span onClick={() => console.log('hi')}>
-        <i class="far fa-star relatedStar"></i>
-      </span>
-      <div className="relatedPicHolder" onClick={props.show}>
-        <img className="relatedPic" src={props.data ? props.data.picture : null}></img>
-      </div>
-      <div className="relatedTextHolder">
-        <p id="relatedCategory">{props.data ? props.data.category : 'Undefined'}</p>
-        <h3>{props.data ? props.data.name : 'Are not there'}</h3>
-        <p>{props.data ? props.data.price : 'Undefined'}</p>
-        <p>{props.data ? props.data.reviews : 'Undefined'}</p>
-      </div>
-    </div>
-  );
-};
 
 export default Related;

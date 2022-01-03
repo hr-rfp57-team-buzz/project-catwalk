@@ -7,12 +7,12 @@ import AddAReviewCharacteristics from './AddAReviewCharacteristics.jsx';
 let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
 
   //captain HOOKs
-  let [sizeRatingSelection, setSize] = useState(undefined);
-  let [widthRatingSelection, setWidth] = useState(undefined);
-  let [comfortRatingSelection, setComfort] = useState(undefined);
-  let [qualityRatingSelection, setQuality] = useState(undefined);
-  let [lengthRatingSelection, setLength] = useState(undefined);
-  let [fitRatingSelection, setFit] = useState(undefined);
+  let [SizeRatingSelection, setSize] = useState(1);
+  let [WidthRatingSelection, setWidth] = useState(1);
+  let [ComfortRatingSelection, setComfort] = useState(1);
+  let [QualityRatingSelection, setQuality] = useState(1);
+  let [LengthRatingSelection, setLength] = useState(1);
+  let [FitRatingSelection, setFit] = useState(1);
   let [doYouRecommendSelection, setRecommend] = useState(undefined);
 
   let [productRating, setProductRating] = useState(0);
@@ -24,6 +24,9 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
   let reviewBody = document.getElementById('reviewBody');
   let reviewNickname = document.getElementById('reviewNickname');
   let reviewEmail = document.getElementById('reviewEmail');
+  let charsToSend = {};
+
+  let characteristicsArray = ['Size', 'Width', 'Comfort', 'Quality', 'Length', 'Fit'];
 
 
   let doYouRecommend = (e) => {
@@ -83,20 +86,53 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
     }
   };
 
+  let generateCharacteristicsObject = () => {
+    charsToSend = {};
+    for (var key in reviewMeta.characteristics) {
+      charsToSend[key] = reviewMeta.characteristics[key];
+    }
+    characteristicsArray.forEach(char => {
+      if (charsToSend[char] !== undefined) {
+        if (char === 'Size') {
+          charsToSend[char].value = Number(SizeRatingSelection);
+        }
+        if (char === 'Width') {
+          charsToSend[char].value = Number(WidthRatingSelection);
+        }
+        if (char === 'Comfort') {
+          charsToSend[char].value = Number(ComfortRatingSelection);
+        }
+        if (char === 'Quality') {
+          charsToSend[char].value = Number(QualityRatingSelection);
+        }
+        if (char === 'Length') {
+          charsToSend[char].value = Number(LengthRatingSelection);
+        }
+        if (char === 'Fit') {
+          charsToSend[char].value = Number(FitRatingSelection);
+        }
+      }
+    });
+    // console.log(charsToSend);
+
+  };
+
   let sendNewReview = () => {
+    generateCharacteristicsObject();
     console.log('prodcutId: ', prodId);
-    console.log('size: ', sizeRatingSelection);
-    console.log('width: ', widthRatingSelection);
-    console.log('comfort: ', comfortRatingSelection);
-    console.log('quality: ', qualityRatingSelection);
-    console.log('length: ', lengthRatingSelection);
-    console.log('fit: ', fitRatingSelection);
+    console.log('size: ', SizeRatingSelection);
+    console.log('width: ', WidthRatingSelection);
+    console.log('comfort: ', ComfortRatingSelection);
+    console.log('quality: ', QualityRatingSelection);
+    console.log('length: ', LengthRatingSelection);
+    console.log('fit: ', FitRatingSelection);
     console.log('overallRating: ', productRating);
     console.log('recommended?: ', doYouRecommendSelection);
     console.log('body: ', reviewBody.value);
     console.log('summary: ', reviewSummary.value);
     console.log('nickname: ', reviewNickname.value);
     console.log('email: ', reviewEmail.value);
+    // console.log(charsToSend);
     if (productRating === 0) {
       alert('Please select an Overall Rating for this product');
       return;
@@ -125,14 +161,14 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
       'recommend': doYouRecommendSelection,
       'name': reviewNickname.value,
       'email': reviewEmail.value,
-      'photos': ['http://placecorgi.com/250'],
+      // 'photos': ['http://placecorgi.com/250'],
       'characteristics': {
-        '133334': Number(sizeRatingSelection),
-        '133333': Number(widthRatingSelection),
-        '133335': Number(comfortRatingSelection),
-        '133336': Number(qualityRatingSelection),
-        '133337': Number(lengthRatingSelection),
-        '133338': Number(fitRatingSelection)
+        '133334': Number(SizeRatingSelection),
+        '133333': Number(WidthRatingSelection),
+        '133335': Number(ComfortRatingSelection),
+        '133336': Number(QualityRatingSelection),
+        '133337': Number(LengthRatingSelection),
+        '133338': Number(FitRatingSelection)
       }
     })
       .then(res => {

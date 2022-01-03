@@ -651,7 +651,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
   \*******************/
 /***/ ((__unused_webpack_module, exports) => {
 
-eval("var TOKEN = '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';\nexports.TOKEN = TOKEN;\n\n//# sourceURL=webpack://project-catwalk/./config.js?");
+eval("var TOKEN = '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';\nexports.TOKEN = TOKEN;\n\n//# sourceURL=webpack://project-catwalk/./config.js?");
 
 /***/ }),
 

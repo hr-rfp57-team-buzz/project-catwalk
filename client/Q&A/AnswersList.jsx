@@ -1,14 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Answer from './Answer.jsx';
+import Accordion from './Accordion.jsx';
 
-let AnswersList = (props) => (
-  // <div className="questionCard">
-    <ul>
-      {/* {props.answers.map(answer =>
-        <Answer answer={answer}/>
-      )} */}
-    </ul>
-  // </div>
-) ;
+let AnswersList = (props) => {
+
+  const [answersList, setAnswers] = useState([]);
+
+  for (let i = 0; i < props.answers.length; i++) {
+    let temp;
+    // let mostHelpful;
+    let currAnswer = props.answers[i];
+    if (currAnswer[1].answerer_name === 'Seller') {
+      answersList.unshift(currAnswer);
+      // mostHelpful = currAnswer[1].helpfulness;
+      // console.log(mostHelpful);
+    }
+      for (let j = 1; j < props.answers.length; j++) {
+        let nextAnswer = props.answers[j];
+        if (currAnswer[1].helpfulness > nextAnswer[1].helpfulness) {
+          answersList.push(currAnswer);
+          // mostHelpful = currAnswer[1].mostHelpful;
+        }
+      }
+    answersList.push(currAnswer);
+  }
+  return (
+  <div className="questionCard">
+      <ul>
+        {answersList.slice(0, 2).map(answer => {
+          return answer.answerer_name === 'Seller' ? <Answer answer={answer}/> : <Answer answer={answer}/>
+        }
+          // <>
+          //   <Answer answer={answer}/>
+          // </>
+        )}
+      </ul>
+    </div>
+  )
+};
 
 export default AnswersList;

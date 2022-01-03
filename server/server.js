@@ -96,7 +96,6 @@ app.get('/reviews/:product_id', (req, res) => {
 
   axios.get(endpoint, {
     headers: {
-      "Content-Type": none,
       "Authorization": TOKEN.TOKEN,
     },
     params: {

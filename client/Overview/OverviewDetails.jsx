@@ -54,6 +54,11 @@ const OverviewDetails = (props) => {
         <button className="po-add-to-bag">Add to Bag <i className="fas fa-plus"></i></button>
         <button className="po-favorite"><i className="far fa-star"></i></button>
       </div>
+      <div className="po-social-media">
+      <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+      </div>
     </div>
   );
 };

@@ -493,3 +493,18 @@ body.active {
   height: 50px;
   background-color: red;
 }
+
+po-social-media {
+  display: flex;
+  align-items: center;
+}
+
+.po-social-media i {
+  margin: 20px 0;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.po-social-media i + i {
+  margin-left: 15px;
+}

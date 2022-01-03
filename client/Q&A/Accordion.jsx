@@ -12,6 +12,16 @@ class Accordion extends React.Component {
     };
     this.setActive = this.setActive.bind(this);
     this.loadAnswers = this.loadAnswers.bind(this);
+    // this.sort = this.sort.bind(this);
+  }
+
+  sort = () => {
+    let arrayCopy = this.state.answers.slice();
+    arrayCopy.sort((a, b) => (a[1].helpfulness > b[1].helpfulness) ? -1 : 1);
+    arrayCopy.sort((a) => (a[1].name === 'Seller') ? -1 : 1);
+    this.setState({
+      loadedAnswers: arrayCopy
+    })
   }
 
   setActive() {
@@ -29,7 +39,7 @@ class Accordion extends React.Component {
       if (this.state.isActive === false) {
         loadedAnswersCopy.push(answer);
         this.setState({
-          loadedAnswers: [...loadedAnswersCopy]
+          loadedAnswers: [...loadedAnswersCopy, answer]
         })
       } else if (this.state.isActive === true) {
         this.setState({
@@ -42,7 +52,7 @@ class Accordion extends React.Component {
   render() {
     return (
       <div className='accordion-item'>
-        <div className='accorion-title' onClick={() => {this.setActive(); this.loadAnswers()}}>
+        <div className='accorion-title' onClick={() => {this.setActive(); this.loadAnswers(); this.sort();}}>
           <div>
             {this.state.isActive ? 'Collapse Answers' : 'Load More Answers'}
           </div>

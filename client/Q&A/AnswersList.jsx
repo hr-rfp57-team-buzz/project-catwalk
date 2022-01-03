@@ -8,16 +8,21 @@ let AnswersList = (props) => {
 
   for (let i = 0; i < props.answers.length; i++) {
     let temp;
-    let mostHelpful;
+    // let mostHelpful;
     let currAnswer = props.answers[i];
     if (currAnswer[1].answerer_name === 'Seller') {
       answersList.unshift(currAnswer);
-      mostHelpful = currAnswer[1].helpfulness;
-      console.log(mostHelpful);
-    } else if (currAnswer[1].helpfulness > mostHelpful) {
-      answersList.push(currAnswer);
-      mostHelpful = currAnswer[1].mostHelpful;
+      // mostHelpful = currAnswer[1].helpfulness;
+      // console.log(mostHelpful);
     }
+      for (let j = 1; j < props.answers.length; j++) {
+        let nextAnswer = props.answers[j];
+        if (currAnswer[1].helpfulness > nextAnswer[1].helpfulness) {
+          answersList.push(currAnswer);
+          // mostHelpful = currAnswer[1].mostHelpful;
+        }
+      }
+    answersList.push(currAnswer);
   }
   return (
   <div className="questionCard">

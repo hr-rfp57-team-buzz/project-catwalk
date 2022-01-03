@@ -143,13 +143,24 @@ body.active {
   height: 30px;
   margin: 10px;
   background-color: #eee;
+  border: 2px solid #fff;
   border-radius: 50%;
   cursor: pointer;
 }
 
-.po-icon-bubble.active {
-  background-color: red;
+.po-icon-bubble-selected {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: #acacac;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateX(0px);
 }
+
 
 .po-previews {
   position: absolute;

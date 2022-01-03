@@ -17,6 +17,15 @@ const OverviewExpanded = (props) => {
     slideReel.style.transition = 'all 0.4s ease-in-out';
     slideReel.style.transform = 'translateX(' + move + ')';
 
+    let bubbleMove = (props.counter.current - 1) * 50;
+    if (props.counter.current === lastIndex) {
+      bubbleMove = 0;
+    } else if (props.counter.current === 0) {
+      bubbleMove = (lastIndex - 2) * 50;
+    }
+    const bubble = document.querySelector('.po-icon-bubble-selected');
+    bubble.style.transform = 'translateX(' + bubbleMove + 'px)';
+
     slideReel.addEventListener('transitionend', () => {
       if (props.counter.current === 0) {
         props.counter.current = lastIndex - 1;
@@ -27,7 +36,11 @@ const OverviewExpanded = (props) => {
       move = (props.counter.current * -100) + '%';
       slideReel.style.transition = 'none';
       slideReel.style.transform = 'translateX(' + move + ')';
+
+      bubbleMove = (props.counter.current - 1) * 50;
+      bubble.style.transform = 'translateX(' + bubbleMove + 'px)';
     });
+
   };
 
   useEffect(() => {
@@ -52,6 +65,7 @@ const OverviewExpanded = (props) => {
 const OverviewIconBubbles = (props) => {
   return (
     <div className="po-icon-bubbles">
+      <div className="po-icon-bubble-selected"></div>
       {
         props.product.photos.map((photo, index) => {
           return <OverviewIconBubble key={index} photo={photo} counter={props.counter} index={index + 1} moveSlideReel={props.moveSlideReel} />;
@@ -65,17 +79,12 @@ const OverviewIconBubble = (props) => {
   const bubble = useRef();
 
   const handleClick = () => {
-    bubble.current.style.backgroundColor = '#000';
     props.moveSlideReel(props.index);
   };
 
-  let styling = {};
-  if (props.counter === props.index) {
-    styling['background-color'] = '#000';
-  }
 
   return (
-    <div onClick={() => { handleClick(); }} className="po-icon-bubble" style={styling} ref={bubble}></div>
+    <div onClick={() => { handleClick(); }} className="po-icon-bubble" ref={bubble}></div>
   );
 };
 

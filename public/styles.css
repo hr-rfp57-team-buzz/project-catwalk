@@ -447,6 +447,43 @@ h1 {
   text-align: left;
 }
 
+.relModal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  visibility: visible;
+}
+
+.relModalHidden {
+  visibility: hidden;
+}
+
+.relModal-content {
+  width: 500px;
+  background-color: white;
+}
+
+.relModal-header, .relModal-footer{
+  padding: 10px
+}
+
+.relModal-title {
+  margin: 0;
+}
+
+.relModal-body {
+  padding: 10px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
 .lArrow {
   position: absolute;
   left: 10%;

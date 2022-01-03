@@ -11,6 +11,7 @@ var Related = () => {
   const [initialId, setInitialId] = useState(40344);
   const [completeRelated, setCompleteRelated] = useState([]);
   const [doneLoading, setDoneLoading] = useState(0);
+  const [showModal, setShowModal] = useState('hidden');
 
 
   const stylesRelated = {
@@ -18,6 +19,10 @@ var Related = () => {
   };
   const stylesOutfit = {
     transform: `translate(${x2}px, 0px)`
+  };
+
+  const modalView = {
+    visibility: `${showModal}`
   };
 
   let showState = () => {
@@ -57,7 +62,6 @@ var Related = () => {
         let temp = relReviews;
         temp[index] = (reviewAverage(obj));
         setRelReviews(temp);
-        console.log("Getting reviews");
       })
       .then(() => {
         cb();
@@ -74,7 +78,6 @@ var Related = () => {
         let tempPics = relPictures;
         tempPics[index] = (res.data.results[0].photos[0].thumbnail_url);
         setRelPictures(tempPics);
-        console.log("getting pictures");
       })
       .then(() => {
         cb(id, index, showState);
@@ -92,9 +95,9 @@ var Related = () => {
         temp[index] = {
           name: res.data.name,
           category: res.data.category,
-          price: res.data.default_price
+          price: res.data.default_price,
+          features: res.data.features
         };
-        console.log("getting product info");
         setCompleteRelated(temp);
       })
       .then(() => {
@@ -145,13 +148,24 @@ var Related = () => {
     }
   };
 
+  var modalHide = function () {
+    if (showModal === 'hidden') {
+      setShowModal('visible');
+    } else {
+      setShowModal('hidden');
+    }
+  };
+
   return (
     <div>
       <i class="fas fa-arrow-right rArrow" onClick={()=>setX(x - 340)}></i>
       <i class="fas fa-arrow-left lArrow" onClick={()=>moveLeft()}></i>
       <div className="reel"style={stylesRelated}>
         {completeRelated.length > 0 ? completeRelated.map((data) =>
-          <Cards data={data}/>
+          <div>
+            <Cards data={data} show={modalHide}/>
+            <RelatedModal visible={showModal}/>
+          </div>
         ) : <Cards/>}
       </div>
       <i className="lArrow" class="fas fa-arrow-left lArrow2" onClick={()=> moveLeftOutfit()}></i>
@@ -163,15 +177,34 @@ var Related = () => {
   );
 };
 
+const RelatedModal = (props) => {
+
+  return (
+    <div className="relModal" style={{visibility: props.visible}}>
+      <div className="relModal-content">
+        <div className="relModal-header">
+          <h4 className="relModal-title">Title</h4>
+        </div>
+        <div className="relModal-body">
+          Content Goes Here
+        </div>
+        <div className="relModal-footer">
+          <button className="button">Close</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 var Cards = (props) => {
 
 
   return (
     <div className="Card" >
-      <span onClick={() => console.log("hi")}>
+      <span onClick={() => console.log('hi')}>
         <i class="far fa-star relatedStar"></i>
       </span>
-      <div className="relatedPicHolder">
+      <div className="relatedPicHolder" onClick={props.show}>
         <img className="relatedPic" src={props.data ? props.data.picture : null}></img>
       </div>
       <div className="relatedTextHolder">

@@ -2,6 +2,8 @@ import React from 'react';
 import Overview from './Overview/Overview.jsx';
 import { OverviewProvider } from './Overview/OverviewContext.jsx';
 import QuestionsAndAnswers from './Q&A/QuestionsAndAnswers.jsx';
+import RatingReviews from './RatingReviews/RatingReviews.jsx';
+
 import Related from './RelatedItems.jsx';
 
 class App extends React.Component {
@@ -25,11 +27,7 @@ class App extends React.Component {
         <div className="your-outfit">Outfit</div>
         <div id="questions-answers">Questions &amp; Answers</div>
         <QuestionsAndAnswers />
-        <div id="ratings-reviews">
-          Ratings &amp; Reviews
-          <div className="ratingOverview"> Rating overview</div>
-          <div className="review">Review</div>
-        </div>
+        <RatingReviews />
       </div>
     );
   }

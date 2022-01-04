@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ReviewStars from './ReviewStars.jsx';
 import axios from 'axios';
+import { AppContext } from '../AppProvider.jsx';
 
 let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
 
@@ -9,6 +10,8 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
   let [responseFromSeller, setResponseFromSeller] = useState(null);
   let [responseFromSellerMessage, setResponseFromSellerMessage] = useState(null);
   let [newDate, setNewDate] = useState('Loading...');
+
+  const [productId] = useContext(AppContext);
 
   // let newDate = (new Date(review.date)).toDateString().slice(4);
 

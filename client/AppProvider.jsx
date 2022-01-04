@@ -16,20 +16,20 @@ export const AppProvider = (props) => {
       return;
     }
     if (target.id === 'ratings-reviews') {
-      console.log('found Ratings & Reviews');
+      // console.log('found Ratings & Reviews');
       parentElement = 'Ratings & Reviews';
       return;
     }
     if (target.id === 'product-overview') {
-      console.log('found Product Overview');
+      // console.log('found Product Overview');
       parentElement = 'Product Overview';
     }
     if (target.id === 'related-products') {
-      console.log('found Related Products');
+      // console.log('found Related Products');
       parentElement = 'Related Products';
     }
     if (target.id === 'questions-answers') {
-      console.log('found Questions & Answers');
+      // console.log('found Questions & Answers');
       parentElement = 'Questions & Answers';
     }
     recursionToFindParentElement(target.parentElement);
@@ -46,7 +46,7 @@ export const AppProvider = (props) => {
     };
     clickEventArray.push(objToStore);
     setClickEventArray(clickEventArray);
-    console.log(clickEventArray);
+    // console.log(clickEventArray);
   };
 
   useEffect(() => {

@@ -1,10 +1,16 @@
-import React, {useState, useEffect, createContext} from 'react';
+import React, {useState, useEffect, useContext, createContext} from 'react';
+import { AppContext } from '../AppProvider.jsx';
 import { resetSelectedStyle, sortSizes } from './OverviewHelper.jsx';
 import axios from 'axios';
 
 export const OverviewContext = createContext();
 
 export const OverviewProvider = (props) => {
+
+  const [productId, setProductId] = useContext(AppContext);
+  console.log('working!!!', productId);
+
+
   const defaultProduct = {
     id: '',
     category: '',

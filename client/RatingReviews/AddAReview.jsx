@@ -89,32 +89,25 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
   let generateCharacteristicsObject = () => {
     charsToSend = {};
     for (var key in reviewMeta.characteristics) {
-      charsToSend[key] = reviewMeta.characteristics[key];
-    }
-    characteristicsArray.forEach(char => {
-      if (charsToSend[char] !== undefined) {
-        if (char === 'Size') {
-          charsToSend[char].value = Number(SizeRatingSelection);
-        }
-        if (char === 'Width') {
-          charsToSend[char].value = Number(WidthRatingSelection);
-        }
-        if (char === 'Comfort') {
-          charsToSend[char].value = Number(ComfortRatingSelection);
-        }
-        if (char === 'Quality') {
-          charsToSend[char].value = Number(QualityRatingSelection);
-        }
-        if (char === 'Length') {
-          charsToSend[char].value = Number(LengthRatingSelection);
-        }
-        if (char === 'Fit') {
-          charsToSend[char].value = Number(FitRatingSelection);
-        }
+      if (key === 'Size') {
+        charsToSend[reviewMeta.characteristics[key].id] = Number(SizeRatingSelection);
       }
-    });
-    // console.log(charsToSend);
-
+      if (key === 'Width') {
+        charsToSend[reviewMeta.characteristics[key].id] = Number(WidthRatingSelection);
+      }
+      if (key === 'Comfort') {
+        charsToSend[reviewMeta.characteristics[key].id] = Number(ComfortRatingSelection);
+      }
+      if (key === 'Quality') {
+        charsToSend[reviewMeta.characteristics[key].id] = Number(QualityRatingSelection);
+      }
+      if (key === 'Length') {
+        charsToSend[reviewMeta.characteristics[key].id] = Number(LengthRatingSelection);
+      }
+      if (key === 'Fit') {
+        charsToSend[reviewMeta.characteristics[key].id] = Number(FitRatingSelection);
+      }
+    }
   };
 
   let sendNewReview = () => {
@@ -132,7 +125,7 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
     console.log('summary: ', reviewSummary.value);
     console.log('nickname: ', reviewNickname.value);
     console.log('email: ', reviewEmail.value);
-    // console.log(charsToSend);
+    console.log(charsToSend);
     if (productRating === 0) {
       alert('Please select an Overall Rating for this product');
       return;
@@ -161,15 +154,8 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
       'recommend': doYouRecommendSelection,
       'name': reviewNickname.value,
       'email': reviewEmail.value,
-      // 'photos': ['http://placecorgi.com/250'],
-      'characteristics': {
-        '133334': Number(SizeRatingSelection),
-        '133333': Number(WidthRatingSelection),
-        '133335': Number(ComfortRatingSelection),
-        '133336': Number(QualityRatingSelection),
-        '133337': Number(LengthRatingSelection),
-        '133338': Number(FitRatingSelection)
-      }
+      'photos': ['http://placecorgi.com/250'],
+      'characteristics': charsToSend
     })
       .then(res => {
         console.log(res);

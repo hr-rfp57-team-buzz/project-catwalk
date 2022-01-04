@@ -59,7 +59,7 @@ let AddAReviewStars = ({setProductRating}) => {
   };
 
   return (
-    <div onClick={setReviewStarsRating} class="reviewClickableStars">
+    <div onClick={setReviewStarsRating} className="reviewClickableStars">
       <div className="reviewStarsContainer">
         <div className="reviewInlineBlock">
           <div className="reviewStars">

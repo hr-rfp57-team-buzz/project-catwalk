@@ -8,6 +8,9 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
 
   let [responseFromSeller, setResponseFromSeller] = useState(null);
   let [responseFromSellerMessage, setResponseFromSellerMessage] = useState(null);
+  let [newDate, setNewDate] = useState('Loading...');
+
+  // let newDate = (new Date(review.date)).toDateString().slice(4);
 
   let generateSellerResponse = () => {
     setResponseFromSeller(null);
@@ -61,6 +64,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
   useEffect(() => {
     createPhotoArray();
     generateSellerResponse();
+    setNewDate((new Date(review.date)).toDateString().slice(4));
   }, [scrapeReview]);
 
   return (
@@ -71,7 +75,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
           <ReviewStars review={review} scrapeReview={scrapeReview} starIndex={starIndex} />
         </div>
         <div className="gridItemRight">
-          <sub>{review.reviewer_name}, {review.date}</sub>
+          <sub>{review.reviewer_name}, {newDate}</sub>
         </div>
       </div>
       <h4>{review.summary}</h4>

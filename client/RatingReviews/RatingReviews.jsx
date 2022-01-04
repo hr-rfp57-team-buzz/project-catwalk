@@ -15,6 +15,7 @@ let RatingReview = () => {
   // let [prodId, setProdId] = useState(40344);
   const [productId, setProductId, wasIClicked] = useContext(AppContext);
 
+
   //to be hooked up to productId context
   // let prodId = 40388;
 
@@ -22,7 +23,7 @@ let RatingReview = () => {
 
   let changeProdId = () => {
     let prods = [40345, 40388, 40453, 40355, 40567, 40349, 40392, 40366];
-    let randProd = prods[(Math.random() * prods.length) || 0];
+    let randProd = prods[(Math.random() * prods.length) | 0];
     setProductId(randProd);
   };
 
@@ -71,8 +72,8 @@ let RatingReview = () => {
   }, [productId]);
 
   return (
-    <div id="ratings-reviews">
-      <Rating wasIClicked={wasIClicked} reviewMeta={reviewMeta} averageRating={averageRating} scrape={scrape} totalRatings={totalRatings}/>
+    <div onClick={wasIClicked} id="ratings-reviews">
+      <Rating reviewMeta={reviewMeta} averageRating={averageRating} scrape={scrape} totalRatings={totalRatings}/>
       <Review reviews={reviews} changeProdId={changeProdId} scrapeReview={scrapeReview} prodId={productId} reviewMeta={reviewMeta} scrape={scrape}/>
     </div>
   );

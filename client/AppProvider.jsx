@@ -7,7 +7,7 @@ export const AppProvider = (props) => {
 
   const [productId, setProductId] = useState(null);
 
-  let clickEventArray = [];
+  const [clickEventArray, setClickEventArray] = useState([]);
   let parentElement = '';
 
   const recursionToFindParentElement = (target) => {
@@ -45,6 +45,7 @@ export const AppProvider = (props) => {
       Module: parentElement
     };
     clickEventArray.push(objToStore);
+    setClickEventArray(clickEventArray);
     console.log(clickEventArray);
   };
 

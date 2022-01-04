@@ -27,11 +27,9 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
     } else {
       setNumberOfReviews(reviews.length);
       setReviewListArray(document.getElementsByClassName('reviewCardHide'));
-      // console.log(reviewListArray);
+
       for (var i = 0; i < reviewListArray.length; i++) {
-        // console.log(reviewListArray[i]);
         reviewListArray[i].classList.remove('reviewCardHide');
-        document.getElementById('reviewMore').hidden = 'true';
       }
     }
   };
@@ -39,6 +37,7 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
   useEffect(() => {
     revealHiddenReviews();
   }, [scrapeReview]);
+
 
   return (
 

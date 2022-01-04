@@ -10,6 +10,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
   let [responseFromSeller, setResponseFromSeller] = useState(null);
   let [responseFromSellerMessage, setResponseFromSellerMessage] = useState(null);
   let [newDate, setNewDate] = useState('Loading...');
+  let [reviewHelpNum, setReviewHelpNum] = useState('');
 
   const [productId] = useContext(AppContext);
 
@@ -37,6 +38,9 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
       .then(res => {
         console.log(res);
         e.target.innerHTML = 'Thank you for your feedback!';
+        let updatedScore = reviewHelpNum;
+        updatedScore++;
+        setReviewHelpNum(updatedScore);
       })
       .catch(err => {
         console.log(err);
@@ -68,6 +72,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
     createPhotoArray();
     generateSellerResponse();
     setNewDate((new Date(review.date)).toDateString().slice(4));
+    setReviewHelpNum(review.helpfulness);
   }, [scrapeReview]);
 
   return (
@@ -97,7 +102,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
         })}
       </div>
       <br/>
-      <p>Was this review helpful? ({review.helpfulness})</p>
+      <p>Was this review helpful? ({reviewHelpNum})</p>
       <sub id={`reviewHelpful${starIndex}`}><i><span className="reviewPointerRed" value='Yes' onClick={wasThisReviewHelpful}>YES <i class="fas fa-thumbs-up"></i></span><span> || </span> <span value="No" className="reviewPointerRed" onClick={reportReview}>NO (Report Review)</span> </i></sub>
       <br/><br/>
       <hr/>

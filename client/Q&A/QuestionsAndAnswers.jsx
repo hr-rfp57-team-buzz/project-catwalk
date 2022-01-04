@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { AppContext } from '../AppProvider.jsx';
 
 import QuestionsList from './QuestionsList.jsx';
 import SearchBar from './SearchBar.jsx';
@@ -16,8 +17,8 @@ class QuestionsAndAnswers extends React.Component {
     this.state = {
       allQuestions: [],
       questions: [],
-      count: 0,
-      productId: 40550,
+      count: 1,
+      productId: 40345,
       productName: '',
     };
     this.getQuestions = this.getQuestions.bind(this);
@@ -25,10 +26,18 @@ class QuestionsAndAnswers extends React.Component {
     this.getProdName = this.getProdName.bind(this);
   }
 
+  static contextType = AppContext;
+
   componentDidMount() {
     this.getQuestions(this.state.productId);
     this.getAllQuestions(this.state.productId, this.state.count);
     this.getProdName(this.state.productId);
+
+    const [productId, setProductId] = this.context;
+  }
+
+  filterQuestions = () => {
+
   }
 
   getProdName = (product_id) => {

@@ -4,10 +4,26 @@ import AddAReview from './AddAReview.jsx';
 import axios from 'axios';
 import TOKEN from '../../config.js';
 
-let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMeta, scrape}) => {
+let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMeta, scrape, setListResort}) => {
 
   let [reviewListArray, setReviewListArray] = useState([]);
   let [numberOfReviews, setNumberOfReviews] = useState('Loading...');
+  let [reviewsForSorting, setReviewsForSorting] = useState([{
+    'review': {
+      'review_id': 841336,
+      'rating': 5,
+      'summary': 'Very good',
+      'recommend': true,
+      'response': null,
+      'body': 'lorem ipsum',
+      'date': '2021-09-22T00:00:00.000Z',
+      'reviewer_name': 'tester',
+      'helpfulness': 1,
+      'photos': '[]'
+    },
+    'scrapeReview': true,
+    'starIndex': 3
+  }]);
 
 
   let window = document.getElementById('reviewAddWindow');
@@ -17,8 +33,7 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
   };
 
   let resortListBy = (e) => {
-    console.log(e.target.value);
-    e.target.value;
+    setListResort(e.target.value);
   };
 
   let revealHiddenReviews = () => {
@@ -27,30 +42,30 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
     } else {
       setNumberOfReviews(reviews.length);
       setReviewListArray(document.getElementsByClassName('reviewCardHide'));
-      // console.log(reviewListArray);
+
       for (var i = 0; i < reviewListArray.length; i++) {
-        // console.log(reviewListArray[i]);
         reviewListArray[i].classList.remove('reviewCardHide');
-        document.getElementById('reviewMore').hidden = 'true';
       }
     }
   };
 
   useEffect(() => {
     revealHiddenReviews();
+    setReviewsForSorting(reviews);
   }, [scrapeReview]);
+
 
   return (
 
     <div className="review">
       <AddAReview window={window} prodId={prodId} reviewMeta={reviewMeta} scrape={scrape}/>
       <p><span id="numberOfReviews">{numberOfReviews}</span> reviews, sorted by <select onChange={resortListBy} name='sortConditions' id='sortCondition'>
-        <option value='Helpful'>Default</option>
-        <option value='Helpful'>Helpful</option>
-        <option value='Newest'>Newest</option>
-        <option value='Relevant'>Relevant</option>
+        <option value='relevant'>Relevant</option>
+        <option value='helpful'>Helpful</option>
+        <option value='newest'>Newest</option>
       </select></p>
       <hr />
+      <div className="reviewPadBottom"></div>
       <div className="reviewCard">
         {reviews.map((review, index) => {
           if (index <= 1) {

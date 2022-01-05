@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import RatingStars from './RatingStars.jsx';
 import ReviewProductBreakdown from './ReviewProductBreakdown.jsx';
 
-let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
+let Rating = ({reviewMeta, averageRating, scrape, totalRatings, wasIClicked}) => {
 
 
   let statSet = () => {
@@ -34,7 +34,7 @@ let Rating = ({reviewMeta, averageRating, scrape, totalRatings}) => {
 
   return (
 
-    <div className="ratingOverview">
+    <div onClick={wasIClicked} className="ratingOverview">
 
       <div className="reviewStarsContainer">
         <h1 className="reviewInlineBlock pad15horz">{averageRating}</h1>

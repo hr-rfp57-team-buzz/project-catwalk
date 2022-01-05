@@ -89,33 +89,27 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
   let generateCharacteristicsObject = () => {
     charsToSend = {};
     for (var key in reviewMeta.characteristics) {
-      charsToSend[key] = reviewMeta.characteristics[key];
-    }
-    characteristicsArray.forEach(char => {
-      if (charsToSend[char] !== undefined) {
-        if (char === 'Size') {
-          charsToSend[char].value = Number(SizeRatingSelection);
-        }
-        if (char === 'Width') {
-          charsToSend[char].value = Number(WidthRatingSelection);
-        }
-        if (char === 'Comfort') {
-          charsToSend[char].value = Number(ComfortRatingSelection);
-        }
-        if (char === 'Quality') {
-          charsToSend[char].value = Number(QualityRatingSelection);
-        }
-        if (char === 'Length') {
-          charsToSend[char].value = Number(LengthRatingSelection);
-        }
-        if (char === 'Fit') {
-          charsToSend[char].value = Number(FitRatingSelection);
-        }
+      if (key === 'Size') {
+        charsToSend[reviewMeta.characteristics[key].id] = Number(SizeRatingSelection);
       }
-    });
-    // console.log(charsToSend);
-
+      if (key === 'Width') {
+        charsToSend[reviewMeta.characteristics[key].id] = Number(WidthRatingSelection);
+      }
+      if (key === 'Comfort') {
+        charsToSend[reviewMeta.characteristics[key].id] = Number(ComfortRatingSelection);
+      }
+      if (key === 'Quality') {
+        charsToSend[reviewMeta.characteristics[key].id] = Number(QualityRatingSelection);
+      }
+      if (key === 'Length') {
+        charsToSend[reviewMeta.characteristics[key].id] = Number(LengthRatingSelection);
+      }
+      if (key === 'Fit') {
+        charsToSend[reviewMeta.characteristics[key].id] = Number(FitRatingSelection);
+      }
+    }
   };
+
 
   let sendNewReview = () => {
     generateCharacteristicsObject();
@@ -132,7 +126,7 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
     console.log('summary: ', reviewSummary.value);
     console.log('nickname: ', reviewNickname.value);
     console.log('email: ', reviewEmail.value);
-    // console.log(charsToSend);
+    console.log(charsToSend);
     if (productRating === 0) {
       alert('Please select an Overall Rating for this product');
       return;
@@ -161,15 +155,8 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
       'recommend': doYouRecommendSelection,
       'name': reviewNickname.value,
       'email': reviewEmail.value,
-      // 'photos': ['http://placecorgi.com/250'],
-      'characteristics': {
-        '133334': Number(SizeRatingSelection),
-        '133333': Number(WidthRatingSelection),
-        '133335': Number(ComfortRatingSelection),
-        '133336': Number(QualityRatingSelection),
-        '133337': Number(LengthRatingSelection),
-        '133338': Number(FitRatingSelection)
-      }
+      'photos': ['http://placecorgi.com/250'],
+      'characteristics': charsToSend
     })
       .then(res => {
         console.log(res);
@@ -190,8 +177,10 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
       <div className="reviewAdd">
         <div className="gridContainer2Col">
           <div className="gridItemLeft">
-            <h2>Write Your Review</h2>
-            <h4>About the [Product Name Here]</h4>
+            <div className="reviewPadBottom">
+              <h2>Write Your Review</h2>
+              <h4>About the [Product Name Here]</h4>
+            </div>
           </div>
           <div className="gridItemRight">
             <h1 className="reviewPointer" onClick={closeAddReviewWindow}>X</h1>
@@ -199,36 +188,53 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
         </div>
         {/* Start Review Form */}
         <div id="reviewAddForm">
-          <p>Overall Rating *</p>
-          <AddAReviewStars setProductRating={setProductRating} />
-          <p>Do you recommend this product? *</p>
-          <div className="reviewStarsContainer">
-            <div onChange={doYouRecommend} className="reviewInlineBlock">
-              <input type="radio" id="recommendYes" name="reviewRecommend" value={true}></input>
-              <label htmlFor="recommendYes">Yes</label>
-            </div>
-            <div onChange={doYouRecommend} className="reviewInlineBlock">
-              <input type="radio" id="recommendNo" name="reviewRecommend" value={false}></input>
-              <label htmlFor="recommendNo">No</label>
+          <div className="reviewPadBottom">
+            <p>Overall Rating *</p>
+            <AddAReviewStars setProductRating={setProductRating} />
+          </div>
+          <div className="reviewPadBottom">
+            <p>Do you recommend this product? *</p>
+            <div className="reviewStarsContainer">
+              <div onChange={doYouRecommend} className="reviewInlineBlock">
+                <input type="radio" id="recommendYes" name="reviewRecommend" value={true}></input>
+                <label htmlFor="recommendYes">Yes</label>
+              </div>
+              <div onChange={doYouRecommend} className="reviewInlineBlock">
+                <input type="radio" id="recommendNo" name="reviewRecommend" value={false}></input>
+                <label htmlFor="recommendNo">No</label>
+              </div>
             </div>
           </div>
           <p>Characteristics *</p>
           <AddAReviewCharacteristics sizeRating={sizeRating} widthRating={widthRating} comfortRating={comfortRating} qualityRating={qualityRating} lengthRating={lengthRating} fitRating={fitRating} reviewMeta={reviewMeta} scrape={scrape}/>
-          <p>Review Summary</p>
-          <textarea id="reviewSummary" name="reviewSummary" rows="2" cols="50" maxLength="60" placeholder="Example: Best purchase ever!"></textarea>
-          <p>Review body *</p>
-          <textarea id="reviewBody" name="reviewBody" rows="5" cols="100" maxLength="1000" placeholder="Why did you like the product or not?" onInput={minimumCharacterCount}></textarea>
-          <div><p id="reviewBodyMin">{charCount}</p></div>
-          <p>Upload Photo(s)</p>
-          <input type="file" multiple/>
-          <p>What is your nickname *</p>
-          <textarea id="reviewNickname" name="reviewNickname" col="50" rows="1" maxLength="21" placeholder="Example: jackson11!"></textarea>
-          <p>For privacy reasons, do not use your full nae or email address</p>
-          <br/>
-          <p>Your Email *</p>
-          <textarea id="reviewEmail" name="reviewEmail" cols="50" rows="1" maxLength="50" placeholder="Example: jackson11@email.com"></textarea>
-          <p>For authentication reasons, you will not be emailed</p>
-          <button onClick={sendNewReview}>Submit</button>
+          <div className="reviewPadBottom">
+            <p>Review Summary</p>
+            <textarea id="reviewSummary" name="reviewSummary" rows="2" cols="50" maxLength="60" placeholder="Example: Best purchase ever!"></textarea>
+          </div>
+          <div className="reviewPadBottom">
+            <p>Review body *</p>
+            <textarea id="reviewBody" name="reviewBody" rows="5" cols="100" maxLength="1000" placeholder="Why did you like the product or not?" onInput={minimumCharacterCount}></textarea>
+            <div><p id="reviewBodyMin">{charCount}</p></div>
+          </div>
+          <div className="reviewPadBottom">
+            <p>Upload Photo(s)</p>
+            <input type="file"/>
+          </div>
+          <div className="reviewPadBottom">
+            <p>What is your nickname *</p>
+            <textarea id="reviewNickname" name="reviewNickname" col="50" rows="1" maxLength="21" placeholder="Example: jackson11!"></textarea>
+          </div>
+          <div className="reviewPadBottom">
+            <p>Your Email *</p>
+            <textarea id="reviewEmail" name="reviewEmail" cols="50" rows="1" maxLength="50" placeholder="Example: jackson11@email.com"></textarea>
+            <p>For privacy reasons, do not use your full nae or email address</p>
+            <p>For authentication reasons, you will not be emailed</p>
+          </div>
+          <div className="gridContainer1Col">
+            <div className="gridItemCenter">
+              <button className="bottom-btn" onClick={sendNewReview}>Submit</button>
+            </div>
+          </div>
         </div>
         {/* End Review Form */}
       </div>

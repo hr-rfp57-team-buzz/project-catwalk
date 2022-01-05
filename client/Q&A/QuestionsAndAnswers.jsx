@@ -178,9 +178,6 @@ class QuestionsAndAnswers extends React.Component {
         <div className='questions-answers'>
           <div className='questions-list'>
             <QuestionsList sort={this.sort} filtered={this.state.filtered} questions={this.state.questions} prodName={this.state.productName}/>
-          </div>
-        </div>
-          <>
             {this.state.allQuestions.length ?
               <>
                 <MoreAnsweredQs prodId={this.state.productId} />
@@ -190,6 +187,9 @@ class QuestionsAndAnswers extends React.Component {
                   <AddQuestion prodName={this.state.productName}/>
                 </div>
             }
+          </div>
+        </div>
+          <>
           </>
       </>
     );

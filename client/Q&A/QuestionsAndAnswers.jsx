@@ -10,20 +10,27 @@ import Question from './Question.jsx';
 
 
 class QuestionsAndAnswers extends React.Component {
-  // const [question, setQuestion] = useState([]);
   constructor(props) {
     super(props);
 
     this.state = {
       allQuestions: [],
       questions: [],
+      filtered: [],
       count: 1,
-      productId: 40345,
+      productId: 40433,
       productName: '',
+      query: '',
     };
     this.getQuestions = this.getQuestions.bind(this);
     this.getAllQuestions = this.getAllQuestions.bind(this);
     this.getProdName = this.getProdName.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.filterQuestions = this.filterQuestions.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.searchOnInput = this.searchOnInput.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.sort = this.sort.bind(this);
   }
 
   static contextType = AppContext;
@@ -36,8 +43,73 @@ class QuestionsAndAnswers extends React.Component {
     const [productId, setProductId] = this.context;
   }
 
-  filterQuestions = () => {
+  sort = (answers) => {
+    let arrayCopy = answers.slice();
+    arrayCopy.sort((a, b) => (a[1].helpfulness > b[1].helpfulness) ? -1 : 1);
+    arrayCopy.sort((a) => (a[1].name === 'Seller') ? -1 : 1);
+    // setAnswers(arrayCopy);
+    return arrayCopy;
+  }
 
+  handleDelete = (e) => {
+    let questionsCopy = this.state.allQuestions.slice(0, 4);
+    console.log('questionsCopy: ', questionsCopy);
+    console.log('query: ', this.state.query);
+    // var filterQs = this.filterQuestions();
+    console.log('filtered in handleSubmit', filterQs);
+    if (this.state.query === '' || this.state.query.length < 3){
+      this.setState({
+        questions: questionsCopy
+      })
+    }
+  }
+
+  searchOnInput = (e) => {
+    let questionsCopy = this.state.allQuestions.slice(0, 4);
+    var filterQs = this.filterQuestions();
+    console.log('filtered in handleSubmit', filterQs);
+    if (filterQs && this.state.query.length >= 3) {
+      this.setState({
+        questions: filterQs
+      });
+    } else {
+      this.setState({
+        questions: questionsCopy
+      })
+    }
+  }
+
+  handleSubmit = (e) => {
+    let questionsCopy = this.state.allQuestions.slice(0, 4);
+    e.preventDefault();
+    var filterQs = this.filterQuestions();
+    console.log('filtered in handleSubmit', filterQs);
+    if (filterQs) {
+      this.setState({
+        questions: filterQs
+      });
+    } else {
+      this.setState({
+        questions: questionsCopy
+      })
+    }
+  }
+
+   filterQuestions = () => {
+    var query = this.state.query.toLowerCase();
+    console.log('query', query);
+    if (query) {
+      var filteredQs = this.state.allQuestions.filter(question =>
+        question.question_body.toLowerCase().includes(query));
+    }
+    console.log('filtered', filteredQs);
+    return filteredQs;
+  }
+
+  handleInput = (e) => {
+    this.setState({
+      query: e.target.value
+    })
   }
 
   getProdName = (product_id) => {
@@ -68,7 +140,6 @@ class QuestionsAndAnswers extends React.Component {
       if (response.data.results.length) {
         this.getAllQuestions(this.state.productId, this.state.count)
       }
-      console.log('Response in getAllQuestions: ', response);
       response.data.results.map(question =>
         this.setState({
           allQuestions: [...this.state.allQuestions, question],
@@ -99,28 +170,27 @@ class QuestionsAndAnswers extends React.Component {
       console.error('Error! ', err);
     });
   }
-  // useEffect(() => {
-  //   getQuestions(productId);
-  // }, []);
 
   render() {
     return (
       <>
-        <SearchBar />
-        <div className="questions-list">
-          <QuestionsList questions={this.state.questions} prodName={this.state.productName}/>
+        <SearchBar allQuestions={this.state.allQuestions} handleInput={this.  handleInput} handleSearch={this.filterQuestions} handleSubmit={this.handleSubmit} searchOnInput={this.searchOnInput} handleDelete={this.handleDelete}/>
+        <div className='questions-answers'>
+          <div className='questions-list'>
+            <QuestionsList sort={this.sort} filtered={this.state.filtered} questions={this.state.questions} prodName={this.state.productName}/>
+          </div>
         </div>
-        <>
-          {this.state.allQuestions.length ?
-            <>
-              <MoreAnsweredQs prodId={this.state.productId} />
-              <AddQuestion />
-            </>
-            : <div className='no-questions'>
-                <AddQuestion />
-              </div>
-          }
-        </>
+          <>
+            {this.state.allQuestions.length ?
+              <>
+                <MoreAnsweredQs prodId={this.state.productId} />
+                <AddQuestion prodName={this.state.productName}/>
+              </>
+              : <div className='no-questions'>
+                  <AddQuestion prodName={this.state.productName}/>
+                </div>
+            }
+          </>
       </>
     );
   }

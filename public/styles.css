@@ -201,11 +201,6 @@ h1 {
   height: 100%;
 }
 
-#questions-answers {
-  display: grid;
-  padding-bottom: 10px;
-}
-
 .accordion-content {
   height: 440px;
   width: 100%;
@@ -327,17 +322,31 @@ h1 {
   width: 50px;
 }
 
-
 .questions {
   margin-top: 20px;
 }
-
- #line {
-   border-left: 2px solid gray;
-   height: 18px;
-   padding-left: 5px;
+.questions-answers {
+  height: 440px;
+  width: 100%;
+  overflow-x:auto;
 }
 
+.questionCard {
+  background-color: white;
+  border-radius: 0%;
+  border-width: medium;
+}
+
+#line {
+  border-left: 2px solid gray;
+  height: 18px;
+  padding-left: 5px;
+}
+
+#questions-answers {
+  display: grid;
+  padding-bottom: 10px;
+}
 
 /* .question-header {
 } */
@@ -345,11 +354,6 @@ h1 {
 /* .question-list {
 } */
 
-.questionCard {
-  background-color: white;
-  border-radius: 0%;
-  border-width: medium;
-}
 
 
 

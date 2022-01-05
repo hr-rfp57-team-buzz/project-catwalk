@@ -47,6 +47,7 @@ class MoreAnsweredQs extends React.Component {
     .then((response) => {
       console.log('Response in MoreAnsweredQs: ', response);
       if (response.data.results.length === 0) {
+        this.handleShow();
         this.setState({ allQuestions: []})
       }
       response.data.results.map(question =>
@@ -67,11 +68,11 @@ class MoreAnsweredQs extends React.Component {
           ) : null
         }
           <form>
-            <input className='bottom-btn' type="submit" value="More Answered Question"
-            onClick={ (e) => {
+            {this.state.showButton ? <input className='bottom-btn' type="submit"     value="More Answered Question" onClick={ (e) => {
               this.getMoreQs(this.props.prodId, this.state.count, e);
               this.increasePage();
             }}/>
+            :null}
           </form>
           {/* <>
           <button className='bottom-btn'

@@ -11,6 +11,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
   let [responseFromSellerMessage, setResponseFromSellerMessage] = useState(null);
   let [newDate, setNewDate] = useState('Loading...');
   let [reviewHelpNum, setReviewHelpNum] = useState('');
+  let [recommendedReview, setRecommendedReview] = useState(<></>);
 
   const [productId] = useContext(AppContext);
 
@@ -58,6 +59,17 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
       });
   };
 
+  let isThisARecommendedProduct = () => {
+    if (!scrapeReview) {
+      return;
+    } else {
+      setRecommendedReview(<></>);
+      if (review.recommend === true) {
+        setRecommendedReview(<span className="reviewSlider">  ✓  </span>);
+      }
+    }
+  };
+
 
   let createPhotoArray = () => {
     if (!scrapeReview) {
@@ -73,7 +85,10 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
     generateSellerResponse();
     setNewDate((new Date(review.date)).toDateString().slice(4));
     setReviewHelpNum(review.helpfulness);
+    isThisARecommendedProduct();
   }, [scrapeReview]);
+
+
 
   return (
 
@@ -83,7 +98,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
           <ReviewStars review={review} scrapeReview={scrapeReview} starIndex={starIndex} />
         </div>
         <div className="gridItemRight">
-          <sub>{review.reviewer_name}, {newDate}</sub>
+          <sub>{review.reviewer_name} {recommendedReview}, {newDate}</sub>
         </div>
       </div>
       <h4>{review.summary}</h4>
@@ -103,7 +118,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
       </div>
       <br/>
       <p>Was this review helpful? ({reviewHelpNum})</p>
-      <sub id={`reviewHelpful${starIndex}`}><i><span className="reviewPointerRed" value='Yes' onClick={wasThisReviewHelpful}>YES <i class="fas fa-thumbs-up"></i></span><span> || </span> <span value="No" className="reviewPointerRed" onClick={reportReview}>NO (Report Review)</span> </i></sub>
+      <sub id={`reviewHelpful${starIndex}`}><i><span id={`reviewHelpful${starIndex}Yes`} className="reviewPointerRed" value='Yes' onClick={wasThisReviewHelpful}>YES <i class="fas fa-thumbs-up"></i></span><span> || </span> <span value="No" className="reviewPointerRed" onClick={reportReview}>NO (Report Review)</span> </i></sub>
       <br/><br/>
       <hr/>
       <br/><br/>

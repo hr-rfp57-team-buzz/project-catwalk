@@ -8,6 +8,7 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
 
   let [reviewListArray, setReviewListArray] = useState([]);
   let [numberOfReviews, setNumberOfReviews] = useState('Loading...');
+  let [recommendedReview, setRecommendedReview] = useState('');
 
 
   let window = document.getElementById('reviewAddWindow');

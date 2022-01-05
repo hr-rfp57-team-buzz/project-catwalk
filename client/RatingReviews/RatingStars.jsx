@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-let RatingStars = ({averageRating, scrape}) => {
+let RatingStars = ({averageRating, scrape, module}) => {
 
   let classStripper = (elem, classArray) => {
     classArray.forEach(function(item) {
@@ -12,11 +12,11 @@ let RatingStars = ({averageRating, scrape}) => {
   let stripArray = ['reviewStarsFill', 'reviewStarsFill75', 'reviewStarsFill50', 'reviewStarsFill25'];
 
 
-  let star5 = document.getElementById('5star');
-  let star4 = document.getElementById('4star');
-  let star3 = document.getElementById('3star');
-  let star2 = document.getElementById('2star');
-  let star1 = document.getElementById('1star');
+  let star5 = document.getElementById(`5star${module}`);
+  let star4 = document.getElementById(`4star${module}`);
+  let star3 = document.getElementById(`3star${module}`);
+  let star2 = document.getElementById(`2star${module}`);
+  let star1 = document.getElementById(`1star${module}`);
 
   let fillStars = (averageRating) => {
     classStripper(star5, stripArray);
@@ -128,31 +128,31 @@ let RatingStars = ({averageRating, scrape}) => {
       <div className="reviewInlineBlock">
         <div className="reviewStars">
           <i className="fas fa-star reviewStarsNoFill"></i>
-          <i id='1star' className="fas fa-star"></i>
+          <i id={`1star${module}`} className="fas fa-star"></i>
         </div>
       </div>
       <div className="reviewInlineBlock">
         <div className="reviewStars">
           <i className="fas fa-star reviewStarsNoFill"></i>
-          <i id='2star' className="fas fa-star"></i>
+          <i id={`2star${module}`} className="fas fa-star"></i>
         </div>
       </div>
       <div className="reviewInlineBlock">
         <div className="reviewStars">
           <i className="fas fa-star reviewStarsNoFill"></i>
-          <i id='3star' className="fas fa-star"></i>
+          <i id={`3star${module}`} className="fas fa-star"></i>
         </div>
       </div>
       <div className="reviewInlineBlock">
         <div className="reviewStars">
           <i className="fas fa-star reviewStarsNoFill"></i>
-          <i id='4star' className="fas fa-star"></i>
+          <i id={`4star${module}`} className="fas fa-star"></i>
         </div>
       </div>
       <div className="reviewInlineBlock">
         <div className="reviewStars">
           <i className="fas fa-star reviewStarsNoFill"></i>
-          <i id='5star' className="fas fa-star"></i>
+          <i id={`5star${module}`} className="fas fa-star"></i>
         </div>
       </div>
     </div>

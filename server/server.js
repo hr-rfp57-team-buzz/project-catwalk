@@ -100,6 +100,7 @@ app.get('/reviews/:product_id', (req, res) => {
     },
     params: {
       'product_id': id,
+      'count': 25
     }
   })
     .then((response) => {

@@ -18,15 +18,14 @@ const Question = (props) => {
               </h5>
             <div id="line"></div>
             <a style={{ textDecoration: 'underline', cursor: 'pointer'}} className="top-line links" onClick={() => { setVisible(!isVisible)} }>Add Answer</a>
-            {isVisible ? <AddAnswerModal prodName={props.prodName} qBody={props.question.question_body}/> : null}
           </span>
         </div>
+            {isVisible ? <AddAnswerModal prodName={props.prodName} qBody={props.question.question_body}/> : null}
         <div className="a-line">
-          <AnswersList answers={Object.entries(props.question.answers)} />
+          <AnswersList sort={props.sort} answers={Object.entries(props.question.answers)} />
         </div>
       </div>
     </>
-
   )
 };
 

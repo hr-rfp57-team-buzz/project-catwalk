@@ -20,8 +20,7 @@ class MoreAnsweredQs extends React.Component {
     this.handleShow = this.handleShow.bind(this);
   }
 
-  handleShow() {
-    // if
+  handleShow = () => {
     this.setState((prevState) => {
       return {
         showButton: !prevState.showButton
@@ -29,7 +28,7 @@ class MoreAnsweredQs extends React.Component {
     });
   }
 
-  increasePage() {
+  increasePage = () => {
     if (this.state.allQuestions.length !== 0) {
       console.log('Hi')
     }
@@ -47,6 +46,7 @@ class MoreAnsweredQs extends React.Component {
     .then((response) => {
       console.log('Response in MoreAnsweredQs: ', response);
       if (response.data.results.length === 0) {
+        this.handleShow();
         this.setState({ allQuestions: []})
       }
       response.data.results.map(question =>
@@ -60,27 +60,20 @@ class MoreAnsweredQs extends React.Component {
   }
   render() {
     return (
-      <>
+      <div className='more-questions'>
         {this.state.toRender.length ?
           this.state.toRender.map(question =>
             <Question question={question}/>
           ) : null
         }
           <form>
-            <input className='bottom-btn' type="submit" value="More Answered Question"
-            onClick={ (e) => {
+            {this.state.showButton ? <input className='bottom-btn' type="submit"     value="More Answered Question" onClick={ (e) => {
               this.getMoreQs(this.props.prodId, this.state.count, e);
               this.increasePage();
             }}/>
+            :null}
           </form>
-          {/* <>
-          <button className='bottom-btn'
-          onClick={ () => {
-            this.getMoreQs(this.props.prodId, this.state.count);
-            this.increasePage();
-          }}> More Answered Questions</button>
-          </> */}
-      </>
+      </div>
     )
   }
 }

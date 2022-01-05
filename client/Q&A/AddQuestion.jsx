@@ -5,9 +5,8 @@ let AddQuestion = (props) => {
   const [show, setShow] = useState(false);
   return (
     <>
-      {show ? 'Hello' : 'Bye'}
-      <button className='bottom-btn'>Add A Question +</button>
-      <AddQModal prodName={props.prodName}/>
+      {show ? <AddQModal prodName={props.prodName}/> : null}
+      <button onClick={() => { console.log('click'); setShow(!show); }} className='bottom-btn'>Add A Question +</button>
     </>
   )
 }

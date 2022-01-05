@@ -1,7 +1,7 @@
 import React from 'react';
 
 let AddQModal = (props) => (
-  <div>
+  <div className='answerModal'>
     <form>
       <h1>Ask Your Question</h1>
       <h3>About the {props.prodName}</h3>
@@ -21,5 +21,4 @@ let AddQModal = (props) => (
     </form>
   </div>
 )
-
 export default AddQModal;

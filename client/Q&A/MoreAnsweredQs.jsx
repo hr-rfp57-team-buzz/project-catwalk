@@ -20,8 +20,7 @@ class MoreAnsweredQs extends React.Component {
     this.handleShow = this.handleShow.bind(this);
   }
 
-  handleShow() {
-    // if
+  handleShow = () => {
     this.setState((prevState) => {
       return {
         showButton: !prevState.showButton
@@ -29,7 +28,7 @@ class MoreAnsweredQs extends React.Component {
     });
   }
 
-  increasePage() {
+  increasePage = () => {
     if (this.state.allQuestions.length !== 0) {
       console.log('Hi')
     }
@@ -61,7 +60,7 @@ class MoreAnsweredQs extends React.Component {
   }
   render() {
     return (
-      <>
+      <div className='more-questions'>
         {this.state.toRender.length ?
           this.state.toRender.map(question =>
             <Question question={question}/>
@@ -74,14 +73,7 @@ class MoreAnsweredQs extends React.Component {
             }}/>
             :null}
           </form>
-          {/* <>
-          <button className='bottom-btn'
-          onClick={ () => {
-            this.getMoreQs(this.props.prodId, this.state.count);
-            this.increasePage();
-          }}> More Answered Questions</button>
-          </> */}
-      </>
+      </div>
     )
   }
 }

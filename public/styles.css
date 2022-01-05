@@ -91,12 +91,24 @@ h1 {
   visibility: visible;
 }
 
+.compMain{
+  position: absolute;
+  left: 5%
+}
+
+.compRel {
+  position: absolute;
+  right: 5%;
+}
+
 .relModalHidden {
   visibility: hidden;
 }
 
 .relModal-content {
   width: 500px;
+  border-style: solid;
+  border-radius: 6px;
   background-color: white;
 }
 
@@ -169,6 +181,12 @@ h1 {
   background-color: white;
 }
 
+.outfitPlus {
+  font-size: 44px;
+  position: relative;
+  top: 35%;
+}
+
 .relX {
   position: absolute;
   top: 5%;
@@ -176,9 +194,18 @@ h1 {
   background-color: white;
 }
 
-.relCheck {
+.relCheckRight {
   position: absolute;
   right: 5%;
+}
+
+.relCheckLeft {
+  position: absolute;
+  left: 5%;
+}
+
+.relFeat {
+  padding-bottom: 15px;
 }
 
 

@@ -12,7 +12,10 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
   let [newDate, setNewDate] = useState('Loading...');
   let [reviewHelpNum, setReviewHelpNum] = useState('');
   let [recommendedReview, setRecommendedReview] = useState(<></>);
-
+  let [doYouRecommend, setDoYouRecommend] = useState('Yes');
+  let [doYouReport, setDoYouReport] = useState('No (Report Review)');
+  let [dyRecFlag, setDyRecFlag] = useState(false);
+  let [dyRepFlag, setDyRepFlag] = useState(false);
   const [productId] = useContext(AppContext);
 
   // let newDate = (new Date(review.date)).toDateString().slice(4);
@@ -34,11 +37,15 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
   };
 
   let wasThisReviewHelpful = (e) => {
+    if (dyRecFlag) {
+      return;
+    }
     console.log(review.review_id);
     axios.put(`/reviews/${review.review_id}/helpful`)
       .then(res => {
         console.log(res);
-        e.target.innerHTML = 'Thank you for your feedback!';
+        // e.target.innerHTML = 'Thank you for your feedback!';
+        setDoYouRecommend('Thank you for your feedback!');
         let updatedScore = reviewHelpNum;
         updatedScore++;
         setReviewHelpNum(updatedScore);
@@ -46,17 +53,23 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
       .catch(err => {
         console.log(err);
       });
+    setDyRecFlag(true);
   };
 
   let reportReview = (e) => {
+    if (dyRepFlag) {
+      return;
+    }
     axios.put(`/reviews/${review.review_id}/report`)
       .then(res => {
         console.log(res);
-        e.target.innerHTML = 'Review Reported!';
+        // e.target.innerHTML = 'Review Reported!';
+        setDoYouReport('Review Reported');
       })
       .catch(err => {
         console.log(err);
       });
+    setDyRepFlag(true);
   };
 
   let isThisARecommendedProduct = () => {
@@ -88,6 +101,13 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
     isThisARecommendedProduct();
   }, [scrapeReview]);
 
+  useEffect(() => {
+    setDoYouRecommend('Yes');
+    setDoYouReport('No (Report Review)');
+    setDyRecFlag(false);
+    setDyRepFlag(false);
+  }, [productId]);
+
 
 
   return (
@@ -118,7 +138,7 @@ let ReviewListEntry = ({review, scrapeReview, starIndex}) => {
       </div>
       <br/>
       <p>Was this review helpful? ({reviewHelpNum})</p>
-      <sub id={`reviewHelpful${starIndex}`}><i><span id={`reviewHelpful${starIndex}Yes`} className="reviewPointerRed" value='Yes' onClick={wasThisReviewHelpful}>YES <i class="fas fa-thumbs-up"></i></span><span> || </span> <span value="No" className="reviewPointerRed" onClick={reportReview}>NO (Report Review)</span> </i></sub>
+      <sub id={`reviewHelpful${starIndex}`}><i><span id={`reviewHelpful${starIndex}Yes`} className="reviewPointerRed" value='Yes' onClick={wasThisReviewHelpful}>{doYouRecommend} <i class="fas fa-thumbs-up"></i></span><span> || </span> <span value="No" className="reviewPointerRed" onClick={reportReview}>{doYouReport}</span> </i></sub>
       <br/><br/>
       <hr/>
       <br/><br/>

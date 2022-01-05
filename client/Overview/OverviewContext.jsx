@@ -8,8 +8,6 @@ export const OverviewContext = createContext();
 export const OverviewProvider = (props) => {
 
   const [productId, setProductId] = useContext(AppContext);
-  console.log('working!!!', productId);
-
 
   const defaultProduct = {
     id: '',
@@ -42,9 +40,12 @@ export const OverviewProvider = (props) => {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:3000/products')
+    if (productId === null) {
+      return;
+    }
+    axios.get(`http://localhost:3000/products/${productId}`)
       .then((res) => {
-        productPending = Object.assign({}, res.data[0]);
+        productPending = Object.assign({}, res.data);
         const id = productPending.id;
         return axios.get(`http://localhost:3000/products/${id}/styles`);
       })
@@ -63,7 +64,7 @@ export const OverviewProvider = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [productId]);
 
   return (
     <OverviewContext.Provider value={[product, updateProduct]}>

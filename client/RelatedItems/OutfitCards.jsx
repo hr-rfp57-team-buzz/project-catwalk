@@ -28,7 +28,7 @@ class OutfitCards extends React.Component {
       return (
         <div>
           <div className="Card" onClick={this.clickHandler} >
-            <RelatedModal features={this.props.data ? this.props.data.features : []}show="hidden"/>
+
             <span onClick={() => console.log('hi')}>
               <i class="fas fa-x relX"></i>
             </span>
@@ -48,7 +48,7 @@ class OutfitCards extends React.Component {
       return (
         <div>
           <div className="Card" onClick={this.clickHandler} >
-            <RelatedModal features={this.props.data ? this.props.data.features : []}show="visible"/>
+
             <span onClick={() => console.log('hi')}>
               <i class="fal fa-x relX"></i>
             </span>

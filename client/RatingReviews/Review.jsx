@@ -60,12 +60,12 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
     <div className="review">
       <AddAReview window={window} prodId={prodId} reviewMeta={reviewMeta} scrape={scrape}/>
       <p><span id="numberOfReviews">{numberOfReviews}</span> reviews, sorted by <select onChange={resortListBy} name='sortConditions' id='sortCondition'>
-        <option value=''>Default</option>
+        <option value='relevant'>Relevant</option>
         <option value='helpful'>Helpful</option>
         <option value='newest'>Newest</option>
-        <option value='relevant'>Relevant</option>
       </select></p>
       <hr />
+      <div className="reviewPadBottom"></div>
       <div className="reviewCard">
         {reviews.map((review, index) => {
           if (index <= 1) {

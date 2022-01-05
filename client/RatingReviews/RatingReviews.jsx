@@ -12,7 +12,7 @@ let RatingReview = () => {
   let [scrape, setScrape] = useState(false);
   let [scrapeReview, setScrapeReview] = useState(false);
   let [totalRatings, setTotalRatings] = useState(0);
-  let [listResort, setListResort] = useState('');
+  let [listResort, setListResort] = useState('relevant');
   // let [prodId, setProdId] = useState(40344);
   const [productId, setProductId, wasIClicked] = useContext(AppContext);
 

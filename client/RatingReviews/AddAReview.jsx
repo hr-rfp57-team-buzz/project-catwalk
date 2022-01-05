@@ -18,7 +18,7 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
   let [productRating, setProductRating] = useState(0);
   let [minCharCount, setMinCharCount] = useState(50);
 
-  let [charCount, setCharCount] = useState( `Minimum required characters left: ${minCharCount}` );
+  let [charCount, setCharCount] = useState(  `Minimum required characters left: ${minCharCount}` );
 
   let reviewSummary = document.getElementById('reviewSummary');
   let reviewBody = document.getElementById('reviewBody');

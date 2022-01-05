@@ -4,7 +4,7 @@ import AddAReview from './AddAReview.jsx';
 import axios from 'axios';
 import TOKEN from '../../config.js';
 
-let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMeta, scrape}) => {
+let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMeta, scrape, setListResort}) => {
 
   let [reviewListArray, setReviewListArray] = useState([]);
   let [numberOfReviews, setNumberOfReviews] = useState('Loading...');
@@ -19,7 +19,7 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
       'date': '2021-09-22T00:00:00.000Z',
       'reviewer_name': 'tester',
       'helpfulness': 1,
-      'photos': '[{…}, {…}]'
+      'photos': '[]'
     },
     'scrapeReview': true,
     'starIndex': 3
@@ -33,8 +33,7 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
   };
 
   let resortListBy = (e) => {
-    console.log(e.target.value);
-    e.target.value;
+    setListResort(e.target.value);
   };
 
   let revealHiddenReviews = () => {
@@ -61,10 +60,10 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
     <div className="review">
       <AddAReview window={window} prodId={prodId} reviewMeta={reviewMeta} scrape={scrape}/>
       <p><span id="numberOfReviews">{numberOfReviews}</span> reviews, sorted by <select onChange={resortListBy} name='sortConditions' id='sortCondition'>
-        <option value='Helpful'>Default</option>
-        <option value='Helpful'>Helpful</option>
-        <option value='Newest'>Newest</option>
-        <option value='Relevant'>Relevant</option>
+        <option value=''>Default</option>
+        <option value='helpful'>Helpful</option>
+        <option value='newest'>Newest</option>
+        <option value='relevant'>Relevant</option>
       </select></p>
       <hr />
       <div className="reviewCard">

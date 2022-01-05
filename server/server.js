@@ -93,6 +93,8 @@ app.get('/products/:product_id/related', (req, res) => {
 app.get('/reviews/:product_id', (req, res) => {
   let id = req.params.product_id;
   let endpoint = url + 'reviews/';
+  let reviewSort = req.headers.sort;
+
 
   axios.get(endpoint, {
     headers: {
@@ -100,7 +102,8 @@ app.get('/reviews/:product_id', (req, res) => {
     },
     params: {
       'product_id': id,
-      'count': 25
+      'sort': reviewSort,
+      'count': 15
     }
   })
     .then((response) => {

@@ -12,6 +12,7 @@ let RatingReview = () => {
   let [scrape, setScrape] = useState(false);
   let [scrapeReview, setScrapeReview] = useState(false);
   let [totalRatings, setTotalRatings] = useState(0);
+  let [listResort, setListResort] = useState('');
   // let [prodId, setProdId] = useState(40344);
   const [productId, setProductId, wasIClicked] = useContext(AppContext);
 
@@ -32,7 +33,11 @@ let RatingReview = () => {
       return;
     }
     setScrapeReview(false);
-    axios.get(`/reviews/${prodId}`)
+    axios.get(`/reviews/${prodId}`, {
+      headers: {
+        'sort': listResort
+      }
+    })
       .then((res) => {
         setReviews(res.data.results);
         setScrapeReview(true);
@@ -71,10 +76,14 @@ let RatingReview = () => {
     getProdReviewMeta(productId);
   }, [productId]);
 
+  useEffect(() => {
+    getProdReviews(productId);
+  }, [listResort]);
+
   return (
     <div onClick={wasIClicked} id="ratings-reviews">
       <Rating reviewMeta={reviewMeta} averageRating={averageRating} scrape={scrape} totalRatings={totalRatings}/>
-      <Review reviews={reviews} changeProdId={changeProdId} scrapeReview={scrapeReview} prodId={productId} reviewMeta={reviewMeta} scrape={scrape}/>
+      <Review reviews={reviews} changeProdId={changeProdId} scrapeReview={scrapeReview} prodId={productId} reviewMeta={reviewMeta} scrape={scrape} setListResort={setListResort}/>
     </div>
   );
 

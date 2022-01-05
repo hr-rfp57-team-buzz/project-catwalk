@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import RelatedModal from './RelatedItems/RelatedModal';
 import Cards from './RelatedItems/Cards';
 import OutfitCards from './RelatedItems/OutfitCards';
+import AddOutfit from './RelatedItems/AddOutfit';
+import {AppContext} from './AppProvider';
 
 
 var Related = () => {
@@ -11,10 +13,12 @@ var Related = () => {
   const [relPictures, setRelPictures] = useState([]);
   const [relReviews, setRelReviews] = useState([]);
   const [relProdId, setRelProdId] = useState([]);
-  const [initialId, setInitialId] = useState(40344);
+  const [mainFeatures, setMainFeatures] = useState({});
+  const [initialId, setInitialId] = useContext(AppContext);
   const [completeRelated, setCompleteRelated] = useState([]);
   const [doneLoading, setDoneLoading] = useState(0);
   const [showModal, setShowModal] = useState('hidden');
+  const [outfit, setOutfit] = useState([]);
 
 
   const stylesRelated = {
@@ -28,6 +32,7 @@ var Related = () => {
     visibility: `${showModal}`
   };
 
+  //Finish completing the full data set by adding in review average and pictures from their hooks
   let showState = () => {
     var temp = completeRelated;
     for (var i = 0; i < temp.length; i++) {
@@ -90,6 +95,41 @@ var Related = () => {
       });
   };
 
+  let getMainFeatures = (id) => {
+    axios.get(`products/${id}`)
+      .then((res) => {
+        let temp = mainFeatures;
+        temp['name'] = res.data.name;
+        temp['features'] = res.data.features;
+        setMainFeatures(temp);
+      })
+      .then(() => {
+        axios.get(`products/${id}/styles`)
+          .then((res) => {
+            let temp = mainFeatures;
+            temp['picture'] = res.data.results[0].photos[0].thumbnail_url;
+            setMainFeatures(temp);
+          });
+      })
+      .then(() => {
+        axios.get(`/reviews/${id}/meta`)
+          .then((res) => {
+            let obj = res.data.ratings;
+            let temp = mainFeatures;
+            temp['reviews'] = (reviewAverage(obj));
+            setMainFeatures(temp);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  };
+
+
   //grabs product name, category, and price
   let getInfo = (id, index) => {
     axios.get(`products/${id}`)
@@ -99,7 +139,8 @@ var Related = () => {
           name: res.data.name,
           category: res.data.category,
           price: res.data.default_price,
-          features: res.data.features
+          features: res.data.features,
+          id: id
         };
         setCompleteRelated(temp);
       })
@@ -128,20 +169,25 @@ var Related = () => {
       });
   };
 
-
+  let updateOutfits = function(main) {
+    var temp = outfit;
+    temp.push(main);
+    temp = JSON.parse(JSON.stringify(temp));
+    setOutfit(temp);
+    setMainFeatures({});
+  };
 
 
   useEffect(() => {
-
+    getMainFeatures(initialId);
     getData(initialId, showState);
 
-  }, [doneLoading] );
+  }, [doneLoading, initialId] );
 
   //left for the carousels needs a function so they don't go further to the left than possible
   var moveLeft = function() {
     if (x < 0) {
       setX(x + 340);
-      //showState();
     }
   };
 
@@ -150,6 +196,8 @@ var Related = () => {
       setX2(x2 + 340);
     }
   };
+
+
 
 
   //changes the state of the hook responsible for modal visibility
@@ -162,6 +210,15 @@ var Related = () => {
     }
   };
 
+  //Sets the Product with the clicked card's id
+  //Flushes out the old states first, to avoid flooding
+  var idReset = function(id) {
+    setRelPictures([]);
+    setRelReviews([]);
+    setCompleteRelated([]);
+    setInitialId(id);
+  };
+
   return (
     <div>
       <i class="fas fa-arrow-right rArrow" onClick={()=>setX(x - 340)}></i>
@@ -169,14 +226,19 @@ var Related = () => {
       <div className="reel"style={stylesRelated}>
         {completeRelated.length > 0 ? completeRelated.map((data) =>
           <div>
-            <Cards data={data} show={modalHide}/>
+            <Cards data={data} show={modalHide} mainFeat={mainFeatures ? mainFeatures : []} changeId={idReset}/>
           </div>
         ) : <Cards/>}
       </div>
       <i className="lArrow" class="fas fa-arrow-left lArrow2" onClick={()=> moveLeftOutfit()}></i>
       <i className="rArrow" class="fas fa-arrow-right rArrow2" onClick={()=>setX2(x2 - 340)}></i>
       <div className="reel"style={stylesOutfit}>
-        <OutfitCards/>
+        <AddOutfit update={updateOutfits} main={mainFeatures}/>
+        {outfit.length > 0 ? outfit.map((data) =>
+          <div>
+            <OutfitCards data={data}/>
+          </div>
+        ) : <span/>}
       </div>
     </div>
   );

@@ -102,15 +102,12 @@ var Related = () => {
         temp['name'] = res.data.name;
         temp['features'] = res.data.features;
         setMainFeatures(temp);
-        console.log('Main features at 1st call', mainFeatures);
       })
       .then(() => {
         axios.get(`products/${id}/styles`)
           .then((res) => {
-            console.log('Main Features in styles',mainFeatures);
             let temp = mainFeatures;
             temp['picture'] = res.data.results[0].photos[0].thumbnail_url;
-            console.log('Maine Features after change: ', temp);
             setMainFeatures(temp);
           });
       })
@@ -172,14 +169,12 @@ var Related = () => {
       });
   };
 
-  let updateOutfits = function() {
+  let updateOutfits = function(main) {
     var temp = outfit;
-    //console.log("outfits", temp);
-    temp.push(mainFeatures);
-    //console.log("After pushing features", temp);
+    temp.push(main);
+    temp = JSON.parse(JSON.stringify(temp));
     setOutfit(temp);
-    //console.log("Now it's in outfits", outfit);
-    //setMainFeatures({});
+    setMainFeatures({});
   };
 
 
@@ -193,7 +188,6 @@ var Related = () => {
   var moveLeft = function() {
     if (x < 0) {
       setX(x + 340);
-      //showState();
     }
   };
 
@@ -239,7 +233,7 @@ var Related = () => {
       <i className="lArrow" class="fas fa-arrow-left lArrow2" onClick={()=> moveLeftOutfit()}></i>
       <i className="rArrow" class="fas fa-arrow-right rArrow2" onClick={()=>setX2(x2 - 340)}></i>
       <div className="reel"style={stylesOutfit}>
-        <AddOutfit update={updateOutfits}/>
+        <AddOutfit update={updateOutfits} main={mainFeatures}/>
         {outfit.length > 0 ? outfit.map((data) =>
           <div>
             <OutfitCards data={data}/>

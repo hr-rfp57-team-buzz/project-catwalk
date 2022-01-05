@@ -183,9 +183,8 @@ h1 {
 
 .outfitPlus {
   font-size: 44px;
-  position: fixed;
-  top: 50%;
-  left: 50%
+  position: relative;
+  top: 35%;
 }
 
 .relX {

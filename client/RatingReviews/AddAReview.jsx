@@ -110,6 +110,22 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
     }
   };
 
+  let uploadAPhoto = (e) => {
+    console.log(e.target.files);
+    let ArrBuffToBin = (buff) => {
+      var uni8 = new Unit8Array(buff);
+      return uni8.reduce((binary, uni8) => {
+        binary + uni8.toString(2), ""
+      });
+    };
+    let file = e.target.files[0];
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      let bin = e.target.result;
+      console.log(ArrBuffToBin(bin));
+    };
+  }
+
   let sendNewReview = () => {
     generateCharacteristicsObject();
     console.log('prodcutId: ', prodId);
@@ -217,7 +233,7 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
           </div>
           <div className="reviewPadBottom">
             <p>Upload Photo(s)</p>
-            <input type="file" multiple/>
+            <input type="file" onChange={uploadAPhoto}/>
           </div>
           <div className="reviewPadBottom">
             <p>What is your nickname *</p>

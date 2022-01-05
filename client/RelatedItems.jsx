@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import RelatedModal from './RelatedItems/RelatedModal';
 import Cards from './RelatedItems/Cards';
 import OutfitCards from './RelatedItems/OutfitCards';
+import {AppContext} from './AppProvider';
 
 
 var Related = () => {
@@ -11,7 +12,8 @@ var Related = () => {
   const [relPictures, setRelPictures] = useState([]);
   const [relReviews, setRelReviews] = useState([]);
   const [relProdId, setRelProdId] = useState([]);
-  const [initialId, setInitialId] = useState(40344);
+  const [mainFeatures, setMainFeatures] = useState([]);
+  const [initialId, setInitialId] = useContext(AppContext);
   const [completeRelated, setCompleteRelated] = useState([]);
   const [doneLoading, setDoneLoading] = useState(0);
   const [showModal, setShowModal] = useState('hidden');
@@ -28,6 +30,7 @@ var Related = () => {
     visibility: `${showModal}`
   };
 
+  //Finish completing the full data set by adding in review average and pictures from their hooks
   let showState = () => {
     var temp = completeRelated;
     for (var i = 0; i < temp.length; i++) {
@@ -90,6 +93,17 @@ var Related = () => {
       });
   };
 
+  let getMainFeatures = (id) => {
+    axios.get(`products/${id}`)
+      .then((res) => {
+        setMainFeatures({name: res.data.name, features: res.data.features});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
   //grabs product name, category, and price
   let getInfo = (id, index) => {
     axios.get(`products/${id}`)
@@ -99,7 +113,8 @@ var Related = () => {
           name: res.data.name,
           category: res.data.category,
           price: res.data.default_price,
-          features: res.data.features
+          features: res.data.features,
+          id: id
         };
         setCompleteRelated(temp);
       })
@@ -132,10 +147,10 @@ var Related = () => {
 
 
   useEffect(() => {
-
+    getMainFeatures(initialId);
     getData(initialId, showState);
 
-  }, [doneLoading] );
+  }, [doneLoading, initialId] );
 
   //left for the carousels needs a function so they don't go further to the left than possible
   var moveLeft = function() {
@@ -169,14 +184,14 @@ var Related = () => {
       <div className="reel"style={stylesRelated}>
         {completeRelated.length > 0 ? completeRelated.map((data) =>
           <div>
-            <Cards data={data} show={modalHide}/>
+            <Cards data={data} show={modalHide} mainFeat={mainFeatures ? mainFeatures : []} changeId={setInitialId}/>
           </div>
         ) : <Cards/>}
       </div>
       <i className="lArrow" class="fas fa-arrow-left lArrow2" onClick={()=> moveLeftOutfit()}></i>
       <i className="rArrow" class="fas fa-arrow-right rArrow2" onClick={()=>setX2(x2 - 340)}></i>
       <div className="reel"style={stylesOutfit}>
-        <OutfitCards/>
+
       </div>
     </div>
   );

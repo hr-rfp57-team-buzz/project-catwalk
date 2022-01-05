@@ -8,6 +8,22 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
 
   let [reviewListArray, setReviewListArray] = useState([]);
   let [numberOfReviews, setNumberOfReviews] = useState('Loading...');
+  let [reviewsForSorting, setReviewsForSorting] = useState([{
+    'review': {
+      'review_id': 841336,
+      'rating': 5,
+      'summary': 'Very good',
+      'recommend': true,
+      'response': null,
+      'body': 'lorem ipsum',
+      'date': '2021-09-22T00:00:00.000Z',
+      'reviewer_name': 'tester',
+      'helpfulness': 1,
+      'photos': '[{…}, {…}]'
+    },
+    'scrapeReview': true,
+    'starIndex': 3
+  }]);
 
 
   let window = document.getElementById('reviewAddWindow');
@@ -36,6 +52,7 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
 
   useEffect(() => {
     revealHiddenReviews();
+    setReviewsForSorting(reviews);
   }, [scrapeReview]);
 
 

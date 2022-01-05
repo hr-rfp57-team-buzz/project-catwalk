@@ -218,7 +218,7 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
           </div>
           <div className="reviewPadBottom">
             <p>Upload Photo(s)</p>
-            <input type="file"/>
+            <input id='uploadReviewPhoto' type="file"/>
           </div>
           <div className="reviewPadBottom">
             <p>What is your nickname *</p>

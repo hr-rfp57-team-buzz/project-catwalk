@@ -6,6 +6,7 @@ import OverviewGallery from './OverviewGallery.jsx';
 import OverviewDetails from './OverviewDetails.jsx';
 import OverviewDescription from './OverviewDescription.jsx';
 
+
 const Overview = (props) => {
   const [product, updateProduct] = useContext(OverviewContext);
   const [expandedView, setExpandedView] = useState(false);

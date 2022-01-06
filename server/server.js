@@ -189,6 +189,23 @@ app.post('/reviews', (req, res) => {
     });
 });
 
+app.post('/interactions', (req, res) => {
+  let endpoint = url + 'interactions';
+  console.log(req.body);
+  axios.post(endpoint, req.body, {
+    headers: {
+      'Authorization': TOKEN.TOKEN,
+      'Content-Type': 'application/JSON'
+    }
+  })
+    .then(response => {
+      res.end(response.body);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 // Q&A Routes
 app.get('/qa/questions', (req, res) => {
   let id = req.query.id;

@@ -2,6 +2,17 @@ h1 {
   /* color: red */
 }
 
+body .fas {
+  grid-column: 1;
+  grid-row: 1;
+  color: gray;
+}
+
+body .fa-star {
+  grid-column: 1;
+  grid-row: 1;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -391,17 +402,6 @@ h1 {
   padding-top: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-body .fas {
-  grid-column: 1;
-  grid-row: 1;
-  color: gray;
-}
-
-body .fa-star {
-  grid-column: 1;
-  grid-row: 1;
 }
 
 /* #ratings-reviews .fas {

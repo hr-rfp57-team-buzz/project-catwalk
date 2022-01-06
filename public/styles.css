@@ -212,6 +212,7 @@ h1 {
 /* Alex */
 .answerModal {
   align-self: center;
+  flex: center;
   background: white;
   background-color: whitesmoke;
   border: 1px solid #ccc;
@@ -226,6 +227,8 @@ h1 {
   padding: 25px;
   visibility: visible;
   height: 100%;
+  margin: auto;
+  z-index: 1;
 }
 
 .accordion-content {
@@ -234,28 +237,15 @@ h1 {
   overflow-x:auto;
 }
 
-.q-line {
-  display: flex;
-  justify-content: space-between;
-}
-
 .a-line {
   display: flex;
   /* justify-content: space-between; */
 }
 
-.top-links {
-  display: flex;
-  justify-content: space-around;
-  padding-right: 10px;
-}
-.top-line {
-  display: flex;
-  padding-right: 10px;
-}
-
 .bottom-btn {
   display: inline-flex;
+  float: left;
+  flex-direction: row;
   margin-left: 10px;
   background-color: white;
   border: 1px solid black;
@@ -269,6 +259,45 @@ h1 {
   left: 0;
   z-index: 2;
 }
+
+.top-line {
+  display: flex;
+  padding-right: 10px;
+}
+
+/* .add-q-btn {
+  display: inline-flex;
+  float: left;
+  flex-direction: row;
+  margin-left: 10px;
+  background-color: white;
+  border: 1px solid black;
+  width: 200px;
+  height: 50px;
+  justify-content: center;
+  padding-top:15px;
+  font-weight: bolder;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.more-q-btn {
+  display: inline-flex;
+  margin-left: 10px;
+  background-color: white;
+  border: 1px solid black;
+  width: 200px;
+  height: 50px;
+  justify-content: center;
+  padding-top:15px;
+  font-weight: bolder;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+} */
 
 .bottom-line {
   display: flex;
@@ -353,6 +382,12 @@ h1 {
   width: 50px;
 }
 
+.top-links {
+  display: flex;
+  justify-content: space-around;
+  padding-right: 10px;
+}
+
 .questions {
   margin-top: 20px;
 }
@@ -367,6 +402,11 @@ h1 {
   border-radius: 0%;
   border-width: medium;
   position: relative;
+}
+
+.q-line {
+  display: flex;
+  justify-content: space-between;
 }
 
 #line {

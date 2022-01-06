@@ -183,7 +183,7 @@ class QuestionsAndAnswers extends React.Component {
                 <MoreAnsweredQs prodId={this.state.productId} />
                 <AddQuestion prodName={this.state.productName}/>
               </>
-              : <div className='no-questions'>
+              : <div>
                   <AddQuestion prodName={this.state.productName}/>
                 </div>
             }

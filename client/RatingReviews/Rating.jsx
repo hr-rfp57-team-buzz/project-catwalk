@@ -37,7 +37,7 @@ let Rating = ({reviewMeta, averageRating, scrape, totalRatings, wasIClicked}) =>
     <div onClick={wasIClicked} className="ratingOverview">
 
       <div className="reviewStarsContainer">
-        <h1 className="reviewInlineBlock pad15horz">{averageRating}</h1>
+        <h1 id="productAverageRatingReview" className="reviewInlineBlock pad15horz">{averageRating}</h1>
         <span className="reviewInlineBlock">
           <RatingStars averageRating={averageRating} scrape={scrape} module="review"/>
         </span>

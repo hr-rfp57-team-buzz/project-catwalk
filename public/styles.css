@@ -393,7 +393,18 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-#ratings-reviews .fas {
+body .fas {
+  grid-column: 1;
+  grid-row: 1;
+  color: gray;
+}
+
+body .fa-star {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* #ratings-reviews .fas {
   grid-column: 1;
   grid-row: 1;
   color: gray;
@@ -402,7 +413,7 @@ h1 {
 #ratings-reviews .fa-star {
   grid-column: 1;
   grid-row: 1;
-}
+} */
 
 .review {
   grid-column-start: 3;

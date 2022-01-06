@@ -5,15 +5,11 @@ import { OverviewProvider } from './Overview/OverviewContext.jsx';
 import QuestionsAndAnswers from './Q&A/QuestionsAndAnswers.jsx';
 import RatingReviews from './RatingReviews/RatingReviews.jsx';
 import Related from './RelatedItems.jsx';
-import ImportStarsForRelated from './RatingReviews/ImportStarsForRelated.jsx';
-import ImportStarsForProduct from './RatingReviews/ImportStarsForProduct.jsx';
 
 const App = (props) => {
 
   return (
     <AppProvider>
-      <ImportStarsForRelated rating={20} module='related' />
-      <ImportStarsForProduct rating={null} module='product' />
       <div id="container">
         <h1>Simple App</h1>
         <OverviewProvider>

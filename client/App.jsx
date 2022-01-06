@@ -12,7 +12,14 @@ const App = (props) => {
   return (
     <AppProvider>
       <div id="container">
-        <h1>Simple App</h1>
+        <header>
+          <div className="logo">Simple Store</div>
+          <nav>
+            <ul>
+              <li></li>
+            </ul>
+          </nav>
+        </header>
         <OverviewProvider>
           <Overview />
         </OverviewProvider>

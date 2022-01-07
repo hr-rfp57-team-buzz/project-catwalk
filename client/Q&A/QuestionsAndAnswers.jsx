@@ -18,7 +18,7 @@ class QuestionsAndAnswers extends React.Component {
       questions: [],
       filtered: [],
       count: 1,
-      productId: '',
+      productId: 40344,
       productName: '',
       query: '',
     };
@@ -37,8 +37,8 @@ class QuestionsAndAnswers extends React.Component {
   static contextType = AppContext;
 
   componentDidMount() {
-    this.getQuestions(this.state.productId);
     this.getAllQuestions(this.state.productId, this.state.count);
+    this.getQuestions(this.state.productId);
     this.getProdName(this.state.productId);
   }
 
@@ -171,8 +171,10 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   render() {
-    const [productId, setProductId] = this.context;
-    console.log(productId);
+    // const [productId, setProductId] = this.context;
+    let value = this.context;
+    // console.log('value', value[0]);
+    // this.state.productId = value[0];
     return (
       <>
         <SearchBar allQuestions={this.state.allQuestions} handleInput={this.handleInput} handleSearch={this.filterQuestions} handleSubmit={this.handleSubmit} searchOnInput={this.searchOnInput} handleDelete={this.handleDelete}/>

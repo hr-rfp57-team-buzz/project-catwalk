@@ -49,6 +49,11 @@ const OverviewExpanded = (props) => {
     let move = (props.counter.current * -100) + '%';
     slideReel.style.transition = 'none';
     slideReel.style.transform = 'translateX(' + move + ')';
+
+    const bubble = document.querySelector('.po-icon-bubble-selected');
+    let bubbleMove = (props.counter.current - 1) * 50;
+    bubble.style.transform = 'translateX(' + bubbleMove + 'px)';
+
   }, []);
 
   const toggleZoom = (e) => {

@@ -1,17 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-
-body {
-  overflow-y: scroll;
-}
-
-body.active {
-  overflow-y: hidden;
-}
-
 #product-overview {
-  background-color: #fff;
-  color: #444;
-  font-family: "Roboto", sans-serif;
+  padding: 20px 0;
 }
 
 .po-flex {
@@ -332,7 +320,7 @@ body.active {
 /*  PRODUCT DESCRIPTION  */
 .po-description {
   display: flex;
-  margin: 40px 0;
+  margin: 20px 0;
 }
 
 
@@ -341,7 +329,7 @@ body.active {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 58%;
+  width: 55%;
   padding: 20px;
 }
 
@@ -363,7 +351,7 @@ body.active {
 }
 
 .po-desc-points {
-  width: 42%;
+  width: 40%;
   padding: 20px;
   border-left: 3px solid #eee;
 }

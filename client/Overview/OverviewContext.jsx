@@ -43,11 +43,11 @@ export const OverviewProvider = (props) => {
     if (productId === null) {
       return;
     }
-    axios.get(`http://localhost:3000/products/${productId}`)
+    axios.get(`/products/${productId}`)
       .then((res) => {
         productPending = Object.assign({}, res.data);
         const id = productPending.id;
-        return axios.get(`http://localhost:3000/products/${id}/styles`);
+        return axios.get(`/products/${id}/styles`);
       })
       .then((res) => {
         productPending['all_styles'] = res.data.results;

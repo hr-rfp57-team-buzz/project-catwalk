@@ -11,7 +11,7 @@ const OverviewQty = (props) => {
   }
 
   return (
-    <select id="po-select-qty">
+    <select id="po-select-qty" onChange={(e) => { props.updateQty(e); }}>
       {
         quantities.map((qty) => {
           return <OverviewQtyOption key={qty} qty={qty} />;

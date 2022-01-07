@@ -5,7 +5,8 @@ import AddAReviewCharacteristics from './AddAReviewCharacteristics.jsx';
 import {imgbb} from '../../config.js';
 
 
-let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
+let AddAReview = ({window, prodId, reviewMeta, scrape, productName}) => {
+
 
   //captain HOOKs
   let [SizeRatingSelection, setSize] = useState(1);
@@ -115,16 +116,19 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
   let uploadPhoto = (e) => {
     let file = e.target.files[0];
     let convertedImg = '';
-    var reader = new FileReader();
+    let reader = new FileReader();
+    let imgHolder = document.getElementById('reviewUploadPhoto');
+    console.log(e.target.value);
     reader.onloadend = () => {
-      console.log('RESULT', reader.result);
+      // console.log('RESULT', reader.result);
       let baseResult = reader.result.split(',')[1];
       let formData = new FormData();
-      formData.append("image", baseResult);
+      formData.append('image', baseResult);
       axios.post(`https://api.imgbb.com/1/upload?key=${imgbb}`, formData)
         .then(res => {
           console.log(res.data);
-          setReviewPhoto(res.data.data.url);
+          setReviewPhoto(res.data.data.thumb.url);
+          imgHolder.innerHTML = `<img src="${res.data.data.thumb.url}" alt="uploaded photo" />`;
         })
         .catch(err => {
           console.log(err);
@@ -204,7 +208,7 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
           <div className="gridItemLeft">
             <div className="reviewPadBottom">
               <h2>Write Your Review</h2>
-              <h4>About the [Product Name Here]</h4>
+              <h4>About <span style={{color: 'green'}}>{productName}</span></h4>
             </div>
           </div>
           <div className="gridItemRight">
@@ -243,8 +247,10 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
           </div>
           <div className="reviewPadBottom">
             <p>Upload Photo(s)</p>
-            <input id='uploadReviewPhoto' type="file" onChange={uploadPhoto}/>
+            <input type="file" onChange={uploadPhoto}/>
+            <div id="reviewUploadPhoto"></div>
           </div>
+
           <div className="reviewPadBottom">
             <p>What is your nickname *</p>
             <textarea id="reviewNickname" name="reviewNickname" col="50" rows="1" maxLength="21" placeholder="Example: jackson11!"></textarea>

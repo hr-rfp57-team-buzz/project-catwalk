@@ -199,7 +199,9 @@ app.post('/interactions', (req, res) => {
     }
   })
     .then(response => {
-      res.end(response.body);
+      console.log(response);
+      res.status(201);
+      res.send(response.data);
     })
     .catch(err => {
       console.log(err);

@@ -24,6 +24,8 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
     'scrapeReview': true,
     'starIndex': 3
   }]);
+  let [productName, setProuctName] = useState('Loading...');
+
 
 
   let window = document.getElementById('reviewAddWindow');
@@ -49,16 +51,27 @@ let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMe
     }
   };
 
+  let getProductName = () => {
+    let productNameGrab = document.getElementsByClassName('po-product-name')[0].innerHTML;
+    setProuctName(productNameGrab);
+  };
+
   useEffect(() => {
     revealHiddenReviews();
     setReviewsForSorting(reviews);
   }, [scrapeReview]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      getProductName();
+    }, 2000);
+  }, [prodId]);
+
 
   return (
 
     <div className="review">
-      <AddAReview window={window} prodId={prodId} reviewMeta={reviewMeta} scrape={scrape}/>
+      <AddAReview window={window} prodId={prodId} reviewMeta={reviewMeta} scrape={scrape} productName={productName}/>
       <p><span id="numberOfReviews">{numberOfReviews}</span> reviews, sorted by <select onChange={resortListBy} name='sortConditions' id='sortCondition'>
         <option value='relevant'>Relevant</option>
         <option value='helpful'>Helpful</option>

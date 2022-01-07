@@ -34,15 +34,20 @@ body.active {
 }
 
 header {
-  padding: 20px 20px;
+  padding: 18px 0px;
   border-bottom: 3px solid #eee;
 }
 
 .logo {
+  display: inline-block;
+  padding: 8px 10px;
   font-size: 24px;
   font-style: italic;
-  letter-spacing: 2px;
-  /* text-transform: uppercase; */
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 3px solid #444;
+  border-radius: 4px;
 }
 
 nav ul {
@@ -736,7 +741,7 @@ nav ul {
   background-color: rgba(39, 38, 38, 0.601);
   z-index: 2;
   width: 95%;
-  height: 80%;
+  height: 95%;
 }
 
 .reviewAdd {

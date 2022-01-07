@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import OverviewStyles from './OverviewStyles.jsx';
 import OverviewSizes from './OverviewSizes.jsx';
 import OverviewQty from './OverviewQty.jsx';
+import ImportStarsForProduct from '../RatingReviews/ImportStarsForProduct.jsx';
 
 const OverviewDetails = (props) => {
 
@@ -41,14 +42,8 @@ const OverviewDetails = (props) => {
   return (
     <div className="po-details">
       <div className="po-rating-reviews">
-        <div className="po-rating">
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star-half-alt"></i>
-        </div>
-        <div className="po-reviews">Read all reviews</div>
+        <ImportStarsForProduct />
+        <a href="#ratings-reviews"><div className="po-reviews">Read all reviews</div></a>
       </div>
       <div className="po-category">{props.product.category}</div>
       <div className="po-product-name">{props.product.name}</div>

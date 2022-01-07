@@ -12,8 +12,8 @@ let QuestionsList = (props) => (
         <>
           {props.filtered.map(question =>
             <>
-              <Question sort={props.sort} question={question} />
-              <Accordion  answers={Object.entries(question.answers)}/>
+              <Question prodId={props.prodId} sort={props.sort} question={question} />
+              <Accordion  prodId={props.prodId} answers={Object.entries(question.answers)}/>
             </>
           )}
         </>
@@ -22,8 +22,8 @@ let QuestionsList = (props) => (
         <ul>
       {props.questions.map(question =>
         <>
-          <Question sort={props.sort} key={question.question_id} question={question} prodName={props.prodName} />
-          <Accordion answers={Object.entries(question.answers)}/>
+          <Question prodId={props.prodId} sort={props.sort} key={question.question_id} question={question} prodName={props.prodName} />
+          <Accordion prodId={props.prodId} answers={Object.entries(question.answers)}/>
         </>
       )}
     </ul>

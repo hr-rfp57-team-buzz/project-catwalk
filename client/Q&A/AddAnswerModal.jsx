@@ -1,16 +1,20 @@
 import React from 'react';
+import axios from 'axios';
 
 class AddAnswerModal extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      body: '',
+      name: '',
+      email: '',
       images: []
     }
   }
 
   componentDidMount() {
-    var answerInput = document.getElementById("id");
+    var answerInput = document.getElementById("answer");
     var nicknameInput = document.getElementById("nickname");
     var emailInput = document.getElementById("email");
 
@@ -38,6 +42,34 @@ class AddAnswerModal extends React.Component {
       console.log(e.target);
       e.target.setCustomValidity('');
     }
+  }
+
+  handleInputs = (e) => {
+    if (e.target.id === 'answer') {
+      this.setState({ body: e.target.value})
+    }
+    if (e.target.id === 'nickname') {
+      this.setState({ name: e.target.value})
+    }
+    if (e.target.id === 'email') {
+      this.setState({ email: e.target.value})
+    }
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('/qa/questions/' + this.props.qId + '/answers', {
+      body: this.state.body,
+      name: this.state.name,
+      email: this.state.email,
+      photos: this.state.images
+    })
+    .then((response => {
+      console.log(response);
+    }))
+    .catch((err) => {
+      console.error(err);
+    })
   }
 
 
@@ -72,16 +104,15 @@ class AddAnswerModal extends React.Component {
           <h1>Submit Your Answer</h1>
           <h3> {this.props.prodName} : {this.props.qBody}</h3>
           <label>Your Answer: </label>
-          <textarea name="Answer" id="id" required='required'
+          <textarea name="Answer" id="answer" required='required'
             minLength='10' maxLength='1000'
-            rows="10" cols='100'>
+            rows="10" cols='100' onChange={(e) => { this.handleInputs(e); }}>
           </textarea>
           <label>Nickname: </label>
-          <input name="Nickname" id="nickname" required='required'placeholder='Example: jack543!' type='text'/>
+          <input name="Nickname" id="nickname" required='required'placeholder='Example: jack543!' type='text'onChange={(e) => { this.handleInputs(e); }}/>
           <h5>For privacy reasons, do not use yout full name or email address</h5>
           <label>Your email:</label>
-          <input pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/'"
-            name='Email' id='email' required='email' placeholder='Example: jack@email.com' type='text' maxLength='60'/>
+          <input name='Email' id='email' required='email' placeholder='Example: jack@email.com' type='text' maxLength='60' onChange={(e) => { this.handleInputs(e); }}/>
           <h5>For authentication reasons, you will not be emailed</h5>
           {this.state.images ?
             <>
@@ -96,7 +127,7 @@ class AddAnswerModal extends React.Component {
           {this.state.images.length === 5 ? null :
             <button onClick={(e) => {e.preventDefault(); this.showWidget(widget); }}>Upload your photos</button>
           }
-          <input type='submit' value="Submit Answer"/>
+          <input onClick={(e) => { this.handleSubmit(e); }} type='submit' value="Submit Answer"/>
         </form>
       </div>
     )

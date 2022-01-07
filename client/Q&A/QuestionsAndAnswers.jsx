@@ -22,6 +22,7 @@ class QuestionsAndAnswers extends React.Component {
       productName: '',
       query: '',
     };
+
     this.getQuestions = this.getQuestions.bind(this);
     this.getAllQuestions = this.getAllQuestions.bind(this);
     this.getProdName = this.getProdName.bind(this);
@@ -174,22 +175,22 @@ class QuestionsAndAnswers extends React.Component {
   render() {
     return (
       <>
-        <SearchBar allQuestions={this.state.allQuestions} handleInput={this.  handleInput} handleSearch={this.filterQuestions} handleSubmit={this.handleSubmit} searchOnInput={this.searchOnInput} handleDelete={this.handleDelete}/>
+        <SearchBar allQuestions={this.state.allQuestions} handleInput={this.handleInput} handleSearch={this.filterQuestions} handleSubmit={this.handleSubmit} searchOnInput={this.searchOnInput} handleDelete={this.handleDelete}/>
         <div className='questions-answers'>
           <div className='questions-list'>
-            <QuestionsList sort={this.sort} filtered={this.state.filtered} questions={this.state.questions} prodName={this.state.productName}/>
+            <QuestionsList prodId={this.state.productId} sort={this.sort} filtered={this.state.filtered} questions={this.state.questions} prodName={this.state.productName}/>
           </div>
-        </div>
-          <>
             {this.state.allQuestions.length ?
               <>
                 <MoreAnsweredQs prodId={this.state.productId} />
-                <AddQuestion prodName={this.state.productName}/>
+                <AddQuestion prodId={this.state.productId} prodName={this.state.productName}/>
               </>
-              : <div className='no-questions'>
-                  <AddQuestion prodName={this.state.productName}/>
+              : <div>
+                  <AddQuestion prodId={this.state.productId} prodName={this.state.productName}/>
                 </div>
             }
+        </div>
+          <>
           </>
       </>
     );

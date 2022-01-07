@@ -31,7 +31,7 @@ let AnswersList = (props) => {
   <div className="questionCard">
     {props.answersList ? console.log('sorted in', props.sort(props.answersList.slice())) : null}
       <ul>
-        {answersList.slice(0, 2).map(answer => {
+        {props.answers.slice(0, 2).map(answer => {
           return answer.answerer_name === 'Seller' ? <Answer answer={answer}/> : <Answer answer={answer}/>
         })}
       </ul>

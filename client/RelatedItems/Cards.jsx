@@ -45,9 +45,9 @@ class Cards extends React.Component {
             </div>
             <div className="relatedTextHolder" onClick={()=> this.changeId(this.props.data.id)}>
               <p id="relatedCategory">{this.props.data ? this.props.data.category : 'Undefined'}</p>
-              <h3>{this.props.data ? this.props.data.name : 'Are not there'}</h3>
-              <p>${this.props.data ? this.props.data.price : 'Undefined'}</p>
-              <p>{this.props.data ? this.props.data.reviews : 'Undefined'}</p>
+              <h2 className="relName">{this.props.data ? this.props.data.name : 'Are not there'}</h2>
+              <h3>${this.props.data ? this.props.data.price : 'Undefined'}</h3>
+              <h3>{this.props.data ? this.props.data.reviews : 'Undefined'}</h3>
             </div>
           </div>
         </div>

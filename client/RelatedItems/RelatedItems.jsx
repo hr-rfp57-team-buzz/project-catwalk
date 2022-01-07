@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
-import RelatedModal from './RelatedItems/RelatedModal';
-import Cards from './RelatedItems/Cards';
-import OutfitCards from './RelatedItems/OutfitCards';
-import AddOutfit from './RelatedItems/AddOutfit';
-import {AppContext} from './AppProvider';
+import RelatedModal from './RelatedModal';
+import Cards from './Cards';
+import OutfitCards from './OutfitCards';
+import AddOutfit from './AddOutfit';
+import {AppContext} from '../AppProvider';
 
 
 var Related = () => {
@@ -56,8 +56,8 @@ var Related = () => {
       revProduct += parseInt(key) * revs[key];
     }
     //console.log("totalNum: ", totalNum, " Product: ", revProduct);
-    let average = ((revProduct / totalNum) / 5);
-    return average.toFixed(2);
+    let average = (((revProduct / totalNum) / 5) * 100);
+    return average.toFixed(0);
   };
 
 
@@ -99,6 +99,7 @@ var Related = () => {
     axios.get(`products/${id}`)
       .then((res) => {
         let temp = mainFeatures;
+        temp['category'] = res.data.category;
         temp['name'] = res.data.name;
         temp['features'] = res.data.features;
         setMainFeatures(temp);
@@ -171,10 +172,33 @@ var Related = () => {
 
   let updateOutfits = function(main) {
     var temp = outfit;
+    if (main.name === undefined) {
+      console.log("ITS NULL");
+      return;
+    }
+    for (var i = 0; i < temp.length; i++) {
+      if(main.name === temp[i].name) {
+        console.log('MATCH FOUND');
+        return;
+      }
+    }
     temp.push(main);
     temp = JSON.parse(JSON.stringify(temp));
     setOutfit(temp);
     setMainFeatures({});
+  };
+
+  let removeOutfit = function(name) {
+    var temp = outfit;
+    console.log(temp);
+    for (var i = 0; i < outfit.length; i++) {
+      if (name === temp[i].name) {
+        temp.splice(i, 1);
+      }
+    }
+    temp = JSON.parse(JSON.stringify(temp));
+    setOutfit(temp);
+
   };
 
 
@@ -236,7 +260,7 @@ var Related = () => {
         <AddOutfit update={updateOutfits} main={mainFeatures}/>
         {outfit.length > 0 ? outfit.map((data) =>
           <div>
-            <OutfitCards data={data}/>
+            <OutfitCards data={data} removeOutfit={removeOutfit} outfit={outfit}/>
           </div>
         ) : <span/>}
       </div>

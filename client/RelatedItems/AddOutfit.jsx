@@ -8,6 +8,11 @@ class AddOutfit extends React.Component {
 
   }
 
+  newOutfit() {
+    this.update(this.props.main);
+
+  }
+
 
 
   render() {
@@ -15,7 +20,7 @@ class AddOutfit extends React.Component {
       <div>
         <div className="Card">
           <h1>AddOutfit</h1>
-          <i class="fas fa-plus outfitPlus" onClick={() => this.update(this.props.main)}></i>
+          <i class="fas fa-plus outfitPlus" onClick={() => this.newOutfit()}></i>
         </div>
       </div>
     );

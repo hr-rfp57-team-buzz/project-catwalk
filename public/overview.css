@@ -7,6 +7,18 @@
   justify-content: center;
 }
 
+.po-gallery .fas {
+  color: #fff;
+}
+
+.po-styles .fas {
+  color: #444;
+}
+
+.po-expanded .fas {
+  color: #fff;
+}
+
 
 /*  PRODUCT ANNOUNCEMENT  */
 .po-announcement {

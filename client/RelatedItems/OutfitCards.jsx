@@ -9,6 +9,7 @@ class OutfitCards extends React.Component {
       visibility: 'hidden'
     });
     this.clickHandler = this.clickHandler.bind(this);
+    this.removeOutfit = this.props.removeOutfit;
   }
 
   clickHandler() {
@@ -30,7 +31,7 @@ class OutfitCards extends React.Component {
           <div className="Card" onClick={this.clickHandler} >
 
             <span onClick={() => console.log('hi')}>
-              <i class="fas fa-x relX"></i>
+              <i class="fas fa-times-circle" onClick={()=>this.removeOutfit(this.props.data.name)}></i>
             </span>
             <div className="relatedPicHolder" onClick={this.props.show}>
               <img className="relatedPic" src={this.props.data ? this.props.data.picture : null}></img>
@@ -50,7 +51,7 @@ class OutfitCards extends React.Component {
           <div className="Card" onClick={this.clickHandler} >
 
             <span onClick={() => console.log('hi')}>
-              <i class="fal fa-x relX"></i>
+              <i class="fas fa-times-circle" onClick={()=>this.removeOutfit(this.props.data.name)}></i>
             </span>
             <div className="relatedPicHolder" onClick={this.props.show}>
               <img className="relatedPic" src={this.props.data ? this.props.data.picture : null}></img>

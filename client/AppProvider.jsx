@@ -38,14 +38,26 @@ export const AppProvider = (props) => {
   const wasIClicked = (e) => {
     parentElement = '';
     let time = new Date();
+    let element = e.target;
     recursionToFindParentElement(e.target.parentElement);
-    let objToStore = {
-      time: time,
-      target: e.target,
-      Module: parentElement
-    };
-    clickEventArray.push(objToStore);
-    setClickEventArray(clickEventArray);
+    // let objToStore = {
+    //   time: time,
+    //   target: e.target,
+    //   module: parentElement
+    // };
+    axios.post('interactions', {
+      'time': time,
+      'element': e.target.tagName,
+      'widget': parentElement
+    })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    // clickEventArray.push(objToStore);
+    // setClickEventArray(clickEventArray);
     // console.log(clickEventArray);
   };
 

@@ -18,7 +18,7 @@ class QuestionsAndAnswers extends React.Component {
       questions: [],
       filtered: [],
       count: 1,
-      productId: 40433,
+      productId: '',
       productName: '',
       query: '',
     };
@@ -40,8 +40,6 @@ class QuestionsAndAnswers extends React.Component {
     this.getQuestions(this.state.productId);
     this.getAllQuestions(this.state.productId, this.state.count);
     this.getProdName(this.state.productId);
-
-    const [productId, setProductId] = this.context;
   }
 
   sort = (answers) => {
@@ -173,12 +171,14 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   render() {
+    const [productId, setProductId] = this.context;
+    console.log(productId);
     return (
       <>
         <SearchBar allQuestions={this.state.allQuestions} handleInput={this.handleInput} handleSearch={this.filterQuestions} handleSubmit={this.handleSubmit} searchOnInput={this.searchOnInput} handleDelete={this.handleDelete}/>
         <div className='questions-answers'>
           <div className='questions-list'>
-            <QuestionsList prodId={this.state.productId} sort={this.sort} filtered={this.state.filtered} questions={this.state.questions} prodName={this.state.productName}/>
+            <QuestionsList prodId={this.state.productId}sort={this.sort} filtered={this.state.filtered} questions={this.state.questions} prodName={this.state.productName}/>
           </div>
             {this.state.allQuestions.length ?
               <>
@@ -190,8 +190,6 @@ class QuestionsAndAnswers extends React.Component {
                 </div>
             }
         </div>
-          <>
-          </>
       </>
     );
   }

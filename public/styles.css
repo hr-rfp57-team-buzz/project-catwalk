@@ -266,6 +266,34 @@ nav ul {
   z-index: 2;
 }
 
+.your-answer {
+  padding-bottom: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.qa-nickname {
+  padding-top: 5px;
+  padding-bottom: 2px;
+  display:inline-block;
+}
+
+.email-container {
+  padding-bottom: 5px;
+}
+
+.qa-spacing {
+  padding-right: 5px;
+}
+
+/* .qa-modal-images {
+
+} */
+
+.nickname-container {
+ padding-bottom: 5px;
+}
+
 .accordion-content {
   height: 440px;
   width: 100%;
@@ -377,6 +405,11 @@ nav ul {
   justify-content: center;
   margin-bottom: 100px;
   margin-top: 100px;
+  position: absolute;
+  top:-10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
 }
 
 .no-questions {
@@ -449,6 +482,7 @@ nav ul {
   width:auto;
   overflow-x:auto;
   justify-content:center;
+  position:relative;
 }
 
 .questionCard {
@@ -474,6 +508,7 @@ nav ul {
 
 #questions-answers {
   display: grid;
+  position: relative;
   padding-bottom: 10px;
 }
 

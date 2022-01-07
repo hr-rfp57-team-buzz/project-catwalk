@@ -103,27 +103,33 @@ class AddAnswerModal extends React.Component {
         <form>
           <h1>Submit Your Answer</h1>
           <h3> {this.props.prodName} : {this.props.qBody}</h3>
-          <label>Your Answer: </label>
+          <label className='answer-modal-text your-answer' >Your Answer: </label>
           <textarea name="Answer" id="answer" required='required'
             minLength='10' maxLength='1000'
             rows="10" cols='100' onChange={(e) => { this.handleInputs(e); }}>
           </textarea>
-          <label>Nickname: </label>
-          <input name="Nickname" id="nickname" required='required'placeholder='Example: jack543!' type='text'onChange={(e) => { this.handleInputs(e); }}/>
-          <h5>For privacy reasons, do not use yout full name or email address</h5>
-          <label>Your email:</label>
-          <input name='Email' id='email' required='email' placeholder='Example: jack@email.com' type='text' maxLength='60' onChange={(e) => { this.handleInputs(e); }}/>
-          <h5>For authentication reasons, you will not be emailed</h5>
-          {this.state.images ?
-            <>
-              {this.state.images.map(img =>
-                <a href={img}>
-                  <img src={img}></img>
-                </a>
-              )}
-            </>
-            : null
-          }
+          <div className='nickname-container'>
+            <label className='qa-nickname qa-spacing'>Nickname: </label>
+            <input name="Nickname" id="nickname" required='required'placeholder='Example: jack543!' type='text'onChange={(e) => { this.handleInputs(e); }}/>
+            <h5>For privacy reasons, do not use yout full name or email address</h5>
+          </div>
+          <div className='email-container'>
+            <label className='qa-spacing'>Your email:</label>
+            <input className='qa-spacing' name='Email' id='email' required='email' placeholder='Example: jack@email.com' type='text' maxLength='60' onChange={(e) => { this.handleInputs(e); }}/>
+            <h5>For authentication reasons, you will not be emailed</h5>
+          </div>
+            {this.state.images ?
+              <>
+              <div className='qa-modal-images'>
+                {this.state.images.map(img =>
+                  <a href={img}>
+                  <img src={img}/>
+                  </a>
+                )}
+              </div>
+              </>
+              : null
+            }
           {this.state.images.length === 5 ? null :
             <button onClick={(e) => {e.preventDefault(); this.showWidget(widget); }}>Upload your photos</button>
           }

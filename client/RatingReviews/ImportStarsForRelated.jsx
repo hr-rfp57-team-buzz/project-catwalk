@@ -1,7 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AppContext } from '../AppProvider.jsx';
 
 
-let RatingStars = ({averageRating, scrape, module}) => {
+let ImportStarsForRelated = ({rating, module}) => {
+
+  // let [rateAverage, setRateAverage] = useState(Number(rating / 20).toFixed(1));
+
+  const [productId, setProductId] = useContext(AppContext);
+
+  let stripArray = ['reviewStarsFill', 'reviewStarsFill75', 'reviewStarsFill50', 'reviewStarsFill25'];
+
+
 
   let classStripper = (elem, classArray) => {
     classArray.forEach(function(item) {
@@ -9,16 +18,14 @@ let RatingStars = ({averageRating, scrape, module}) => {
     });
   };
 
-  let stripArray = ['reviewStarsFill', 'reviewStarsFill75', 'reviewStarsFill50', 'reviewStarsFill25'];
-
-
-  let star5 = document.getElementById(`5star${module}`);
-  let star4 = document.getElementById(`4star${module}`);
-  let star3 = document.getElementById(`3star${module}`);
-  let star2 = document.getElementById(`2star${module}`);
-  let star1 = document.getElementById(`1star${module}`);
-
   let fillStars = (averageRating) => {
+
+    const star5 = document.getElementById(`5star${module}`);
+    const star4 = document.getElementById(`4star${module}`);
+    const star3 = document.getElementById(`3star${module}`);
+    const star2 = document.getElementById(`2star${module}`);
+    const star1 = document.getElementById(`1star${module}`);
+
     classStripper(star5, stripArray);
     classStripper(star4, stripArray);
     classStripper(star3, stripArray);
@@ -110,17 +117,15 @@ let RatingStars = ({averageRating, scrape, module}) => {
   };
 
 
-  let setStars = () => {
-    if (!scrape) {
-      return;
-    } else {
-      fillStars(Number(averageRating));
-    }
+  let setStars = (num) => {
+    fillStars(num);
   };
 
   useEffect(() => {
-    setStars();
-  }, [averageRating, scrape]);
+    const ratingForRelated = Number(rating / 20).toFixed(1);
+    console.log(Number(ratingForRelated));
+    setStars(Number(ratingForRelated));
+  }, []);
 
   return (
 
@@ -164,4 +169,4 @@ let RatingStars = ({averageRating, scrape, module}) => {
 
 
 
-export default RatingStars;
+export default ImportStarsForRelated;

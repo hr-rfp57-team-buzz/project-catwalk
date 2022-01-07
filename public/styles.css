@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
+body .fas {
+  grid-column: 1;
+  grid-row: 1;
+  color: gray;
+}
+
+body .fa-star {
+  grid-column: 1;
+  grid-row: 1;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -427,7 +438,7 @@ nav ul {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-#ratings-reviews .fas {
+/* #ratings-reviews .fas {
   grid-column: 1;
   grid-row: 1;
   color: gray;
@@ -436,7 +447,7 @@ nav ul {
 #ratings-reviews .fa-star {
   grid-column: 1;
   grid-row: 1;
-}
+} */
 
 .review {
   grid-column-start: 3;

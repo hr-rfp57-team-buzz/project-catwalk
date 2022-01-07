@@ -270,10 +270,45 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
     }
   })
   .then(response => {
-    console.log(response);
-    res.send();
+    res.send(response);
   })
-})
+});
+
+app.post('/qa/questions', (req, res) => {
+  let newQ = req.body;
+  let endpoint = url + 'qa/questions'
+  console.log('Q&A POST: ', req);
+  axios.post(endpoint, newQ, {
+    headers: {
+      "Authorization": TOKEN.TOKEN,
+    }
+  })
+  .then((response) => {
+    res.send(response.data);
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+});
+
+app.post('/qa/questions/:question_id/answers', (req, res) => {
+  let newA = req.body;
+  let id = req.params.question_id;
+  let endpoint = url + 'qa/questions/' + id + '/answers';
+  console.log('Q&A POST FOR ADDING ANSWERS: ', req);
+  axios.post(endpoint, newA, {
+    headers: {
+      "Authorization": TOKEN.TOKEN,
+    }
+  })
+  .then((response) => {
+    res.send(response.data);
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+});
+
 
 app.listen(port, function() {
   console.log('Listening on port ', port);

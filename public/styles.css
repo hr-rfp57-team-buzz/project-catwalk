@@ -228,7 +228,7 @@ h1 {
   visibility: visible;
   height: 100%;
   margin: auto;
-  z-index: 1;
+  z-index: 2;
 }
 
 .accordion-content {
@@ -257,13 +257,9 @@ h1 {
   position: sticky;
   bottom: 0;
   left: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
-.top-line {
-  display: flex;
-  padding-right: 10px;
-}
 
 /* .add-q-btn {
   display: inline-flex;
@@ -315,11 +311,6 @@ h1 {
   background-color: transparent;
 }
 
-.no-questions {
-  margin: auto;
-  width: 40%;
-  padding: 25px;
-}
 
 .q-a-img {
   display: inline-block;
@@ -345,10 +336,26 @@ h1 {
   color: rgb(87, 245, 14);
 }
 
+.modal {
+  background: black;
+  width: max-content;
+  justify-content: center;
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
+
+.no-questions {
+  margin: auto;
+  width: 40%;
+  padding: 25px;
+}
 
 .search-wrapper {
   border: 1px solid black;
-  display: inline-block;
+  display:flex;
+  /* justify-content: center; */
+  width: 1000px;
+  height: 50px;
 }
 
 .search-bar{
@@ -382,31 +389,46 @@ h1 {
   width: 50px;
 }
 
+.top-line {
+  display: flex;
+  padding-right: 10px;
+}
+
 .top-links {
   display: flex;
   justify-content: space-around;
   padding-right: 10px;
 }
+.q-line {
+  display: flex;
+  justify-content: space-between;
+}
 
 .questions {
   margin-top: 20px;
+  justify-content: space-between;
+  width: 1000px;
 }
 .questions-answers {
   height: 440px;
   width:auto;
   overflow-x:auto;
+  justify-content:center;
 }
 
 .questionCard {
   background-color: white;
+  display: flex;
   border-radius: 0%;
   border-width: medium;
   position: relative;
+  justify-content:space-around;
 }
 
-.q-line {
+.question-list {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: center; */
+  justify-content: right;
 }
 
 #line {
@@ -423,8 +445,6 @@ h1 {
 /* .question-header {
 } */
 
-/* .question-list {
-} */
 
 
 

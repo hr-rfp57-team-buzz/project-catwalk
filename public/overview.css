@@ -1,3 +1,6 @@
+#product-overview {
+  padding: 20px 0;
+}
 
 .po-flex {
   display: flex;
@@ -317,7 +320,7 @@
 /*  PRODUCT DESCRIPTION  */
 .po-description {
   display: flex;
-  margin: 40px 0;
+  margin: 20px 0;
 }
 
 
@@ -326,7 +329,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 58%;
+  width: 55%;
   padding: 20px;
 }
 
@@ -348,7 +351,7 @@
 }
 
 .po-desc-points {
-  width: 42%;
+  width: 40%;
   padding: 20px;
   border-left: 3px solid #eee;
 }

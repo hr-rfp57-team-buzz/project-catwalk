@@ -7,6 +7,7 @@ import AddOutfit from './AddOutfit';
 import {AppContext} from '../AppProvider';
 
 
+
 var Related = () => {
   const [x, setX] = useState(0);
   const [x2, setX2] = useState(0);
@@ -182,10 +183,16 @@ var Related = () => {
         return;
       }
     }
-    temp.push(main);
+    let mainTemp = JSON.parse(JSON.stringify(main));
+    console.log("Main ", mainTemp);
+    console.log("temp before push", temp);
+
+    temp.push(mainTemp);
+    console.log("temp after pushing main", temp);
     temp = JSON.parse(JSON.stringify(temp));
+    console.log("FINAL TEMP ", temp);
     setOutfit(temp);
-    setMainFeatures({});
+    //setMainFeatures({});
   };
 
   let removeOutfit = function(name) {
@@ -248,19 +255,19 @@ var Related = () => {
       <i class="fas fa-arrow-right rArrow" onClick={()=>setX(x - 340)}></i>
       <i class="fas fa-arrow-left lArrow" onClick={()=>moveLeft()}></i>
       <div className="reel"style={stylesRelated}>
-        {completeRelated.length > 0 ? completeRelated.map((data) =>
+        {completeRelated.length > 0 ? completeRelated.map((data, index) =>
           <div>
-            <Cards data={data} show={modalHide} mainFeat={mainFeatures ? mainFeatures : []} changeId={idReset}/>
+            <Cards data={data} show={modalHide} index={index} mainFeat={mainFeatures ? mainFeatures : []} changeId={idReset}/>
           </div>
-        ) : <Cards/>}
+        ) : <div></div>}
       </div>
       <i className="lArrow" class="fas fa-arrow-left lArrow2" onClick={()=> moveLeftOutfit()}></i>
       <i className="rArrow" class="fas fa-arrow-right rArrow2" onClick={()=>setX2(x2 - 340)}></i>
       <div className="reel"style={stylesOutfit}>
         <AddOutfit update={updateOutfits} main={mainFeatures}/>
-        {outfit.length > 0 ? outfit.map((data) =>
+        {outfit.length > 0 ? outfit.map((data, index) =>
           <div>
-            <OutfitCards data={data} removeOutfit={removeOutfit} outfit={outfit}/>
+            <OutfitCards data={data} index={index} removeOutfit={removeOutfit} outfit={outfit}/>
           </div>
         ) : <span/>}
       </div>

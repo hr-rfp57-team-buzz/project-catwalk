@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
 import RelatedModal from './RelatedModal';
 import {AppContext} from '../AppProvider';
+import ImportStarsForRelated from '../RatingReviews/ImportStarsForRelated.jsx';
+
 
 
 
@@ -8,7 +10,7 @@ class Cards extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
-      visibility: 'hidden'
+      visibility: 'hidden',
     });
     //static contextType = AppContext;
     this.clickHandler = this.clickHandler.bind(this);
@@ -31,7 +33,9 @@ class Cards extends React.Component {
 
 
 
+
   render() {
+    var revs = this.props.data.reviews;
     if (this.state.visibility === 'hidden') {
       return (
         <div>
@@ -47,7 +51,8 @@ class Cards extends React.Component {
               <p id="relatedCategory">{this.props.data ? this.props.data.category : 'Undefined'}</p>
               <h2 className="relName">{this.props.data ? this.props.data.name : 'Are not there'}</h2>
               <h3>${this.props.data ? this.props.data.price : 'Undefined'}</h3>
-              <h3>{this.props.data ? this.props.data.reviews : 'Undefined'}</h3>
+              {this.props.data.reviews ? <ImportStarsForRelated rating={this.props.data.reviews} module={`related${this.props.index}`}/> : <span></span> }
+
             </div>
           </div>
         </div>
@@ -67,7 +72,7 @@ class Cards extends React.Component {
               <p id="relatedCategory">{this.props.data ? this.props.data.category : 'Undefined'}</p>
               <h3>{this.props.data ? this.props.data.name : 'Are not there'}</h3>
               <p>${this.props.data ? this.props.data.price : 'Undefined'}</p>
-              <p>{this.props.data ? this.props.data.reviews : 'Undefined'}</p>
+              <ImportStarsForRelated rating={this.props.data.reviews} module='related' />
             </div>
           </div>
         </div>

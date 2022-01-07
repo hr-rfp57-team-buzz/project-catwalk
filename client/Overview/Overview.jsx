@@ -19,6 +19,7 @@ const Overview = (props) => {
     setExpandedView(!expandedView);
   };
 
+
   return (
     <div id="product-overview">
       {expandedView ? <OverviewExpanded product={product} counter={counter} updateExpandedView={updateExpandedView} /> : ''}

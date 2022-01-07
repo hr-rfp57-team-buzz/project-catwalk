@@ -4,7 +4,6 @@ import Overview from './Overview/Overview.jsx';
 import { OverviewProvider } from './Overview/OverviewContext.jsx';
 import QuestionsAndAnswers from './Q&A/QuestionsAndAnswers.jsx';
 import RatingReviews from './RatingReviews/RatingReviews.jsx';
-
 import Related from './RelatedItems.jsx';
 
 const App = (props) => {

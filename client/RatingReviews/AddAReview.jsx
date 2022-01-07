@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import AddAReviewStars from './AddAReviewStars.jsx';
 import axios from 'axios';
 import AddAReviewCharacteristics from './AddAReviewCharacteristics.jsx';
+import {imgbb} from '../../config.js';
 
 
 let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
@@ -14,6 +15,7 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
   let [LengthRatingSelection, setLength] = useState(1);
   let [FitRatingSelection, setFit] = useState(1);
   let [doYouRecommendSelection, setRecommend] = useState(undefined);
+  let [reviewPhoto, setReviewPhoto] = useState('');
 
   let [productRating, setProductRating] = useState(0);
   let [minCharCount, setMinCharCount] = useState(50);
@@ -110,6 +112,27 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
     }
   };
 
+  let uploadPhoto = (e) => {
+    let file = e.target.files[0];
+    let convertedImg = '';
+    var reader = new FileReader();
+    reader.onloadend = () => {
+      console.log('RESULT', reader.result);
+      let baseResult = reader.result.split(',')[1];
+      let formData = new FormData();
+      formData.append("image", baseResult);
+      axios.post(`https://api.imgbb.com/1/upload?key=${imgbb}`, formData)
+        .then(res => {
+          console.log(res.data);
+          setReviewPhoto(res.data.data.url);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    };
+    reader.readAsDataURL(file);
+  };
+
 
   let sendNewReview = () => {
     generateCharacteristicsObject();
@@ -127,6 +150,7 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
     console.log('nickname: ', reviewNickname.value);
     console.log('email: ', reviewEmail.value);
     console.log(charsToSend);
+    console.log(reviewPhoto);
     if (productRating === 0) {
       alert('Please select an Overall Rating for this product');
       return;
@@ -155,7 +179,7 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
       'recommend': doYouRecommendSelection,
       'name': reviewNickname.value,
       'email': reviewEmail.value,
-      'photos': ['http://placecorgi.com/250'],
+      'photos': [reviewPhoto],
       'characteristics': charsToSend
     })
       .then(res => {
@@ -164,6 +188,7 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
       .catch(err => {
         console.log(err);
       });
+    closeAddReviewWindow();
   };
 
 
@@ -218,7 +243,7 @@ let AddAReview = ({window, prodId, reviewMeta, scrape}) => {
           </div>
           <div className="reviewPadBottom">
             <p>Upload Photo(s)</p>
-            <input type="file"/>
+            <input id='uploadReviewPhoto' type="file" onChange={uploadPhoto}/>
           </div>
           <div className="reviewPadBottom">
             <p>What is your nickname *</p>

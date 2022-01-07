@@ -313,6 +313,7 @@ nav ul {
 .a-line {
   display: flex;
   /* justify-content: space-between; */
+  padding-bottom: 5px;
 }
 
 .bottom-btn {
@@ -422,6 +423,14 @@ nav ul {
   z-index: 99;
 }
 
+.moreQs {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  /* justify-content: space-between; */
+  width: 1000px;
+}
+
 .no-questions {
   margin: auto;
   width: 40%;
@@ -480,6 +489,7 @@ nav ul {
 .q-line {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 5px;
 }
 
 .questions {
@@ -493,11 +503,16 @@ nav ul {
   overflow-x:auto;
   justify-content:center;
   position:relative;
+  /* right: 30px; */
 }
+
+/* .question-break {
+
+} */
 
 .questionCard {
   background-color: white;
-  display: flex;
+  /* display: flex; */
   border-radius: 0%;
   border-width: medium;
   position: relative;
@@ -507,7 +522,7 @@ nav ul {
 .question-list {
   display: flex;
   /* justify-content: center; */
-  justify-content: right;
+  justify-content: center;
 }
 
 #line {

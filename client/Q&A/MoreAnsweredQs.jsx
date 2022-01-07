@@ -62,11 +62,13 @@ class MoreAnsweredQs extends React.Component {
   render() {
     return (
       <>
+      <div className="questionCard">
         {this.state.toRender.length ?
           this.state.toRender.map(question =>
             <Question question={question}/>
           ) : null
         }
+      </div>
           {/* <form> */}
             {this.state.showButton ? <MoreAnsweredButton id={this.props.prodId} count={this.state.count} getMoreQs={this.getMoreQs} increasePage={this.increasePage}/> :null}
           {/* </form> */}

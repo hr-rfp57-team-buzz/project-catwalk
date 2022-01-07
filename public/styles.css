@@ -41,7 +41,7 @@ h1 {
   margin: 10px;
   transition: all 0.4s ease-in-out;
 
-  height: 350px;
+  height: 500px;
   width: 80%;
 }
 
@@ -50,19 +50,22 @@ h1 {
   position: relative;
   flex-direction: column;
   align-self:center;
-  width: 200px;
-  height: 300px;
+  width: 300px;
+  height: 400px;
   margin-left: 50px;
   margin-top: 20px;
   margin-bottom: 20px;
   border-width: 2px;
+  border-radius: 8px;
+  border-color: lightslategray;
   border-style: solid;
 
 }
 
 .relatedPic {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .relatedPicHolder {
@@ -71,8 +74,15 @@ h1 {
   background-color: white;
 }
 
+.relName {
+  align-self: center;
+}
+
 .relatedTextHolder {
   height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   background-color: slategray;
   text-align: left;
 }
@@ -195,13 +205,13 @@ h1 {
 }
 
 .relCheckRight {
-  position: absolute;
-  right: 5%;
+  position: fixed;
+  right: 25%;
 }
 
 .relCheckLeft {
-  position: absolute;
-  left: 5%;
+  position: fixed;
+  left: 25%;
 }
 
 .relFeat {

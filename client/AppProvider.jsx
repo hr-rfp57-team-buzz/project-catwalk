@@ -62,7 +62,7 @@ export const AppProvider = (props) => {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:3000/products')
+    axios.get('/products')
       .then((res) => {
         console.log('products', res.data);
         const id = res.data[0].id;

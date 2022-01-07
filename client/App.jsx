@@ -11,7 +11,14 @@ const App = (props) => {
   return (
     <AppProvider>
       <div id="container">
-        <h1>Simple App</h1>
+        <header>
+          <div className="logo">To Infinity &amp; Beyond!</div>
+          <nav>
+            <ul>
+              <li></li>
+            </ul>
+          </nav>
+        </header>
         <OverviewProvider>
           <Overview />
         </OverviewProvider>
@@ -27,34 +34,5 @@ const App = (props) => {
     </AppProvider>
   );
 };
-
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//     };
-//   }
-
-//   render() {
-//     return (
-//       <AppProvider>
-//         <div id="container">
-//           <h1>Simple App</h1>
-//           <OverviewProvider>
-//             <Overview />
-//           </OverviewProvider>
-//           <div id="related-products">Related Products</div>
-//           <div className="related">
-//             <Related />
-//           </div>
-//           <div className="your-outfit">Outfit</div>
-//           <div id="questions-answers">Questions &amp; Answers</div>
-//           <QuestionsAndAnswers />
-//           <RatingReviews />
-//         </div>
-//       </AppProvider>
-//     );
-//   }
-// }
 
 export default App;

@@ -171,10 +171,6 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   render() {
-    // const [productId, setProductId] = this.context;
-    let value = this.context;
-    // console.log('value', value[0]);
-    // this.state.productId = value[0];
     return (
       <>
         <SearchBar allQuestions={this.state.allQuestions} handleInput={this.handleInput} handleSearch={this.filterQuestions} handleSubmit={this.handleSubmit} searchOnInput={this.searchOnInput} handleDelete={this.handleDelete}/>

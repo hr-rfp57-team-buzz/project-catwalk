@@ -26,7 +26,6 @@ const App = (props) => {
         <div className="related">
           <Related />
         </div>
-        <div className="your-outfit">Outfit</div>
         <div id="questions-answers">Questions &amp; Answers</div>
         <QuestionsAndAnswers />
         <RatingReviews />

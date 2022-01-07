@@ -2,7 +2,7 @@ import React from 'react';
 
 const OverviewAnnouncement = (props) => {
   return (
-    <div className="po-announcement">Site-Wide Announcement Message! -- Sale / Discount <strong>Offer</strong> -- <div className="po-highlight">New Product Highlight</div></div>
+    <div className="po-announcement">Free Shipping on Orders over $100! -- <strong>Up to $40 Off Selected Styles</strong> <div className="po-highlight"></div></div>
   );
 };
 

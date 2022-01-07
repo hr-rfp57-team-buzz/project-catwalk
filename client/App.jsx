@@ -4,11 +4,7 @@ import Overview from './Overview/Overview.jsx';
 import { OverviewProvider } from './Overview/OverviewContext.jsx';
 import QuestionsAndAnswers from './Q&A/QuestionsAndAnswers.jsx';
 import RatingReviews from './RatingReviews/RatingReviews.jsx';
-<<<<<<< HEAD
 import Related from './RelatedItems/RelatedItems.jsx';
-=======
-import Related from './RelatedItems.jsx';
->>>>>>> bfa7e07dc2627c15cc7f8bdc85cba39ffc1dad1e
 
 const App = (props) => {
 

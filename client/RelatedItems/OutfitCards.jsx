@@ -1,5 +1,7 @@
 import React from 'react';
 import RelatedModal from './RelatedModal';
+import ImportStarsForRelated from '../RatingReviews/ImportStarsForRelated.jsx';
+
 
 class OutfitCards extends React.Component {
 
@@ -25,22 +27,26 @@ class OutfitCards extends React.Component {
   }
 
   render() {
+
+    let rev = this.props.data.reviews;
+
     if (this.state.visibility === 'hidden') {
       return (
         <div>
           <div className="Card" onClick={this.clickHandler} >
 
             <span onClick={() => console.log('hi')}>
-              <i class="fas fa-times-circle" onClick={()=>this.removeOutfit(this.props.data.name)}></i>
+              <i class="fas fa-times-circle relX" onClick={()=>this.removeOutfit(this.props.data.name)}></i>
             </span>
             <div className="relatedPicHolder" onClick={this.props.show}>
               <img className="relatedPic" src={this.props.data ? this.props.data.picture : null}></img>
             </div>
             <div className="relatedTextHolder">
               <p id="relatedCategory">{this.props.data ? this.props.data.category : 'Undefined'}</p>
-              <h3>{this.props.data ? this.props.data.name : 'Are not there'}</h3>
-              <p>{this.props.data ? this.props.data.price : 'Undefined'}</p>
-              <p>{this.props.data ? this.props.data.reviews : 'Undefined'}</p>
+              <h3>{this.props.data.name}</h3>
+              <p>{this.props.data.price}</p>
+              {this.props.data.reviews ? <ImportStarsForRelated rating={rev} module={`related${this.props.index + 20}`}/> : <span></span> }
+
             </div>
           </div>
         </div>
@@ -51,7 +57,7 @@ class OutfitCards extends React.Component {
           <div className="Card" onClick={this.clickHandler} >
 
             <span onClick={() => console.log('hi')}>
-              <i class="fas fa-times-circle" onClick={()=>this.removeOutfit(this.props.data.name)}></i>
+              <i class="fas fa-times-circle relX" onClick={()=>this.removeOutfit(this.props.data.name)}></i>
             </span>
             <div className="relatedPicHolder" onClick={this.props.show}>
               <img className="relatedPic" src={this.props.data ? this.props.data.picture : null}></img>
@@ -60,7 +66,8 @@ class OutfitCards extends React.Component {
               <p id="relatedCategory">{this.props.data ? this.props.data.category : 'Undefined'}</p>
               <h3>{this.props.data ? this.props.data.name : 'Are not there'}</h3>
               <p>{this.props.data ? this.props.data.price : 'Undefined'}</p>
-              <p>{this.props.data ? this.props.data.reviews : 'Undefined'}</p>
+              {this.props.data.reviews ? <ImportStarsForRelated rating={this.props.data.reviews} module={`related${this.props.index}`}/> : <span></span> }
+
             </div>
           </div>
         </div>

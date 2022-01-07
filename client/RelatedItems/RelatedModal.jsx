@@ -26,14 +26,7 @@ class RelatedModal extends React.Component {
   }
 
   render() {
-    var lArr = [];
-    var rArr = [];
-    var mArr = [];
-    if (this.props.mainFeat) {
-      for (var i = 0; i < this.props.mainFeat.length; i++) {
-        console.log("hi");
-      }
-    }
+
     return (
       <div className="relModal" style={{visibility: this.props.show}}>
         <div className="relModal-content">

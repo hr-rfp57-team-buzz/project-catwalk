@@ -13,7 +13,7 @@ const OverviewSizes = (props) => {
   }
 
   return (
-    <select id="po-select-size" onChange={(e) => { props.updateQty(e); }}>
+    <select id="po-select-size" onChange={(e) => { props.updateSize(e); }}>
       <option selected disabled>{selectSize}</option>
       {
         uniqueSizes.map((size, index) => {

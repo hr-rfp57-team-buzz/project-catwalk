@@ -3,6 +3,7 @@ import axios from 'axios';
 
 // import QuestionsList from './QuestionsList.jsx';
 import Question from './Question.jsx';
+import MoreAnsweredButton from './MoreAnsweredQButton.jsx';
 
 class MoreAnsweredQs extends React.Component {
   constructor(props) {
@@ -60,22 +61,24 @@ class MoreAnsweredQs extends React.Component {
   }
   render() {
     return (
-      <div className='more-questions'>
+      <>
         {this.state.toRender.length ?
           this.state.toRender.map(question =>
             <Question question={question}/>
           ) : null
         }
-          <form>
-            {this.state.showButton ? <input className='bottom-btn' type="submit"     value="More Answered Question" onClick={ (e) => {
-              this.getMoreQs(this.props.prodId, this.state.count, e);
-              this.increasePage();
-            }}/>
-            :null}
-          </form>
-      </div>
+          {/* <form> */}
+            {this.state.showButton ? <MoreAnsweredButton id={this.props.prodId} count={this.state.count} getMoreQs={this.getMoreQs} increasePage={this.increasePage}/> :null}
+          {/* </form> */}
+      </>
     )
   }
 }
 
 export default MoreAnsweredQs;
+
+
+{/* <button className='bottom-btn' type="submit"     value="More Answered Question" onClick={ (e) => {
+              this.getMoreQs(this.props.prodId, this.state.count, e);
+              this.increasePage();
+            }}>More Answered Questions</button> */}

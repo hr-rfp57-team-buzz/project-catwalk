@@ -5,10 +5,29 @@
 # Summary
 Project Catwalk is a client-facing, e-commerce web app built to display products and related information across various modules (Product Overivew, Related Products, Questions & Answers, Ratings & Reviews).
 
+# Product Overview
 
-1.Run npm install
-2.Run npm run watch *starts webpack in watch mode*
-3.Run npm start *runs nodemon on the server*
+# Related Products
+
+# Questions & Answers
+
+# Ratings & Reviews
+
+# Quick Start
+*Don't work out of main branch*
+1. Clone the repository to your local machine
+2. Run npm install
+3. Create a branch
+> `git checkout branch <your-branch-name>`
+4. Create a config.js file
+5. Add your access token and imgbb token to config.js
+```
+let TOKEN = 'YOUR_TOKEN_HERE';
+exports.TOKEN = TOKEN;
+exports.imgbb = 'YOUR_TOKEN_HERE';
+```
+4. Run npm run watch *starts webpack in watch mode*
+5. Run npm start *runs nodemon on the server*
 
 
 

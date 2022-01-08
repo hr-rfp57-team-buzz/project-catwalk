@@ -12,6 +12,7 @@ Project Catwalk is a client-facing, e-commerce web app built to display products
 # Questions & Answers
 
 # Ratings & Reviews
+Rating and Reviews widget houses the displayed product rating breakdown and the reviews related to the product.  On page load a call will be made to an api server to grab the necessary data to render out the two sections.  Everything is dynamically rendered based off of the displayed products id.  Contains components to add a review and sort the returned reviews.
 
 # Quick Start
 *Don't work out of main branch*

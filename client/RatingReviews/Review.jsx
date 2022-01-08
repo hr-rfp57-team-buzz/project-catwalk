@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReviewListEntry from './ReviewListEntry.jsx';
 import AddAReview from './AddAReview.jsx';
-import axios from 'axios';
 import TOKEN from '../../config.js';
 
 let Review = ({reviews, setReviews, changeProdId, scrapeReview, prodId, reviewMeta, scrape, setListResort}) => {

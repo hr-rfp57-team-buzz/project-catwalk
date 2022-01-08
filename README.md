@@ -28,35 +28,3 @@ exports.imgbb = 'YOUR_TOKEN_HERE';
 ```
 4. Run npm run watch *starts webpack in watch mode*
 5. Run npm start *runs nodemon on the server*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-**Tech Dependencies:**
-Client
-React
-React-dom
-Babel
-Webpack
-
-Server
-Express
-Nodemon
-
-API Calls
-Axios
-
-
-

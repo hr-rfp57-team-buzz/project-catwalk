@@ -4,11 +4,18 @@ const app = express();
 const path = require('path');
 const axios = require('axios');
 const TOKEN = require('../config.js');
+const expressStaticGzip = require('express-static-gzip');
 
 let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
 
 
-app.use(express.static('public'));
+console.log('THIS IS DIRNAME', __dirname)
+// app.use(express.static('public'));
+app.use(
+  expressStaticGzip('public', {
+  enableBrotli: true, // only if you have brotli files too
+  }),
+);
 app.use(express.json());
 console.log(path.join(__dirname, '../public/index.html'));
 

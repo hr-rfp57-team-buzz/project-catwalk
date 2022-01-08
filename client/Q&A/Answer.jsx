@@ -11,7 +11,7 @@ const Answer = (props) => {
 
   let reportAnswer = (id) => {
     props.answer[1].reported = true;
-    axios.put('/qa/answers/:answer_id/report', {
+    axios.put('/qa/answers/:answer_id/report', id, {
       answer_id: id,
     })
     .then(response => {

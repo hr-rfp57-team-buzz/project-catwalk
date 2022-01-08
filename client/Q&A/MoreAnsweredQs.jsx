@@ -22,11 +22,7 @@ class MoreAnsweredQs extends React.Component {
   }
 
   handleShow = () => {
-    this.setState((prevState) => {
-      return {
-        showButton: !prevState.showButton
-      }
-    });
+    this.setState({showButton: !this.state.showButton})
   }
 
   increasePage = () => {
@@ -65,7 +61,7 @@ class MoreAnsweredQs extends React.Component {
       <div className="questionCard">
         {this.state.toRender.length ?
           this.state.toRender.map(question =>
-            <Question question={question}/>
+            <Question key={question.question_id} question={question}/>
           ) : null
         }
       </div>

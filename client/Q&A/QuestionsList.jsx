@@ -10,20 +10,20 @@ let QuestionsList = (props) => (
       {props.filtered.length > 0
         ?
         <>
-          {props.filtered.map(question =>
+          {props.filtered.map((question, index) =>
             <>
-              <Question prodId={props.prodId} sort={props.sort} question={question} />
-              <Accordion  prodId={props.prodId} answers={Object.entries(question.answers)}/>
+              <Question key={question.question_id} prodId={props.prodId} sort={props.sort} question={question} />
+              <Accordion key={index} prodId={props.prodId} answers={Object.entries(question.answers)}/>
             </>
           )}
         </>
         : null
       }
         <ul>
-      {props.questions.map(question =>
+      {props.questions.map((question, index) =>
         <>
           <Question prodId={props.prodId} sort={props.sort} key={question.question_id} question={question} prodName={props.prodName} />
-          <Accordion prodId={props.prodId} answers={Object.entries(question.answers)}/>
+          <Accordion key={index} prodId={props.prodId} answers={Object.entries(question.answers)}/>
         </>
       )}
     </ul>

@@ -60,7 +60,7 @@ class Accordion extends React.Component {
         {this.state.isActive && <div className="accordion-content"> {
           <>
             {this.state.loadedAnswers.map(answer => {
-              return <Answer answer={answer} />
+              return <Answer key={answer[0]} answer={answer} />
               console.log('Inside render: ', answer);
             })}
           </>

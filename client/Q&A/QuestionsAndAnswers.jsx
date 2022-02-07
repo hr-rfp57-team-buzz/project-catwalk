@@ -18,7 +18,7 @@ class QuestionsAndAnswers extends React.Component {
       questions: [],
       filtered: [],
       count: 1,
-      productId: 40344,
+      productId: 40433,
       productName: '',
       query: '',
     };

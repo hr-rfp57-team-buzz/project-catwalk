@@ -5,6 +5,16 @@
 # Summary
 Project Catwalk is a client-facing, e-commerce web app built to display products and related information across various modules (Product Overivew, Related Products, Questions & Answers, Ratings & Reviews).
 
+# Product Overview & Related Items
+<p>
+  <img src='public/PO-RI.gif'/>
+</p>
+
+# Questions and Answers & Ratings and Reviews
+<p>
+  <img src='public/QA-RR.gif'/>
+</p>
+
 # Product Overview
 
 # Related Products

@@ -10,7 +10,7 @@ Project Catwalk is a client-facing, e-commerce web app built to display products
   <img src='public/PO-RI.gif'/>
 </p>
 
-# Questions and Answers & Ratings and Reviews
+# Questions & Answers and Ratings & Reviews
 <p>
   <img src='public/QA-RR.gif'/>
 </p>
@@ -20,6 +20,7 @@ Project Catwalk is a client-facing, e-commerce web app built to display products
 # Related Products
 
 # Questions & Answers
+The Questions & Answers module is the user's access point to questions and answers asked by other users about a product. Via the Questions & Answers module the user can search for specific questions, report a question and/or answer, mark a question as helpful, and submit questions and/or answers about a particular product. Taking user experience into consideration, we've kept all questions and answers contained in their respective accordions in order to accommodate a user-friendly experience.
 
 # Ratings & Reviews
 Rating and Reviews widget houses the displayed product rating breakdown and the reviews related to the product.  On page load a call will be made to an api server to grab the necessary data to render out the two sections.  Everything is dynamically rendered based off of the displayed products id.  Contains components to add a review and sort the returned reviews.

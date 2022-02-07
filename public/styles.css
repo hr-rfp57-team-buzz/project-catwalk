@@ -394,9 +394,10 @@ nav ul {
 .q-a-img {
   display: inline-block;
   border: 1px solid black;
-  width: 150px;
   margin-left: 40px;
-  /* padding: 4px; */
+  width:  100px;
+  height: 100px;
+  object-fit: cover;
 }
 
 .q-a-img:hover {
